@@ -6,13 +6,13 @@
 /*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 21:08:55 by ayassin           #+#    #+#             */
-/*   Updated: 2022/12/16 21:14:59 by ayassin          ###   ########.fr       */
+/*   Updated: 2022/12/16 21:23:11 by ayassin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-int main(void)
+int	main(void)
 {
-	ft_printf("life has just begun\n");
+	return (0);
 }
