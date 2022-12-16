@@ -6,7 +6,7 @@
 #    By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/16 21:09:20 by ayassin           #+#    #+#              #
-#    Updated: 2022/12/16 21:30:58 by ayassin          ###   ########.fr        #
+#    Updated: 2022/12/16 21:37:20 by ayassin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,15 +18,15 @@ CFLAGS = -Werror -Wall -Wextra
 
 SRC = miniRT.c
 
-ifeq ($(shell uname -s), Darwin)
-	CFLAGS += -Imlx
-	LINK_MLX = -Lminilibx_macos -lmlx -framework OpenGl -framework APPKit
-	MLX_LIB = minilibx_macos
-else ifeq ($(shell uname -s), Linux)
-	CFLAGS += -Imlx
-	LINK_MLX = -Lminilibx_linux -lmlx -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
-	MLX_LIB = minilibx_linux
-endif
+# ifeq ($(shell uname -s), Darwin)
+# 	CFLAGS += -Imlx
+# 	LINK_MLX = -Lminilibx_macos -lmlx -framework OpenGl -framework APPKit
+# 	MLX_LIB = minilibx_macos
+# else ifeq ($(shell uname -s), Linux)
+# 	CFLAGS += -Imlx
+# 	LINK_MLX = -Lminilibx_linux -lmlx -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
+# 	MLX_LIB = minilibx_linux
+# endif
 
 SUBDIRS = libft ft_printf $(MLX_LIB)
 
