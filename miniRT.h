@@ -6,14 +6,14 @@
 /*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 21:09:01 by ayassin           #+#    #+#             */
-/*   Updated: 2022/12/16 21:36:42 by ayassin          ###   ########.fr       */
+/*   Updated: 2022/12/16 21:39:48 by ayassin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_H
 # define MINIRT_H
-// # include "minilibx_macos/mlx.h"
-// # include "minilibx_linux/mlx.h"
+# include "minilibx_macos/mlx.h"
+# include "minilibx_linux/mlx.h"
 # include "libft/libft.h"
 # include "ft_printf/ft_printf.h"
 # include <math.h>
