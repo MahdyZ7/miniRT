@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 21:08:55 by ayassin           #+#    #+#             */
-/*   Updated: 2022/12/17 15:20:26 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/17 16:07:04 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,6 @@
 int	main(int argc, char **argv)
 {
 	if (not_valid_file(argc, argv))
-		return (0);
+		return (1);
 	return (0);
 }
