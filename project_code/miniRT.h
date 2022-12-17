@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
+/*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 21:09:01 by ayassin           #+#    #+#             */
-/*   Updated: 2022/12/17 12:13:35 by ayassin          ###   ########.fr       */
+/*   Updated: 2022/12/17 16:11:14 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@
 // #  define I_KEY 34
 # endif
 
-struct	s_img;
-struct	s_win;
+struct s_img;
+struct s_win;
 
 // hold image related information
 typedef struct s_img
@@ -72,7 +72,7 @@ typedef struct s_img
 	int				x_pos;
 	int				y_pos;
 	struct s_win	*win;	
-}				t_img;
+}	t_img;
 
 // hold window info and key information
 typedef struct s_win
@@ -80,25 +80,26 @@ typedef struct s_win
 	void	*mlx_ptr;
 	void	*win_ptr;
 	t_img	*img;
-}				t_win;
+}	t_win;
 
-//miniRT.c
+/*------------------MLX_RELATED---------------*/
+void	pixel_put(t_img *data, int x, int y, int color);
+void	redraw(t_win *s, t_img *img, int x_pos, int y_pos);
+void	setup_img(t_img *img, t_win *win, int width, int hight);
+int		window_setup(t_win *win, t_img *img, char *map_title);
 
-// key_hooks.c
 int		exit_code(t_win *win);
 int		key_hook(int key, t_win *win);
 
-// display_setup.c
-void	pixel_put(t_img *data, int x, int y, int color);
-void	redraw(t_win *s, t_img *img, int x_pos, int y_pos);
-void	img_setup(t_img *img, t_win *win, int width, int hight);
-int		window_setup(t_win *win, t_img *img, char *map_title);
+/*----------------ERRORS-----------------------*/
+int		not_valid_file(int argc, char **argv);
+int		bad_file(char **argv);
+int		parse_error_message(void);
 
-// dummy_functions.c
+/*------------------DUMMY---------------------*/
 void	put_ellipse(t_img *img, int width, int hight);
 void	put_serpenski(t_img *img, int width, int hight);
 void	put_ellipse2(t_img *img, int x, int y);
 void	put_border(t_img *img);
-
 
 #endif
