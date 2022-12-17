@@ -1,28 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   miniRT.c                                           :+:      :+:    :+:   */
+/*   key_hooks.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/16 21:08:55 by ayassin           #+#    #+#             */
-/*   Updated: 2022/12/17 12:54:55 by ayassin          ###   ########.fr       */
+/*   Created: 2022/12/17 10:49:02 by ayassin           #+#    #+#             */
+/*   Updated: 2022/12/17 12:13:14 by ayassin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-int	main(void)
+/* free any malloced data and exit the program*/
+int	exit_code(t_win *win)
 {
-	t_win	win;
-	t_img	img;
+	if (!win)
+		exit(0);
+	if (win->img)
+	{
+		if (win->img->img_ptr)
+			mlx_destroy_image(win->mlx_ptr, win->img->img_ptr);
+	}
+	if (win->mlx_ptr && win->win_ptr)
+		mlx_destroy_window(win->mlx_ptr, win->win_ptr);
+	exit(0);
+	return (0);
+}
 
-	// read map
-	window_setup(&win, &img, "miniRT");
-	// put prossing comand inside redraw;
-	redraw(&win, win.img, win.img->x_pos, win.img->y_pos);
-	mlx_hook(win.win_ptr, 2, 1L << 0, key_hook, &win);
-	mlx_hook(win.win_ptr, 17, 0, exit_code, &win);
-	mlx_loop(win.mlx_ptr);
+/*switch function for keys*/
+int	key_hook(int key, t_win *win)
+{
+	if (key == ESC_KEY)
+		exit_code(win);
 	return (0);
 }

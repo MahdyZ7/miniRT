@@ -6,7 +6,7 @@
 #    By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/16 21:09:20 by ayassin           #+#    #+#              #
-#    Updated: 2022/12/16 21:39:28 by ayassin          ###   ########.fr        #
+#    Updated: 2022/12/17 12:52:37 by ayassin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,9 @@ HEADER = miniRT.h
 
 CFLAGS = -Werror -Wall -Wextra
 
-SRC = miniRT.c
+SRC = miniRT.c setup_display.c key_hooks.c dummy_functions.c
+
+OBJDIR=obj
 
 ifeq ($(shell uname -s), Darwin)
 	CFLAGS += -Imlx
@@ -33,10 +35,12 @@ SUBDIRS = libft ft_printf $(MLX_LIB)
 CC = gcc
 
 OBJS = $(SRC:.c=.o)
+# OBJS = $(addprefix $(OBJDIR)/, $(SRC:.c=.o))
 
 all: $(NAME)
 
 .c.o:
+	mkdir -p $(OBJDIR)
 	$(CC) $(CFLAGS) -Ilibft -Ift_printf -c $^ -o $@
 
 $(NAME): $(SUBDIRS) $(OBJS)
