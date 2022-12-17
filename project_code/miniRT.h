@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
+/*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 21:09:01 by ayassin           #+#    #+#             */
-/*   Updated: 2022/12/16 21:39:48 by ayassin          ###   ########.fr       */
+/*   Updated: 2022/12/17 15:59:26 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,9 @@
 // #  define I_KEY 34
 // #endif
 
-struct s_img;
-struct s_win;
+
+struct	s_img;
+struct	s_win;
 
 // hold image related information
 typedef struct s_img
@@ -72,7 +73,7 @@ typedef struct s_img
 	int				x_pos;
 	int				y_pos;
 	struct s_win	*win;	
-}				t_img;
+}	t_img;
 
 // hold window info and key information
 typedef struct s_win
@@ -80,6 +81,9 @@ typedef struct s_win
 	void	*mlx_ptr;
 	void	*win_ptr;
 	t_img	*img;
-}				t_win;
+}	t_win;
 
+int	not_valid_file(int argc, char **argv);
+int	parse_error_message(void);
+int	bad_file(char **argv);
 #endif

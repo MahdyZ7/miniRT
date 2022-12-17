@@ -3,20 +3,21 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+         #
+#    By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/16 21:09:20 by ayassin           #+#    #+#              #
-#    Updated: 2022/12/16 21:39:28 by ayassin          ###   ########.fr        #
+#    Updated: 2022/12/17 15:31:07 by ahsalem          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = miniRT
+NAME = minirt
 
 HEADER = miniRT.h
 
 CFLAGS = -Werror -Wall -Wextra
 
-SRC = miniRT.c
+SRC = miniRT.c \
+		error_handling/file_error.c
 
 ifeq ($(shell uname -s), Darwin)
 	CFLAGS += -Imlx

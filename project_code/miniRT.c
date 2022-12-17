@@ -3,16 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
+/*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 21:08:55 by ayassin           #+#    #+#             */
-/*   Updated: 2022/12/16 21:23:11 by ayassin          ###   ########.fr       */
+/*   Updated: 2022/12/17 15:20:26 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-int	main(void)
+int	main(int argc, char **argv)
 {
+	if (not_valid_file(argc, argv))
+		return (0);
 	return (0);
 }
