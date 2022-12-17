@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 21:09:01 by ayassin           #+#    #+#             */
-/*   Updated: 2022/12/17 16:11:14 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/18 02:04:17 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
+# include "structs.h"
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1000
 # endif
@@ -55,39 +56,16 @@
 // #  define I_KEY 34
 # endif
 
-struct s_img;
-struct s_win;
+/*------------------Parsing-------------------*/
+int	init_scene(
+		char **argv, t_scene *scene, t_win *win);
 
-// hold image related information
-typedef struct s_img
-{
-	void			*img_ptr;
-	char			*addr;
-	int				bits_per_pixel;
-	int				line_length;
-	int				endian;
-	int				width;
-	int				hight;
-	int				zoom;
-	int				x_pos;
-	int				y_pos;
-	struct s_win	*win;	
-}	t_img;
-
-// hold window info and key information
-typedef struct s_win
-{
-	void	*mlx_ptr;
-	void	*win_ptr;
-	t_img	*img;
-}	t_win;
 
 /*------------------MLX_RELATED---------------*/
 void	pixel_put(t_img *data, int x, int y, int color);
 void	redraw(t_win *s, t_img *img, int x_pos, int y_pos);
 void	setup_img(t_img *img, t_win *win, int width, int hight);
 int		window_setup(t_win *win, t_img *img, char *map_title);
-
 int		exit_code(t_win *win);
 int		key_hook(int key, t_win *win);
 
