@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
+/*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 21:08:55 by ayassin           #+#    #+#             */
-/*   Updated: 2022/12/17 18:13:09 by ayassin          ###   ########.fr       */
+/*   Updated: 2022/12/17 18:29:14 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	main(int argc, char **argv)
 	t_win	win;
 	t_img	img;
 
-	// read map
+	// reading map
 	if (not_valid_file(argc, argv))
 		return (1);
 	window_setup(&win, &img, "miniRT");
