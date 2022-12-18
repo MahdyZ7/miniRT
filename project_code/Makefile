@@ -15,7 +15,7 @@ NAME = minirt
 
 HEADER = miniRT.h
 
-CFLAGS = -Werror -Wall -Wextra
+CFLAGS =  -Wall -Wextra
 
 SRC = miniRT.c setup_display.c key_hooks.c dummy_functions.c\
 		error_handling/file_error.c\
@@ -25,7 +25,7 @@ SRC = miniRT.c setup_display.c key_hooks.c dummy_functions.c\
 OBJDIR=obj
 
 ifeq ($(shell uname -s), Darwin)
-	CFLAGS += -Imlx
+	CFLAGS += -Werror -Imlx
 	LINK_MLX = -Lminilibx_macos -lmlx -framework OpenGl -framework APPKit
 	MLX_LIB = minilibx_macos
 else ifeq ($(shell uname -s), Linux)
