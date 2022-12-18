@@ -6,7 +6,7 @@
 #    By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/03 18:41:50 by ayassin           #+#    #+#              #
-#    Updated: 2022/12/18 12:54:01 by ahsalem          ###   ########.fr        #
+#    Updated: 2022/12/18 15:19:36 by ahsalem          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ SRC = ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c ft_isascii.c\
 	  ft_striteri.c ft_strjoin.c ft_strlen.c ft_strmapi.c ft_strtrim.c\
 	  ft_substr.c ft_lstadd_front.c ft_lstadd_back.c ft_lstclear.c ft_lstclear.c\
 	  ft_lstdelone.c ft_lstiter.c ft_lstlast.c ft_lstmap.c ft_lstnew.c\
-	  ft_lstsize.c ft_free_split.c\
+	  ft_lstsize.c ft_free_split.c \
 	  get_next_line.c  get_next_line_utils.c
 
 CC = gcc

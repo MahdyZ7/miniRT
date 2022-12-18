@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 15:28:03 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/17 15:57:10 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/18 14:26:48 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,11 @@ int	bad_file(char **argv)
 int	parse_error_message(void)
 {
 	write(2, "Error!\nFile Parsing Error,\n", 27);
+	return (1);
+}
+
+int	file_reading_error_message(void)
+{
+	write(2, "Error!\nFile formmating error,\n", 27);
 	return (1);
 }

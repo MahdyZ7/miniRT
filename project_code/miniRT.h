@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 21:09:01 by ayassin           #+#    #+#             */
-/*   Updated: 2022/12/18 12:20:23 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/18 15:09:26 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,17 @@ int		fill_scene(char **argv, t_scene *scene);
 t_list	*parsing_map(int fd);
 void	init_parsing_kit(
 			t_parsing_kit *s, t_list **head, char *line);
+void	update_parsing_kit(
+			t_parsing_kit *s, char *line);
+char	line_classifier(t_parsing_kit *s, char *line);
+int		check_new_line(char *line, int i);
+int		filling_loop(t_parsing_kit *s, char *line, t_list **head);
+t_list	*fill_line_node(char *arg, char type);
+int		fill_new_line(
+			t_parsing_kit *s, char *line, t_list **head, int i);
+void	spaces_smash(t_parsing_kit *s, char *line, t_list **head);
+void	filling_normal_spaced_word(
+			t_parsing_kit *s, char *smashed_line, t_list **head);
 /*------------------MLX_RELATED---------------*/
 void	pixel_put(t_img *data, int x, int y, int color);
 void	redraw(t_win *s, t_img *img, int x_pos, int y_pos);
@@ -76,7 +87,7 @@ int		key_hook(int key, t_win *win);
 int		not_valid_file(int argc, char **argv);
 int		bad_file(char **argv);
 int		parse_error_message(void);
-
+int		file_reading_error_message(void);
 /*------------------DUMMY---------------------*/
 void	put_ellipse(t_img *img, int width, int hight);
 void	put_serpenski(t_img *img, int width, int hight);
