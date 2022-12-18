@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 23:22:05 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/18 15:08:49 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/19 00:25:23 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ void	spaces_smash(t_parsing_kit *s, char *line, t_list **head)
 	smashed_line = NULL;
 	if (!line[s->i])
 		return ;
-	if (line[s->i] == ' ' && line[s->i + 1] && line[s->i + 1] != ' ')
+	if (ft_isspace(line[s->i]) && line[s->i + 1] && !ft_isspace(line[s->i + 1]))
 		s->start = s->i + 1;
-	else if (line[s->i] == ' ')
+	else if (ft_isspace(line[s->i]))
 		;
-	else if ((s->flag == 's' && (line[s->i + 1] == ' '
+	else if ((s->flag == 's' && (ft_isspace(line[s->i + 1])
 				|| (check_new_line(line, s->i + 1))))
 		|| ((s->i + 1) >= s->line_len))
 	{

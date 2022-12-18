@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 08:07:36 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/18 14:46:09 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/19 00:25:48 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ int	filling_loop(t_parsing_kit *s, char *line, t_list **head)
 	{
 		if (line_classifier(s, line) == 'n')
 			fill_new_line(s, line, head, s->i);
-		// else
-		// 	spaces_smash(s, line, head);
+		else
+			spaces_smash(s, line, head);
 		if (s->parse_error_code != 0)
 			break ;
 		s->i++;
@@ -63,7 +63,7 @@ char	line_classifier(t_parsing_kit *s, char *line)
 		return (s->flag);
 	while (line[i])
 	{
-		if (line[i] == ' ')
+		if (ft_isspace(line[i]))
 		{
 			i++;
 			continue ;

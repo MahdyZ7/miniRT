@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 01:58:04 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/18 14:25:59 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/19 00:44:05 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,14 @@ int	fill_scene(char **argv, t_scene *scene)
 	int		i;
 
 	(void)scene;
-	(void)all_map_items;
 	i = 0;
 	fd = open(argv[1], O_RDONLY);
 	all_map_items = parsing_map(fd);
 	if (fd < 0 || !all_map_items)
 		return (file_reading_error_message());
+	vis_list(&all_map_items);
+	ft_lstclear(&all_map_items, del);
+	vis_list(&all_map_items);
 	i++;
 	return (0);
 }

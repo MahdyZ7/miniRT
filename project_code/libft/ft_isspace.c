@@ -1,32 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   visualizers.c                                      :+:      :+:    :+:   */
+/*   ft_isspace.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/18 15:22:02 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/19 00:28:01 by ahsalem          ###   ########.fr       */
+/*   Created: 2022/12/19 00:11:43 by ahsalem           #+#    #+#             */
+/*   Updated: 2022/12/19 00:15:34 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../miniRT.h"
+#include "libft.h"
 
-void	vis_list(t_list **head)
+int	ft_isspace(char c)
 {
-	t_list	*tmp;
-	int		i;
-
-	i = 0;
-	if (!head)
-		return ;
-	if (!*head)
-		return ;
-	tmp = *head;
-	while (tmp)
-	{
-		ft_printf("%s~", tmp->content);
-		tmp = tmp->next;
-		i++;
-	}
+	if (c == ' ' || c == '\t' || c == 11 || c == 9)
+		return (1);
+	else
+		return (0);
 }

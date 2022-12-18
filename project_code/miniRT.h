@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 21:09:01 by ayassin           #+#    #+#             */
-/*   Updated: 2022/12/18 15:09:26 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/18 18:22:11 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ int		not_valid_file(int argc, char **argv);
 int		bad_file(char **argv);
 int		parse_error_message(void);
 int		file_reading_error_message(void);
+void	vis_list(t_list **head);
 /*------------------DUMMY---------------------*/
 void	put_ellipse(t_img *img, int width, int hight);
 void	put_serpenski(t_img *img, int width, int hight);
