@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
+/*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 19:31:52 by ayassin           #+#    #+#             */
-/*   Updated: 2021/12/28 15:19:27 by ayassin          ###   ########.fr       */
+/*   Updated: 2022/12/18 12:57:35 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,14 @@
 # define LIBFT_H
 # include <stdlib.h>
 # include <unistd.h>
-
+# include "get_next_line.h"
 /* Linked List for bounus. Has pointer to content and pointer to next node*/
 typedef struct s_list
 {
 	void			*content;
+	char			type;
 	struct s_list	*next;
-}				t_list;
+}	t_list;
 
 int		ft_atoi(const char *str);
 void	ft_bzero(void *s, size_t n);
@@ -65,4 +66,5 @@ t_list	*ft_lstlast(t_list *lst);
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 t_list	*ft_lstnew(void *content);
 int		ft_lstsize(t_list *lst);
+void	free_split(void **splited);
 #endif

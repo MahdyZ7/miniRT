@@ -6,7 +6,7 @@
 #    By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/16 21:09:20 by ayassin           #+#    #+#              #
-#    Updated: 2022/12/17 16:06:16 by ahsalem          ###   ########.fr        #
+#    Updated: 2022/12/18 11:54:42 by ahsalem          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,9 @@ HEADER = miniRT.h
 CFLAGS = -Werror -Wall -Wextra
 
 SRC = miniRT.c setup_display.c key_hooks.c dummy_functions.c\
-		error_handling/file_error.c
+		error_handling/file_error.c\
+		parsing/read_file.c parsing/mem_clean.c \
+		parsing/cmd_smasher.c parsing/classify_cmd.c parsing/smash_newline.c\
 
 OBJDIR=obj
 

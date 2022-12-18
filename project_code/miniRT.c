@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
+/*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/16 21:08:55 by ayassin           #+#    #+#             */
-/*   Updated: 2022/12/17 18:13:09 by ayassin          ###   ########.fr       */
+/*   Created: 2022/12/18 02:13:41 by ahsalem           #+#    #+#             */
+/*   Updated: 2022/12/18 12:03:42 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,17 @@
 
 int	main(int argc, char **argv)
 {
+	t_scene	scene;
 	t_win	win;
 	t_img	img;
 
-	// read map
 	if (not_valid_file(argc, argv))
 		return (1);
+	if (init_scene(argv, &scene, &win))
+		return (1);
 	window_setup(&win, &img, "miniRT");
-	// put prossing comand inside redraw;
 	redraw(&win, win.img, win.img->x_pos, win.img->y_pos);
+	clean_scene(scene);
 	mlx_hook(win.win_ptr, 2, 1L << 0, key_hook, &win);
 	mlx_hook(win.win_ptr, 17, 0, exit_code, &win);
 	mlx_loop(win.mlx_ptr);
