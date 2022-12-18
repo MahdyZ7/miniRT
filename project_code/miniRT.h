@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 21:09:01 by ayassin           #+#    #+#             */
-/*   Updated: 2022/12/18 02:10:27 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/18 12:20:23 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,11 @@
 /*------------------Parsing-------------------*/
 int		init_scene(
 			char **argv, t_scene *scene, t_win *win);
-
+void	clean_scene(t_scene scene);
+int		fill_scene(char **argv, t_scene *scene);
+t_list	*parsing_map(int fd);
+void	init_parsing_kit(
+			t_parsing_kit *s, t_list **head, char *line);
 /*------------------MLX_RELATED---------------*/
 void	pixel_put(t_img *data, int x, int y, int color);
 void	redraw(t_win *s, t_img *img, int x_pos, int y_pos);

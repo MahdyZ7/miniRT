@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 01:23:30 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/18 02:11:24 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/18 13:05:14 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,5 +97,18 @@ typedef struct s_scene
 	t_plane		*plane;
 	t_cylinder	*cylinder;
 }	t_scene;
+
+typedef struct parsing_kit
+{
+	int		i;
+	t_list	*tmp;
+	int		start;
+	int		end;
+	int		last_end;
+	char	flag;
+	int		parse_error_code;
+	int		line_len;
+	char	*line;
+}	t_parsing_kit;
 
 #endif

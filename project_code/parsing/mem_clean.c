@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   mem_clean.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/17 16:39:55 by ayassin           #+#    #+#             */
-/*   Updated: 2022/12/18 09:39:52 by ahsalem          ###   ########.fr       */
+/*   Created: 2022/12/18 09:05:27 by ahsalem           #+#    #+#             */
+/*   Updated: 2022/12/18 09:07:50 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../miniRT.h"
 
-/*  Return a new node which points to "content"
-**malloc DANGER**/
-t_list	*ft_lstnew(void *content)
+void	clean_scene(t_scene scene)
 {
-	t_list	*temp;
-
-	temp = (t_list *)malloc(sizeof(*temp));
-	if (!temp)
-		return (0);
-	temp -> content = content;
-	temp -> type = '\0';
-	temp -> next = 0;
-	return (temp);
+	if (scene.spheres)
+		free(scene.spheres);
+	if (scene.plane)
+		free(scene.plane);
+	if (scene.cylinder)
+		free(scene.cylinder);
 }
