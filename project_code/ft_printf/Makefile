@@ -21,8 +21,11 @@ DIRS = ../libft
 
 CC = gcc
 
-CFLAGS = -Werror -Wall -Wextra
+CFLAGS = -Wall -Wextra
 
+ifeq ($(shell uname -s), Darwin)
+	CFLAGS += -Werror
+endif
 
 OBJS = $(SRC:.c=.o)
 
