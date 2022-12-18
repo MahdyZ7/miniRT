@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+         #
+#    By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/16 21:09:20 by ayassin           #+#    #+#              #
-#    Updated: 2022/12/18 11:54:42 by ahsalem          ###   ########.fr        #
+#    Updated: 2022/12/18 16:50:28 by ayassin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,12 +17,15 @@ HEADER = miniRT.h
 
 CFLAGS =  -Wall -Wextra
 
+OBJDIR=obj
+
 SRC = miniRT.c setup_display.c key_hooks.c dummy_functions.c\
 		error_handling/file_error.c\
 		parsing/read_file.c parsing/mem_clean.c \
-		parsing/cmd_smasher.c parsing/classify_cmd.c parsing/smash_newline.c\
+		parsing/cmd_smasher.c parsing/classify_cmd.c parsing/smash_newline.c
 
-OBJDIR=obj
+
+OBJSUBDIRS = parsing error_handling
 
 ifeq ($(shell uname -s), Darwin)
 	CFLAGS += -Werror -Imlx
@@ -38,20 +41,29 @@ SUBDIRS = libft ft_printf $(MLX_LIB)
 
 CC = gcc
 
-OBJS = $(SRC:.c=.o)
-# OBJS = $(addprefix $(OBJDIR)/, $(SRC:.c=.o))
+_OBJS = $(SRC:.c=.o)
+OBJS = $(addprefix $(OBJDIR)/,$(_OBJS))
+# OBJS = $(patsubst %,$(OBJDIR)/%,$(_OBJS))
+
 
 all: $(NAME)
 
-.c.o:
+# $(OBJS)/%.o:%.c
+# 	mkdir -p $(OBJDIR)
+# 	$(CC) $(CFLAGS) -Ilibft -Ift_printf -c $^ -o $@
+# $(ODIR)/%.o : %.c
+$(OBJDIR)/%.o : %.c
 	mkdir -p $(OBJDIR)
+	for dir in $(OBJSUBDIRS); do \
+		mkdir -p $(OBJDIR)/$$dir; \
+	done
 	$(CC) $(CFLAGS) -Ilibft -Ift_printf -c $^ -o $@
 
 $(NAME): $(SUBDIRS) $(OBJS)
 	for dir in $(SUBDIRS); do \
         $(MAKE) all -C $$dir; \
     done
-	$(CC) $(CFALGS) $(SRC) $(LINK_MLX) \
+	$(CC) $(CFLAGS) $(OBJS) $(LINK_MLX) \
 		-Lft_printf -lftprintf -Llibft -lft -o $(NAME)
 
 $(SUBDIRS):
