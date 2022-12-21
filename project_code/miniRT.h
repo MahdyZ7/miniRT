@@ -27,7 +27,7 @@
 
 # ifdef linux
 #  define ESC_KEY 65307
-// #  define W_KEY 119
+#  define W_KEY 119
 // #  define A_KEY 97
 // #  define S_KEY 115
 // #  define D_KEY 100
@@ -42,7 +42,7 @@
 
 # ifdef __MACH__
 #  define ESC_KEY 53
-// #  define W_KEY 13
+#  define W_KEY 13
 // #  define A_KEY 0
 // #  define S_KEY 1
 // #  define D_KEY 2

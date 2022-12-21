@@ -31,6 +31,8 @@ int	exit_code(t_win *win)
 /*switch function for keys*/
 int	key_hook(int key, t_win *win)
 {
+	if (key == W_KEY)
+		redraw(win, win->img, 0, 0);
 	if (key == ESC_KEY)
 		exit_code(win);
 	return (0);

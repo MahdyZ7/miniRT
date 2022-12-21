@@ -33,17 +33,17 @@ float	vec_dot(t_vec *vec1, t_vec *vec2)
 
 float	hit_sphere(t_sphere *sphere, t_vec *origin, t_vec *dir, float t_min, float t_max)
 {
-	t_vec	oc;
+	t_vec	co;
 	float	a;
 	float	b;
 	float	c;
 	float	discriminant;
 	float	root[2];
 
-	vec_init(&oc, sphere->center.x - origin->x, sphere->center.y - origin->y, sphere->center.z - origin->z);
+	vec_init(&co, origin->x - sphere->center.x , origin->y - sphere->center.y, origin->z - sphere->center.z);
 	a = vec_dot(dir, dir);
-	b = 2.0 * vec_dot(&oc, dir);
-	c = vec_dot(&oc, &oc) - pow(sphere->diameter / 2, 2);
+	b = 2.0 * vec_dot(&co, dir);
+	c = vec_dot(&co, &co) - pow(sphere->diameter / 2, 2);
 	discriminant = b * b - 4 * a * c;
 	if (discriminant < 0)
 		return (INFINITY);
