@@ -6,7 +6,7 @@
 #    By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/16 21:09:20 by ayassin           #+#    #+#              #
-#    Updated: 2022/12/18 16:50:28 by ayassin          ###   ########.fr        #
+#    Updated: 2022/12/21 16:31:20 by ayassin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ CFLAGS =  -Wall -Wextra
 
 OBJDIR=obj
 
-SRC = miniRT.c setup_display.c key_hooks.c dummy_functions.c\
+SRC = miniRT.c setup_display.c key_hooks.c dummy_functions.c basic_raytracing.c\
 		error_handling/file_error.c\
 		parsing/read_file.c parsing/mem_clean.c \
 		parsing/cmd_smasher.c parsing/classify_cmd.c parsing/smash_newline.c

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 01:23:30 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/18 13:05:14 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/21 16:38:25 by ayassin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,47 +24,47 @@ struct	s_plane;
 struct	s_cylinder;
 struct	s_coordinate;
 
-typedef struct t_coordinate
+typedef struct t_vec
 {
 	float	x;
 	float	y;
 	float	z;
-}	t_coordinate;
+}	t_vec;
 typedef struct s_plane
 {
-	t_coordinate	position;
-	t_coordinate	orientation;
-	t_coordinate	color;
+	t_vec	pos;
+	t_vec	orientation;
+	t_vec	color;
 }	t_plane;
 typedef struct s_sphere
 {
-	t_coordinate	center;
-	float			diameter;
-	t_coordinate	color;
+	t_vec	center;
+	float	diameter;
+	int		color;
 }	t_sphere;
 typedef struct s_cylinder
 {
-	t_coordinate	position;
-	t_coordinate	orientation;
-	float			diameter;
-	float			height;
-	t_coordinate	color;
+	t_vec	pos;
+	t_vec	orientation;
+	float	diameter;
+	float	height;
+	t_vec	color;
 }	t_cylinder;
 typedef struct s_light
 {
-	t_coordinate	position;
-	float			brightness;
+	t_vec	pos;
+	float	brightness;
 }	t_light;
 typedef struct s_camera
 {
-	t_coordinate	view_point;
-	t_coordinate	orientation;
-	float			view_field;
+	t_vec	view_point;
+	t_vec	orientation;
+	float	view_field;
 }	t_camera;
 typedef struct s_amb_light
 {
-	float			ratio;
-	t_coordinate	color;
+	float	ratio;
+	t_vec	color;
 }	t_amb_light;
 // hold image related information
 typedef struct s_img
