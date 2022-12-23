@@ -3,7 +3,7 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+         #
+#    By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/16 21:09:20 by ayassin           #+#    #+#              #
 #    Updated: 2022/12/23 18:27:36 by ahsalem          ###   ########.fr        #
@@ -15,9 +15,11 @@ NAME = minirt
 
 HEADER = miniRT.h
 
-CFLAGS = -Werror -Wall -Wextra
+CFLAGS =  -Wall -Wextra
 
-SRC = miniRT.c setup_display.c key_hooks.c dummy_functions.c\
+OBJDIR=obj
+
+SRC = miniRT.c setup_display.c key_hooks.c dummy_functions.c basic_raytracing.c\
 		error_handling/file_error.c\
 		error_handling/elements_error.c  error_handling/shapes_check.c\
 		parsing/read_file.c parsing/mem_clean.c parsing/check_element_items.c\
@@ -25,11 +27,15 @@ SRC = miniRT.c setup_display.c key_hooks.c dummy_functions.c\
 		parsing/check_sphere_cylind_plane.c parsing/coordinate_checking.c\
 		 parsing/cam_light_check.c parsing/classify_elements.c parsing/element_checking_utils.c\
 		testers/visualizers.c\
+		parsing/read_file.c parsing/mem_clean.c \
+		parsing/cmd_smasher.c parsing/classify_cmd.c parsing/smash_newline.c
 
-OBJDIR=obj
+
+
+OBJSUBDIRS = parsing error_handling
 
 ifeq ($(shell uname -s), Darwin)
-	CFLAGS += -Imlx
+	CFLAGS += -Werror -Imlx
 	LINK_MLX = -Lminilibx_macos -lmlx -framework OpenGl -framework APPKit
 	MLX_LIB = minilibx_macos
 else ifeq ($(shell uname -s), Linux)
@@ -42,20 +48,29 @@ SUBDIRS = libft ft_printf $(MLX_LIB)
 
 CC = gcc
 
-OBJS = $(SRC:.c=.o)
-# OBJS = $(addprefix $(OBJDIR)/, $(SRC:.c=.o))
+_OBJS = $(SRC:.c=.o)
+OBJS = $(addprefix $(OBJDIR)/,$(_OBJS))
+# OBJS = $(patsubst %,$(OBJDIR)/%,$(_OBJS))
+
 
 all: $(NAME)
 
-.c.o:
+# $(OBJS)/%.o:%.c
+# 	mkdir -p $(OBJDIR)
+# 	$(CC) $(CFLAGS) -Ilibft -Ift_printf -c $^ -o $@
+# $(ODIR)/%.o : %.c
+$(OBJDIR)/%.o : %.c
 	mkdir -p $(OBJDIR)
+	for dir in $(OBJSUBDIRS); do \
+		mkdir -p $(OBJDIR)/$$dir; \
+	done
 	$(CC) $(CFLAGS) -Ilibft -Ift_printf -c $^ -o $@
 
 $(NAME): $(SUBDIRS) $(OBJS)
 	for dir in $(SUBDIRS); do \
         $(MAKE) all -C $$dir; \
     done
-	$(CC) $(CFALGS) $(SRC) $(LINK_MLX) \
+	$(CC) $(CFLAGS) $(OBJS) $(LINK_MLX) \
 		-Lft_printf -lftprintf -Llibft -lft -o $(NAME)
 
 $(SUBDIRS):

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup_display.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 10:38:06 by ayassin           #+#    #+#             */
-/*   Updated: 2022/12/18 02:09:50 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/21 16:42:40 by ayassin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ void	redraw(t_win *s, t_img *img, int x_pos, int y_pos)
 			&(img->line_length), &(img->endian));
 	if (!img->img_ptr || !img->addr)
 		exit_code(s);
-	put_serpenski(img, img->width, img->hight); // reprocess data
+	basic_raytracing(img);
+	// put_serpenski(img, img->width, img->hight); // reprocess data
 	mlx_clear_window(s->mlx_ptr, s->win_ptr);
 	mlx_put_image_to_window(s->mlx_ptr, s->win_ptr, img->img_ptr, x_pos, y_pos);
 }

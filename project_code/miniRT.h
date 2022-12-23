@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 21:09:01 by ayassin           #+#    #+#             */
-/*   Updated: 2022/12/23 18:44:39 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/21 16:36:43 by ayassin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
+# include <stdio.h>
 # include "structs.h"
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1000
@@ -119,5 +120,10 @@ void	put_ellipse(t_img *img, int width, int hight);
 void	put_serpenski(t_img *img, int width, int hight);
 void	put_ellipse2(t_img *img, int x, int y);
 void	put_border(t_img *img);
-#include <stdio.h>
+
+
+
+/*------------------trials---------------------*/
+void	basic_raytracing(t_img *img);
+
 #endif
