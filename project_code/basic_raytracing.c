@@ -6,7 +6,7 @@
 /*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 18:55:05 by ayassin           #+#    #+#             */
-/*   Updated: 2022/12/21 17:48:06 by ayassin          ###   ########.fr       */
+/*   Updated: 2022/12/23 18:51:03 by ayassin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,27 +33,35 @@ float	vec_dot(t_vec *vec1, t_vec *vec2)
 
 float	hit_sphere(t_sphere *sphere, t_vec *origin, t_vec *dir, float t_min, float t_max)
 {
-	t_vec	oc;
+	t_vec	co;
 	float	a;
 	float	b;
 	float	c;
 	float	discriminant;
 	float	root[2];
 
-	vec_init(&oc, sphere->center.x - origin->x, sphere->center.y - origin->y, sphere->center.z - origin->z);
+	vec_init(&co, origin->x - sphere->center.x , origin->y - sphere->center.y, origin->z - sphere->center.z);
 	a = vec_dot(dir, dir);
-	b = 2.0 * vec_dot(&oc, dir);
-	c = vec_dot(&oc, &oc) - pow(sphere->diameter / 2, 2);
-	discriminant = b * b - 4 * a * c;
+	b = 2.0 * vec_dot(&co, dir);
+	c = vec_dot(&co, &co) - pow(sphere->diameter / 2, 2);
+	discriminant = b * b - 4.0 * a * c;
+	// printf("First cheack points: %f %f %f with color %x\n", dir->x, dir->y, dir->z, sphere->color);
+	// printf("The sphere has points: %f %f %f with color %x\n", co.x, co.y, co.z, sphere->color);
 	if (discriminant < 0)
+	{
+		// printf("I've got no roots\n");
 		return (INFINITY);
+	}
 	root[0] = (-b - sqrt(discriminant)) / (2.0 * a);
 	root[1] = (-b + sqrt(discriminant)) / (2.0 * a);
+	root[0] = root[1];
+	// printf("The roots are: %f %f\n", root[0], root[1]);
 	if (!(t_min < root[0] && root[0] < t_max))
 	{
 		if (!(t_min < root[1] && root[1] < t_max))
 			return (INFINITY);
 	}
+	// printf("The new points: %f %f %f with color %x\n", dir->x, dir->y, dir->z, sphere->color);
 	if (root[1] < t_min || t_max < root[1])
 		return (root[0]);
 	else if (root[0] < root[1])
@@ -63,7 +71,6 @@ float	hit_sphere(t_sphere *sphere, t_vec *origin, t_vec *dir, float t_min, float
 
 int	trace_ray(t_vec *origin, t_vec *dir, float t_min, float t_max, t_sphere *sphere)
 {
-	int			color;
 	float		closest_t;
 	float		temp_t;
 	t_sphere	*closest_sphere;
@@ -79,13 +86,9 @@ int	trace_ray(t_vec *origin, t_vec *dir, float t_min, float t_max, t_sphere *sph
 			closest_sphere = &(sphere[i]);
 		}
 	}
-	color = 0x000000;
-	if (closest_sphere != NULL)
-	{
-		color  = closest_sphere->color;
-		// color = sphere_color(closest_sphere);
-	}
-	return (color);
+	if (closest_sphere == NULL)
+		return (0x000000);
+	return (closest_sphere->color);
 }
 
 void	basic_raytracing(t_img *img)
@@ -96,11 +99,19 @@ void	basic_raytracing(t_img *img)
 	t_sphere	*sphere;
 
 	color = 0;
+	(void) img;
 	sphere = malloc((sizeof(t_sphere) * 3));
 	vec_init(&cam, 0, 0, 0);
-	sphere_init(&sphere[0], 0, 0, 3, 100, 0x00FF00);
-	sphere_init(&sphere[1], 200, 400, 11, 100, 0xFF0000);
-	sphere_init(&sphere[2], -200, 400, 11, 100, 0x0000FF);
+	sphere_init(&sphere[0], img->test.center.x, img->test.center.y,
+		img->test.center.z, img->test.diameter, img->test.color);
+	sphere_init(&sphere[1], 200, 400, 25, 100, 0xFF0000);
+	sphere_init(&sphere[2], -200, 400, 25, 100, 0x0000FF);
+	// vec_init(&dir, 10, 0, 1);
+	// hit_sphere(&sphere[0], &cam, &dir, 1, INFINITY);
+	// vec_init(&dir, 0, 0, 1);
+	// hit_sphere(&sphere[1], &cam, &dir, 1, INFINITY);
+	// vec_init(&dir, 0, 0, 1);
+	// hit_sphere(&sphere[2], &cam, &dir, 1, INFINITY);
 	for (int x = 0; x < img->width; x++)
 	{
 		for (int y = 0; y < img->hight; y++)
@@ -108,7 +119,9 @@ void	basic_raytracing(t_img *img)
 			// vx = x - img->width / 2; // * 1 / 1 ;
 			// vy = y - img->hight / 2; // * 1 / 1 ;
 			// dz = 1;
-			vec_init(&dir, x - img->width / 2, y - img->hight / 2, 1);
+			// vec_init(&dir, x - img->width / 2, y - img->hight / 2, 1);
+			vec_init(&dir, x - img->width / 2, y - img->hight / 2, 25);
+			// printf("x = %f, y = %f\n", dir.x, dir.y);
 			color = trace_ray(&cam, &dir, 1, INFINITY, sphere);
 			// ray = ray_at_pixel(x, y);
 			// color = ray_color(ray);
