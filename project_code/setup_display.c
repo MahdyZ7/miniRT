@@ -6,7 +6,7 @@
 /*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 10:38:06 by ayassin           #+#    #+#             */
-/*   Updated: 2022/12/22 21:27:18 by ayassin          ###   ########.fr       */
+/*   Updated: 2022/12/23 16:40:14 by ayassin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	pixel_put(t_img *data, int x, int y, int color)
 
 /* Destroy the imgae and then palce a new ceated image on the window.
 Used to update the image on the window for any change that occures*/
-void	redraw(t_win *s, t_img *img, int x_pos, int y_pos)
+void	redraw(t_win *s, t_img *img, void (*draw)(t_img *))
 {
 	mlx_destroy_image(s->mlx_ptr, s->img->img_ptr);
 	img->img_ptr = mlx_new_image(s->mlx_ptr, img->width, img->hight);
@@ -34,10 +34,10 @@ void	redraw(t_win *s, t_img *img, int x_pos, int y_pos)
 			&(img->line_length), &(img->endian));
 	if (!img->img_ptr || !img->addr)
 		exit_code(s);
-	basic_raytracing(img);
+	draw(img);
 	// put_serpenski(img, img->width, img->hight); // reprocess data
 	mlx_clear_window(s->mlx_ptr, s->win_ptr);
-	mlx_put_image_to_window(s->mlx_ptr, s->win_ptr, img->img_ptr, x_pos, y_pos);
+	mlx_put_image_to_window(s->mlx_ptr, s->win_ptr, img->img_ptr, 0, 0);
 }
 
 /* setup the defulats for variables in the t_img struct and t_nums struct*/

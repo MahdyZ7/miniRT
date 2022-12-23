@@ -6,7 +6,7 @@
 /*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 02:13:41 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/22 21:53:49 by ayassin          ###   ########.fr       */
+/*   Updated: 2022/12/23 16:49:23 by ayassin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ int	main(int argc, char **argv)
 	if (init_scene(argv, &scene, &win))
 		return (1);
 	window_setup(&win, &img, "miniRT");
-	redraw(&win, win.img, 0, 0);
+	sphere_init(&(img.test), 0, 0, 10, 50, 0x00FF00);
+	redraw(&win, win.img, basic_raytracing);
 	// clean_scene(scene);
 	mlx_hook(win.win_ptr, 2, 1L << 0, key_hook, &win);
 	mlx_hook(win.win_ptr, 17, 0, exit_code, &win);

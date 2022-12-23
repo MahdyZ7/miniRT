@@ -6,7 +6,7 @@
 /*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 10:49:02 by ayassin           #+#    #+#             */
-/*   Updated: 2022/12/22 21:54:11 by ayassin          ###   ########.fr       */
+/*   Updated: 2022/12/23 16:47:39 by ayassin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,15 @@ int	exit_code(t_win *win)
 int	key_hook(int key, t_win *win)
 {
 	if (key == W_KEY)
-		redraw(win, win->img, 0, 0);
+		win->img->test.center.y += 10;
+	if (key == S_KEY)
+		win->img->test.center.y -= 10;
+	if (key == A_KEY)
+		win->img->test.center.x -= 10;
+	if (key == D_KEY)
+		win->img->test.center.x += 10;
 	if (key == ESC_KEY)
 		exit_code(win);
+	redraw(win, win->img, basic_raytracing);
 	return (0);
 }
