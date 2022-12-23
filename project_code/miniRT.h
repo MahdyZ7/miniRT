@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 21:09:01 by ayassin           #+#    #+#             */
-/*   Updated: 2022/12/18 18:22:11 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/22 19:10:25 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,24 @@ int		fill_new_line(
 void	spaces_smash(t_parsing_kit *s, char *line, t_list **head);
 void	filling_normal_spaced_word(
 			t_parsing_kit *s, char *smashed_line, t_list **head);
+int		classify_elements(t_list **all_map_items, t_scene *scene);
+int		fill_camera_data(t_list **all_map_items, t_scene *scene);
+int		check_light_data(t_list **all_map_items, t_scene *scene);
+int		check_ambient_light_data(t_list **all_map_items, t_scene *scene);
+int		count_occurance_in_map(t_list **all_map_items, char *element);
+t_list	*fetch_next_element(t_list *tmp);
+int		is_cordinate(char *coordinate);
+int		check_coordinates_error(t_list *tmp);
+int		ft_is_float_and_update_i(char *check_me, int *i);
+t_list	*get_next_occurance(t_list *tmp, char *element);
+int		check_int_range(t_list *tmp, int start, int end);
+int		check_float_range(t_list *tmp, float start, float end);
+int		check_there_is_next_elements(t_list **head, int layers);
+int		scan_camera_errors(t_list *tmp, int occurance);
+int		scan_light_errors(t_list *tmp, int occurance);
+int		ft_is_float(char *check_me);
+int		scan_ambient_light_errors(t_list *tmp, int occurance);
+int		check_coordinate_range(t_list *tmp);
 /*------------------MLX_RELATED---------------*/
 void	pixel_put(t_img *data, int x, int y, int color);
 void	redraw(t_win *s, t_img *img, int x_pos, int y_pos);
@@ -94,5 +112,5 @@ void	put_ellipse(t_img *img, int width, int hight);
 void	put_serpenski(t_img *img, int width, int hight);
 void	put_ellipse2(t_img *img, int x, int y);
 void	put_border(t_img *img);
-
+#include <stdio.h>
 #endif

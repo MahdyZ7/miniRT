@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
+/*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 19:55:05 by ayassin           #+#    #+#             */
-/*   Updated: 2021/12/26 20:24:42 by ayassin          ###   ########.fr       */
+/*   Updated: 2022/12/21 20:13:57 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,29 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	pos = 0;
 	if (!n)
 		return (0);
+	while (pos < (n - 1) && s1[pos] && s2[pos] && (unsigned char)s1[pos]
+		== (unsigned char)s2[pos])
+		pos++;
+	return ((unsigned char)s1[pos] - (unsigned char)s2[pos]);
+}
+
+int	ft_the_strcmp(const char *s1, const char *s2)
+{
+	size_t	pos;
+	size_t	len_first;
+	size_t	len_second;
+	size_t	n;
+
+	n = 0;
+	pos = 0;
+	if (!s1 || !s2)
+		return (1);
+	len_first = ft_strlen(s1);
+	len_second = ft_strlen(s2);
+	if (len_first > len_second)
+		n = len_first;
+	else
+		n = len_second;
 	while (pos < (n - 1) && s1[pos] && s2[pos] && (unsigned char)s1[pos]
 		== (unsigned char)s2[pos])
 		pos++;

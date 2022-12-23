@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   ft_strnchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/17 17:10:00 by ayassin           #+#    #+#             */
-/*   Updated: 2022/12/19 01:09:20 by ahsalem          ###   ########.fr       */
+/*   Created: 2022/05/16 12:27:16 by ahsalem           #+#    #+#             */
+/*   Updated: 2022/12/21 12:07:43 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/* use "del" function on the content of node "lst"*/
-void	ft_lstdelone(t_list *lst, void (*del)(void*))
+int	ft_strnchr(const char *s, int c)
 {
-	if (lst)
-	{
-		if (lst->content)
-			del(lst->content);
-		free(lst);
-		lst = NULL;
-	}
-}
+	size_t	i;
 
-void	del(void *content)
-{
-	if (content)
+	i = 0;
+	if (!s)
+		return (-1);
+	while (s[i])
 	{
-		free(content);
-		content = NULL;
+		if (s[i] == (char)c)
+			return (i);
+		i++;
 	}
+	return (-1);
 }

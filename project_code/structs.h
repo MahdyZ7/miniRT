@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 01:23:30 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/18 13:05:14 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/19 21:50:55 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ typedef struct s_scene
 	t_sphere	*spheres;
 	t_plane		*plane;
 	t_cylinder	*cylinder;
+	int			error_code;
 }	t_scene;
 
 typedef struct parsing_kit

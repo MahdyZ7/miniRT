@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 19:31:52 by ayassin           #+#    #+#             */
-/*   Updated: 2022/12/19 00:46:45 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/21 19:59:12 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,19 @@ typedef struct s_list
 	struct s_list	*next;
 }	t_list;
 
+typedef struct s_atof_kit
+{
+	float	result;
+	int		dot_location;
+	int		sign;
+	char	*first_part;
+	char	*second_part;
+	long	ten_pow_len_second;
+}	t_atof_kit;
+
 int		ft_isspace(char c);
 int		ft_atoi(const char *str);
+float	ft_atof(const char *str);
 void	ft_bzero(void *s, size_t n);
 void	*ft_calloc(size_t count, size_t size);
 int		ft_isalnum(int c);
@@ -39,6 +50,7 @@ void	*ft_memmove(void *dst, const void *src, size_t len);
 void	*ft_memset(void *b, int c, size_t len);
 char	*ft_strchr(const char *s, int c);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
+int		ft_the_strcmp(const char *s1, const char *s2);
 char	*ft_strdup(const char *s1);
 size_t	ft_strlcat(char *dst, char *src, size_t dstsize);
 size_t	ft_strlcpy(char *dst, char *src, size_t dstsize);
@@ -69,4 +81,5 @@ t_list	*ft_lstnew(void *content);
 int		ft_lstsize(t_list *lst);
 void	free_split(void **splited);
 void	del(void *content);
+int		ft_strnchr(const char *s, int c);
 #endif
