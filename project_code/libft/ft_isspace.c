@@ -1,34 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   ft_isspace.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/17 17:10:00 by ayassin           #+#    #+#             */
-/*   Updated: 2022/12/19 01:09:20 by ahsalem          ###   ########.fr       */
+/*   Created: 2022/12/19 00:11:43 by ahsalem           #+#    #+#             */
+/*   Updated: 2022/12/19 00:15:34 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/* use "del" function on the content of node "lst"*/
-void	ft_lstdelone(t_list *lst, void (*del)(void*))
+int	ft_isspace(char c)
 {
-	if (lst)
-	{
-		if (lst->content)
-			del(lst->content);
-		free(lst);
-		lst = NULL;
-	}
-}
-
-void	del(void *content)
-{
-	if (content)
-	{
-		free(content);
-		content = NULL;
-	}
+	if (c == ' ' || c == '\t' || c == 11 || c == 9)
+		return (1);
+	else
+		return (0);
 }

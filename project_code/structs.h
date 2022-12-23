@@ -99,6 +99,8 @@ typedef struct s_scene
 	t_sphere	*spheres;
 	t_plane		*plane;
 	t_cylinder	*cylinder;
+	int			error_code;
+	int			number_of_shapes;
 }	t_scene;
 
 typedef struct parsing_kit

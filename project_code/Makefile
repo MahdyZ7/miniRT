@@ -6,7 +6,7 @@
 #    By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/16 21:09:20 by ayassin           #+#    #+#              #
-#    Updated: 2022/12/22 21:42:07 by ayassin          ###   ########.fr        #
+#    Updated: 2022/12/23 18:27:36 by ahsalem          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,8 +21,15 @@ OBJDIR=obj
 
 SRC = miniRT.c setup_display.c key_hooks.c dummy_functions.c basic_raytracing.c\
 		error_handling/file_error.c\
+		error_handling/elements_error.c  error_handling/shapes_check.c\
+		parsing/read_file.c parsing/mem_clean.c parsing/check_element_items.c\
+		parsing/line_smasher.c parsing/classify_line.c\
+		parsing/check_sphere_cylind_plane.c parsing/coordinate_checking.c\
+		 parsing/cam_light_check.c parsing/classify_elements.c parsing/element_checking_utils.c\
+		testers/visualizers.c\
 		parsing/read_file.c parsing/mem_clean.c \
 		parsing/cmd_smasher.c parsing/classify_cmd.c parsing/smash_newline.c
+
 
 
 OBJSUBDIRS = parsing error_handling

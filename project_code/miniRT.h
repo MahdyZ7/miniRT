@@ -68,6 +68,42 @@ int		fill_scene(char **argv, t_scene *scene);
 t_list	*parsing_map(int fd);
 void	init_parsing_kit(
 			t_parsing_kit *s, t_list **head, char *line);
+void	update_parsing_kit(
+			t_parsing_kit *s, char *line);
+char	line_classifier(t_parsing_kit *s, char *line);
+int		check_new_line(char *line, int i);
+int		filling_loop(t_parsing_kit *s, char *line, t_list **head);
+t_list	*fill_line_node(char *arg, char type);
+int		fill_new_line(
+			t_parsing_kit *s, char *line, t_list **head, int i);
+void	spaces_smash(t_parsing_kit *s, char *line, t_list **head);
+void	filling_normal_spaced_word(
+			t_parsing_kit *s, char *smashed_line, t_list **head);
+int		classify_elements(t_list **all_map_items, t_scene *scene);
+int		check_camera_data(t_list **all_map_items, t_scene *scene);
+int		check_light_data(t_list **all_map_items, t_scene *scene);
+int		check_ambient_light_data(t_list **all_map_items, t_scene *scene);
+int		count_occurance_in_map(t_list **all_map_items, char *element);
+t_list	*fetch_next_element(t_list *tmp);
+int		is_cordinate(char *coordinate);
+int		check_coordinates_error(t_list *tmp);
+int		ft_is_float_and_update_i(char *check_me, int *i);
+t_list	*get_next_occurance(t_list *tmp, char *element);
+int		check_int_range(t_list *tmp, int start, int end);
+int		check_float_range(t_list *tmp, float start, float end);
+int		check_there_is_next_elements(t_list **head, int layers);
+int		scan_camera_errors(t_list *tmp, int occurance);
+int		scan_light_errors(t_list *tmp, int occurance);
+int		ft_is_float(char *check_me);
+int		scan_ambient_light_errors(t_list *tmp, int occurance);
+int		check_coordinate_range(t_list *tmp);
+int		check_sphere(t_list **all_map_items, t_scene *scene);
+int		check_cylender(t_list **all_map_items, t_scene *scene);
+int		check_plane(t_list **all_map_items, t_scene *scene);
+int		scan_sphere_errors(t_list *tmp);
+int		inspect_first_element(char *coord);
+int		inspect_second_element(char *coord);
+int		inspecet_thrid_element(char *coord);
 /*------------------MLX_RELATED---------------*/
 void	pixel_put(t_img *data, int x, int y, int color);
 void	redraw(t_win *s, t_img *img, void (*draw)(t_img *));
@@ -80,12 +116,15 @@ int		key_hook(int key, t_win *win);
 int		not_valid_file(int argc, char **argv);
 int		bad_file(char **argv);
 int		parse_error_message(void);
-
+int		file_reading_error_message(void);
+void	vis_list(t_list **head);
 /*------------------DUMMY---------------------*/
 void	put_ellipse(t_img *img, int width, int hight);
 void	put_serpenski(t_img *img, int width, int hight);
 void	put_ellipse2(t_img *img, int x, int y);
 void	put_border(t_img *img);
+
+
 
 /*------------------trials---------------------*/
 void	basic_raytracing(t_img *img);
@@ -94,6 +133,5 @@ void	sphere_init(t_sphere *sphere, float x, float y, float z, float diameter, in
 float	vec_dot(t_vec *vec1, t_vec *vec2);
 float	hit_sphere(t_sphere *sphere, t_vec *origin, t_vec *dir, float t_min, float t_max);
 int		trace_ray(t_vec *origin, t_vec *dir, float t_min, float t_max, t_sphere *sphere);
-
 
 #endif
