@@ -6,7 +6,7 @@
 #    By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/16 21:09:20 by ayassin           #+#    #+#              #
-#    Updated: 2022/12/21 16:31:20 by ayassin          ###   ########.fr        #
+#    Updated: 2022/12/22 21:42:07 by ayassin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME = minirt
 
 HEADER = miniRT.h
 
-CFLAGS =  -Wall -Wextra
+CFLAGS =  -Wall -Wextra 
 
 OBJDIR=obj
 

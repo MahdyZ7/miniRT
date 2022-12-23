@@ -6,7 +6,7 @@
 /*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 10:38:06 by ayassin           #+#    #+#             */
-/*   Updated: 2022/12/21 16:42:40 by ayassin          ###   ########.fr       */
+/*   Updated: 2022/12/22 21:27:18 by ayassin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ int	window_setup(t_win *win, t_img *img, char *map_title)
 	int		width;
 	int		hight;
 
-	width = 1920;
-	hight = 1080;
+	width = WIN_WIDTH;
+	hight = WIN_HIGHT;
 	win->img = img;
 	win->img->img_ptr = NULL;
 	win->mlx_ptr = mlx_init();

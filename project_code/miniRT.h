@@ -6,7 +6,7 @@
 /*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 21:09:01 by ayassin           #+#    #+#             */
-/*   Updated: 2022/12/21 16:36:43 by ayassin          ###   ########.fr       */
+/*   Updated: 2022/12/22 21:45:04 by ayassin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1000
 # endif
+
+# define WIN_WIDTH 800
+# define WIN_HIGHT 600
 
 # ifdef linux
 #  define ESC_KEY 65307
