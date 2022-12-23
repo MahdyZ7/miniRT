@@ -1,34 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   shapes_check.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/17 17:10:00 by ayassin           #+#    #+#             */
-/*   Updated: 2022/12/19 01:09:20 by ahsalem          ###   ########.fr       */
+/*   Created: 2022/12/23 16:11:02 by ahsalem           #+#    #+#             */
+/*   Updated: 2022/12/23 16:22:11 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../miniRT.h"
 
-/* use "del" function on the content of node "lst"*/
-void	ft_lstdelone(t_list *lst, void (*del)(void*))
+int	scan_sphere_errors(t_list *tmp)
 {
-	if (lst)
+	printf("\nscanning sphere\n");
+	if (check_coordinates_error(tmp)
+		|| !ft_is_float((char *)tmp->next->content)
+		|| check_coordinate_range(tmp->next->next)
+		|| ft_the_strcmp((char *)tmp->next->next->next->content, "\n"))
 	{
-		if (lst->content)
-			del(lst->content);
-		free(lst);
-		lst = NULL;
+		return (1);
 	}
-}
-
-void	del(void *content)
-{
-	if (content)
-	{
-		free(content);
-		content = NULL;
-	}
+	return (0);
 }

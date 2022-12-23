@@ -1,34 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   visualizers.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/17 17:10:00 by ayassin           #+#    #+#             */
-/*   Updated: 2022/12/19 01:09:20 by ahsalem          ###   ########.fr       */
+/*   Created: 2022/12/18 15:22:02 by ahsalem           #+#    #+#             */
+/*   Updated: 2022/12/19 00:28:01 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../miniRT.h"
 
-/* use "del" function on the content of node "lst"*/
-void	ft_lstdelone(t_list *lst, void (*del)(void*))
+void	vis_list(t_list **head)
 {
-	if (lst)
-	{
-		if (lst->content)
-			del(lst->content);
-		free(lst);
-		lst = NULL;
-	}
-}
+	t_list	*tmp;
+	int		i;
 
-void	del(void *content)
-{
-	if (content)
+	i = 0;
+	if (!head)
+		return ;
+	if (!*head)
+		return ;
+	tmp = *head;
+	while (tmp)
 	{
-		free(content);
-		content = NULL;
+		ft_printf("%s~", tmp->content);
+		tmp = tmp->next;
+		i++;
 	}
 }
