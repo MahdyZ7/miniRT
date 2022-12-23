@@ -15,7 +15,7 @@ NAME = minirt
 
 HEADER = miniRT.h
 
-CFLAGS =  -Wall -Wextra
+CFLAGS =  -Wall -Wextra 
 
 OBJDIR=obj
 

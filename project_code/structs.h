@@ -6,7 +6,7 @@
 /*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 01:23:30 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/23 16:04:50 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/23 16:36:00 by ayassin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,14 +79,17 @@ typedef struct s_img
 	int				zoom;
 	int				x_pos;
 	int				y_pos;
+	struct s_sphere	test;
 	struct s_win	*win;	
 }	t_img;
+
 typedef struct s_win
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
 	t_img	*img;
 }	t_win;
+
 typedef struct s_scene
 {
 	t_win		*win;
