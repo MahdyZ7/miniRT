@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 17:39:52 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/21 20:09:42 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/23 16:46:37 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ float	ft_atof(const char *str)
 	if (a.dot_location == -1)
 	{
 		a.result = (float)ft_atoi(str);
-		return (a.result);
+		return (a.result * (float)a.sign);
 	}
 	a.first_part = ft_substr(str, 0, a.dot_location);
 	a.second_part = ft_substr(str, a.dot_location + 1, ft_strlen(str));

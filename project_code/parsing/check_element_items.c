@@ -6,52 +6,11 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 23:54:06 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/23 02:14:22 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/23 18:26:43 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../miniRT.h"
-
-int	check_coordinate_range(t_list *tmp)
-{
-	int		i;
-	int		items;
-	char	*coord;
-	char	*check_me;
-	float	num;
-
-	items = 0;
-	coord = NULL;
-	check_me = NULL;
-	num = 0.0;
-	i = 0;
-	if (check_coordinates_error(tmp))
-		return (1);
-	coord = (char *)tmp->content;
-	while (coord[i])
-	{
-		if (items < 2)
-			check_me = ft_substr(coord, 0, ft_strnchr(coord, ','));
-		else
-			check_me = ft_substr(coord, 0, ft_strlen(coord));
-		printf("inside cordinate range %s\n", check_me);
-		num = ft_atof(check_me);
-		if (num > 255 || num < 0)
-		{
-			free(check_me);
-			printf("Out of range\n");
-			return (1);
-		}
-		else
-			printf("%f in correct range\n", num);
-		free(check_me);
-		if (items < 1)
-			coord = &coord[ft_strnchr(coord, ',') + 1];
-		items++;
-		i++;
-	}
-	return (0);
-}
 
 int	check_coordinates_error(t_list *tmp)
 {

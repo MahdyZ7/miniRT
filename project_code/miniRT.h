@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 21:09:01 by ayassin           #+#    #+#             */
-/*   Updated: 2022/12/22 19:10:25 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/23 18:44:39 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	spaces_smash(t_parsing_kit *s, char *line, t_list **head);
 void	filling_normal_spaced_word(
 			t_parsing_kit *s, char *smashed_line, t_list **head);
 int		classify_elements(t_list **all_map_items, t_scene *scene);
-int		fill_camera_data(t_list **all_map_items, t_scene *scene);
+int		check_camera_data(t_list **all_map_items, t_scene *scene);
 int		check_light_data(t_list **all_map_items, t_scene *scene);
 int		check_ambient_light_data(t_list **all_map_items, t_scene *scene);
 int		count_occurance_in_map(t_list **all_map_items, char *element);
@@ -93,6 +93,13 @@ int		scan_light_errors(t_list *tmp, int occurance);
 int		ft_is_float(char *check_me);
 int		scan_ambient_light_errors(t_list *tmp, int occurance);
 int		check_coordinate_range(t_list *tmp);
+int		check_sphere(t_list **all_map_items, t_scene *scene);
+int		check_cylender(t_list **all_map_items, t_scene *scene);
+int		check_plane(t_list **all_map_items, t_scene *scene);
+int		scan_sphere_errors(t_list *tmp);
+int		inspect_first_element(char *coord);
+int		inspect_second_element(char *coord);
+int		inspecet_thrid_element(char *coord);
 /*------------------MLX_RELATED---------------*/
 void	pixel_put(t_img *data, int x, int y, int color);
 void	redraw(t_win *s, t_img *img, int x_pos, int y_pos);

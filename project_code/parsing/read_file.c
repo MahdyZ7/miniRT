@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 01:58:04 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/21 16:20:51 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/23 16:04:57 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	init_scene(
 	scene->plane = NULL;
 	scene->cylinder = NULL;
 	scene->error_code = 0;
+	scene->number_of_shapes = 0;
 	if (fill_scene(argv, scene))
 		return (1);
 	return (0);
