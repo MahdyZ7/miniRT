@@ -42,7 +42,7 @@ typedef struct s_sphere
 	t_vec		center;
 	float		diameter;
 	t_vec		color;
-	int			last_sphere;
+	int			sphere_occurance;
 }	t_sphere;
 typedef struct s_cylinder
 {

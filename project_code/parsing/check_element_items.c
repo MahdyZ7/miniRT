@@ -46,6 +46,8 @@ int	is_cordinate(char *coordinate)
 		else
 			return (0);
 		items++;
+		if (i > ft_strlen(coordinate) - 1)
+			break;
 		i++;
 	}
 	return (1);

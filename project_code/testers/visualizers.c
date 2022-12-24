@@ -49,7 +49,7 @@ void	vis_spheres(t_scene *scene)
 	int	i;
 
 	i = 0;
-	while (scene->spheres[i].last_sphere == 0)
+	while (i < scene->spheres[i].sphere_occurance)
 	{
 		vis_single_sphere(scene->spheres[i]);
 		i++;

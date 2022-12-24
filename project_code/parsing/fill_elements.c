@@ -70,7 +70,7 @@ int	fill_spheres(
 	occurance = count_occurance_in_map(all_map_items, "sp");
 	if (!occurance)
 		return (0);
-	scene->spheres = malloc(sizeof(t_sphere) * occurance + 1);
+	scene->spheres = ft_calloc(sizeof(t_sphere), (occurance + 2));
 	if (!scene->spheres)
 		return (1);
 	while (i < occurance)
@@ -78,10 +78,9 @@ int	fill_spheres(
 		tmp = get_next_occurance(tmp, "sp");
 		tmp = tmp->next;
 		fill_single_sphere(scene, tmp, i);
-		scene->spheres[i].last_sphere = 0;
+		scene->spheres[i].sphere_occurance = occurance;
 		i++;
 	}
-	scene->spheres[i].last_sphere = 1;
 	vis_spheres(scene);
 	return (0);
 }
