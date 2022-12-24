@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   fill_scene.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/30 11:19:14 by ayassin           #+#    #+#             */
-/*   Updated: 2022/12/24 09:34:13 by ahsalem          ###   ########.fr       */
+/*   Created: 2022/12/24 08:17:26 by ahsalem           #+#    #+#             */
+/*   Updated: 2022/12/24 11:35:47 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_printf_H
-# define FT_printf_H
-# include <stdarg.h>
-# include <unistd.h>
-# include "../libft/libft.h"
+#include "../miniRT.h"
 
-int		ft_printf(const char *str, ...);
-int		ft_printfstr(char *str);
-int		ft_printfptr(unsigned long long int p);
-int		ft_printfunsgned(unsigned int p, int base, int upper);
-int		ft_printfint(int num);
-#endif
+int	fill_all_elements_in_scene(t_list **all_map_items, t_scene *scene)
+{
+	if (fill_ambient_light(all_map_items, scene)
+		|| fill_light(all_map_items, scene)
+		|| fill_camera(all_map_items, scene)
+		|| fill_spheres(all_map_items, scene))
+		return (1);
+	return (0);
+}

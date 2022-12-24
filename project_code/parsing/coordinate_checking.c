@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 18:26:35 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/23 18:50:39 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/24 09:34:13 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	check_coordinate_range(t_list *tmp)
 	coord = (char *)tmp->content;
 	if (inspect_first_element(coord)
 		|| inspect_second_element(coord)
-		|| inspecet_thrid_element(coord))
+		|| inspect_thrid_element(coord))
 		return (1);
 	else
 		return (0);
@@ -79,7 +79,7 @@ int	inspect_second_element(char *coord)
 	return (0);
 }
 
-int	inspecet_thrid_element(char *coord)
+int	inspect_thrid_element(char *coord)
 {
 	float	num;
 

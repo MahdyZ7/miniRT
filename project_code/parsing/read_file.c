@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 01:58:04 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/23 16:04:57 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/24 08:18:19 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	init_scene(
 	scene->error_code = 0;
 	scene->number_of_shapes = 0;
 	if (fill_scene(argv, scene))
-		return (1);
+		return (file_reading_error_message());
 	return (0);
 }
 
@@ -31,18 +31,17 @@ int	fill_scene(char **argv, t_scene *scene)
 {
 	int		fd;
 	t_list	*all_map_items;
-	int		i;
 
-	(void)scene;
-	i = 0;
 	fd = open(argv[1], O_RDONLY);
 	all_map_items = parsing_map(fd);
 	if (fd < 0 || !all_map_items)
-		return (file_reading_error_message());
-	if (classify_elements(&all_map_items, scene))
-		return (file_reading_error_message());
+		return (1);
+	if (initial_error_scan(&all_map_items))
+		return (1);
+	if (check_all_elements_for_errors(&all_map_items, scene))
+		return (1);
+	if (fill_all_elements_in_scene(&all_map_items, scene))
+		return (1);
 	ft_lstclear(&all_map_items, del);
-	i++;
-	return (1);
 	return (0);
 }

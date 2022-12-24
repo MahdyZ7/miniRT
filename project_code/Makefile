@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+         #
+#    By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/16 21:09:20 by ayassin           #+#    #+#              #
-#    Updated: 2022/12/23 18:27:36 by ahsalem          ###   ########.fr        #
+#    Updated: 2022/12/24 09:44:34 by ahsalem          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,11 +25,10 @@ SRC = miniRT.c setup_display.c key_hooks.c dummy_functions.c basic_raytracing.c\
 		parsing/read_file.c parsing/mem_clean.c parsing/check_element_items.c\
 		parsing/line_smasher.c parsing/classify_line.c\
 		parsing/check_sphere_cylind_plane.c parsing/coordinate_checking.c\
-		 parsing/cam_light_check.c parsing/classify_elements.c parsing/element_checking_utils.c\
+		parsing/cam_light_check.c parsing/classify_elements.c parsing/element_checking_utils.c\
+		parsing/fill_shapes.c parsing/fill_scene.c parsing/fill_elements.c \
+		parsing/fill_vector.c\
 		testers/visualizers.c\
-		parsing/read_file.c parsing/mem_clean.c \
-		parsing/cmd_smasher.c parsing/classify_cmd.c parsing/smash_newline.c
-
 
 
 OBJSUBDIRS = parsing error_handling
