@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   classify_elements.c                                :+:      :+:    :+:   */
+/*   check_all_elements_for_errors.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -13,7 +13,7 @@
 #include "../miniRT.h"
 
 //remember to double check other letters that make no sense in the map
-int	classify_elements(t_list **all_map_items, t_scene *scene)
+int	check_all_elements_for_errors(t_list **all_map_items, t_scene *scene)
 {
 	(void)scene;
 	if (check_camera_data(all_map_items, scene)

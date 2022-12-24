@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 23:54:06 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/23 18:26:43 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/24 09:34:13 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ int	is_cordinate(char *coordinate)
 		else
 			return (0);
 		items++;
+		if (i > ft_strlen(coordinate) - 1)
+			break;
 		i++;
 	}
 	return (1);

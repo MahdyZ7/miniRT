@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
+/*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 21:09:01 by ayassin           #+#    #+#             */
-/*   Updated: 2022/12/23 16:46:25 by ayassin          ###   ########.fr       */
+/*   Updated: 2022/12/24 14:22:06 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int		fill_new_line(
 void	spaces_smash(t_parsing_kit *s, char *line, t_list **head);
 void	filling_normal_spaced_word(
 			t_parsing_kit *s, char *smashed_line, t_list **head);
-int		classify_elements(t_list **all_map_items, t_scene *scene);
+int		check_all_elements_for_errors(t_list **all_map_items, t_scene *scene);
 int		check_camera_data(t_list **all_map_items, t_scene *scene);
 int		check_light_data(t_list **all_map_items, t_scene *scene);
 int		check_ambient_light_data(t_list **all_map_items, t_scene *scene);
@@ -101,9 +101,25 @@ int		check_sphere(t_list **all_map_items, t_scene *scene);
 int		check_cylender(t_list **all_map_items, t_scene *scene);
 int		check_plane(t_list **all_map_items, t_scene *scene);
 int		scan_sphere_errors(t_list *tmp);
+int		scan_plane_errors(t_list *tmp);
+int		scan_cylender_errors(t_list *tmp);
 int		inspect_first_element(char *coord);
 int		inspect_second_element(char *coord);
-int		inspecet_thrid_element(char *coord);
+int		inspect_thrid_element(char *coord);
+	/*----------------FILLERS--------*/
+int		fill_all_elements_in_scene(
+			t_list **all_map_items, t_scene *scene);
+int		fill_ambient_light(t_list **all_map_items, t_scene *scene);
+int		fill_light(t_list **all_map_items, t_scene *scene);
+int		fill_camera(t_list **all_map_items, t_scene *scene);
+int		fill_coord(char *coord, float *x, float *y, float *z);
+int		fill_spheres(t_list **all_map_items, t_scene *scene);
+int		fill_single_sphere(t_scene *scene, t_list *tmp, int i);
+int		fill_first_element(char *coord, float *x);
+int		fill_second_element(char *coord, float *y);
+int		fill_thrid_element(char *coord, float *z);
+int		vector_init(t_vec *vec, t_list *tmp);
+
 /*------------------MLX_RELATED---------------*/
 void	pixel_put(t_img *data, int x, int y, int color);
 void	redraw(t_win *s, t_img *img, void (*draw)(t_img *));
@@ -117,21 +133,27 @@ int		not_valid_file(int argc, char **argv);
 int		bad_file(char **argv);
 int		parse_error_message(void);
 int		file_reading_error_message(void);
-void	vis_list(t_list **head);
+int		initial_error_scan(t_list **all_map_items);
+int		not_valid_element(t_list *check_me);
 /*------------------DUMMY---------------------*/
 void	put_ellipse(t_img *img, int width, int hight);
 void	put_serpenski(t_img *img, int width, int hight);
 void	put_ellipse2(t_img *img, int x, int y);
 void	put_border(t_img *img);
-
-
-
 /*------------------trials---------------------*/
 void	basic_raytracing(t_img *img);
 void	vec_init(t_vec *vec, float x, float y, float z);
-void	sphere_init(t_sphere *sphere, float x, float y, float z, float diameter, int color);
+void	sphere_init(t_sphere *sphere,
+			float x, float y, float z, float diameter, int color);
 float	vec_dot(t_vec *vec1, t_vec *vec2);
-float	hit_sphere(t_sphere *sphere, t_vec *origin, t_vec *dir, float t_min, float t_max);
-int		trace_ray(t_vec *origin, t_vec *dir, float t_min, float t_max, t_sphere *sphere);
-
+float	hit_sphere(t_sphere *sphere,
+			t_vec *origin, t_vec *dir, float t_min, float t_max);
+int		trace_ray(t_vec *origin,
+			t_vec *dir, float t_min, float t_max, t_sphere *sphere);
+/*--------------------TESTERS-----------------------------*/
+void	vis_list(t_list **head);
+void	vis_scene(t_scene *scene);
+void	vis_elements(t_scene *scene);
+void	vis_spheres(t_scene *scene);
+void	vis_single_sphere(t_sphere sphere);
 #endif

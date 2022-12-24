@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 23:05:05 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/23 15:58:49 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/24 06:32:47 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	check_camera_data(t_list **all_map_items, t_scene *scene)
 		return (1);
 	tmp = get_next_occurance(tmp, "C");
 	tmp = tmp->next;
-	if (!check_there_is_next_elements(&tmp, 3))
+	if (!check_there_is_next_elements(&tmp, 2))
 		return (1);
 	if (scan_camera_errors(tmp, occurance))
 		return (1);
@@ -43,7 +43,7 @@ int	check_light_data(t_list **all_map_items, t_scene *scene)
 		return (1);
 	tmp = get_next_occurance(tmp, "L");
 	tmp = tmp->next;
-	if (!check_there_is_next_elements(&tmp, 3))
+	if (!check_there_is_next_elements(&tmp, 2))
 		return (1);
 	if (scan_light_errors(tmp, occurance))
 		return (1);
@@ -62,7 +62,7 @@ int	check_ambient_light_data(t_list **all_map_items, t_scene *scene)
 		return (1);
 	tmp = get_next_occurance(tmp, "A");
 	tmp = tmp->next;
-	if (!check_there_is_next_elements(&tmp, 2))
+	if (!check_there_is_next_elements(&tmp, 1))
 		return (1);
 	if (scan_ambient_light_errors(tmp, occurance))
 		return (1);
