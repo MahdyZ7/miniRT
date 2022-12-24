@@ -15,7 +15,7 @@ NAME = minirt
 
 HEADER = miniRT.h
 
-CFLAGS =  -Wall -Wextra 
+CFLAGS =  -Wall -Wextra -Werror -g
 
 OBJDIR=obj
 
@@ -31,7 +31,7 @@ SRC = miniRT.c setup_display.c key_hooks.c dummy_functions.c basic_raytracing.c\
 		testers/visualizers.c\
 
 
-OBJSUBDIRS = parsing error_handling
+OBJSUBDIRS = parsing error_handling testers
 
 ifeq ($(shell uname -s), Darwin)
 	CFLAGS += -Werror -Imlx

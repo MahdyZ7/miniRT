@@ -15,9 +15,7 @@
 void	vis_list(t_list **head)
 {
 	t_list	*tmp;
-	int		i;
 
-	i = 0;
 	if (!head)
 		return ;
 	if (!*head)
@@ -27,18 +25,15 @@ void	vis_list(t_list **head)
 	{
 		ft_printf("%s~", tmp->content);
 		tmp = tmp->next;
-		i++;
 	}
 }
 
 void	vis_scene(t_scene *scene)
 {
-	int	i;
 
 	printf("\n\n           #-----");
 	printf("Visualizing scene");
 	printf("-----#\n\n");
-	i = 0;
 	if (!scene)
 	{
 		printf("Disaster!scene_is NULL !!!!!!!!!!!!!!!!!:(:(:(:(:(:(:\n");

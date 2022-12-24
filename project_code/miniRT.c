@@ -23,6 +23,7 @@ int	main(int argc, char **argv)
 	if (init_scene(argv, &scene, &win))
 		return (1);
 	vis_scene(&scene);
+	clean_scene(scene);
 	(void)img;
 	// window_setup(&win, &img, "miniRT");
 	// sphere_init(&(img.test), 0, 0, 10, 50, 0x00FF00);
