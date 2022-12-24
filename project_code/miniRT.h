@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 21:09:01 by ayassin           #+#    #+#             */
-/*   Updated: 2022/12/25 01:19:00 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/25 02:19:25 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,11 @@ int		fill_thrid_element(char *coord, float *z);
 int		vector_init(t_vec *vec, t_list *tmp);
 int		fill_cylinders(t_list **all_map_items, t_scene *scene);
 int		fill_single_cylinder(t_scene *scene, t_list *tmp, int i);
+
+/*------------------FT_MATH--------------------*/
+void	fill_single_vector(t_vec *vec, float x, float y, float z);
+float	vec_dot(t_vec *vec1, t_vec *vec2);
+t_vec	vec_cross(t_vec vec1, t_vec vec2);
 /*------------------MLX_RELATED---------------*/
 void	pixel_put(t_img *data, int x, int y, int color);
 void	redraw(t_win *s, t_img *img, void (*draw)(t_img *));
@@ -163,4 +168,7 @@ void	vis_planes(t_scene *scene);
 void	vis_single_plane(t_plane plane);
 void	vis_cylinders(t_scene *scene);
 void	vis_single_cylinder(t_cylinder cylinder);
+void	vis_vector(t_vec vec);
+void	test_vec_cross(void);
+void	test_vec_dot(void);
 #endif
