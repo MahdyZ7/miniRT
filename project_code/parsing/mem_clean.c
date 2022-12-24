@@ -15,9 +15,18 @@
 void	clean_scene(t_scene scene)
 {
 	if (scene.spheres)
+	{
 		free(scene.spheres);
+		scene.spheres = NULL;
+	}
 	if (scene.plane)
+	{
 		free(scene.plane);
+		scene.plane = NULL;
+	}
 	if (scene.cylinder)
+	{
 		free(scene.cylinder);
+		scene.cylinder = NULL;
+	}
 }

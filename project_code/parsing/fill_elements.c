@@ -78,7 +78,7 @@ int	fill_spheres(
 		tmp = get_next_occurance(tmp, "sp");
 		tmp = tmp->next;
 		fill_single_sphere(scene, tmp, i);
-		scene->spheres[i].sphere_occurance = occurance;
+		scene->spheres[i].n_spheres = occurance;
 		i++;
 	}
 	vis_spheres(scene);
