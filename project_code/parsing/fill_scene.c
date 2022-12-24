@@ -1,32 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mem_clean.c                                        :+:      :+:    :+:   */
+/*   fill_scene.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/18 09:05:27 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/18 09:07:50 by ahsalem          ###   ########.fr       */
+/*   Created: 2022/12/24 08:17:26 by ahsalem           #+#    #+#             */
+/*   Updated: 2022/12/24 11:35:47 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../miniRT.h"
 
-void	clean_scene(t_scene scene)
+int	fill_all_elements_in_scene(t_list **all_map_items, t_scene *scene)
 {
-	if (scene.spheres)
-	{
-		free(scene.spheres);
-		scene.spheres = NULL;
-	}
-	if (scene.plane)
-	{
-		free(scene.plane);
-		scene.plane = NULL;
-	}
-	if (scene.cylinder)
-	{
-		free(scene.cylinder);
-		scene.cylinder = NULL;
-	}
+	if (fill_ambient_light(all_map_items, scene)
+		|| fill_light(all_map_items, scene)
+		|| fill_camera(all_map_items, scene)
+		|| fill_spheres(all_map_items, scene))
+		return (1);
+	return (0);
 }

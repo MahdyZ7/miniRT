@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 16:12:46 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/22 19:32:47 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/24 09:34:13 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ int	ft_is_float(char *check_me)
 	int	i;
 
 	i = 0;
+	printf("checking is float %s \n", check_me);
 	while (check_me[i])
 	{
 		if (!ft_isdigit(check_me[i]))

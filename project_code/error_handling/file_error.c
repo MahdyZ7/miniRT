@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 15:28:03 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/18 14:26:48 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/24 08:11:54 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,33 @@ int	bad_file(char **argv)
 		&& argv[1][len - 3] == '.')
 		)
 		return (1);
+	return (0);
+}
+
+int	initial_error_scan(t_list **all_map_items)
+{
+	t_list	*tmp;
+
+	tmp = *all_map_items;
+	if (!tmp)
+		return (1);
+	if (not_valid_element(tmp))
+	{
+		return (1);
+	}
+	while (tmp)
+	{
+		if (!ft_the_strcmp((char *)tmp->content, "\n"))
+		{
+			if (!tmp->next)
+				return (0);
+			if (not_valid_element(tmp->next))
+			{
+				return (1);
+			}
+		}
+		tmp = tmp->next;
+	}
 	return (0);
 }
 

@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_bonus.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
+/*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/30 14:57:03 by ayassin           #+#    #+#             */
-/*   Updated: 2022/05/10 08:59:29 by ayassin          ###   ########.fr       */
+/*   Updated: 2022/12/24 09:34:13 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_BONUS_H
-# define FT_PRINTF_BONUS_H
+#ifndef FT_printf_BONUS_H
+# define FT_printf_BONUS_H
 # include <stdarg.h>
 # include <unistd.h>
 # include "../libft/libft.h"

@@ -1,0 +1,125 @@
+checking 0.25,0,20
+checking 0,20
+checking 20
+checking 0,0,1
+checking 0,1
+checking 1
+70 is in correct range
+checking -40.0,50.0,0.0
+checking 50.0,0.0
+checking 0.0
+checking 10,0,255
+checking 0,255
+checking 255
+checking 255,255,6
+checking 255,6
+checking 6
+checking 0.0,0.0,20.6
+checking 0.0,20.6
+checking 20.6
+checking 1,1,255
+checking 1,255
+checking 255
+checking 2,3.0,40.6
+checking 3.0,40.6
+checking 40.6
+checking 1,1,1
+checking 1,1
+checking 1
+checking 50.0,0.0,20.6
+checking 0.0,20.6
+checking 20.6
+checking 0.0,0.0,1.0
+checking 0.0,1.0
+checking 1.0
+checking 10,0,255
+checking 0,255
+checking 255
+checking 0.0,0.0,-10.0
+checking 0.0,-10.0
+checking -10.0
+checking 0.0,1.0,0.0
+checking 1.0,0.0
+checking 0.0
+checking 0,0,225
+checking 0,225
+checking 225
+
+scanning camera
+
+scanning light
+checking is float 0.1 
+
+started the coordinate range check
+inspecting first element 10 = 10.000000
+
+ shoudl step by 1
+inspecting second element 0 = 0.000000
+now coord = 0,255
+inspecting third element 255 = 255.000000
+
+checking Ambient light 
+checking is float 1.0 
+
+started the coordinate range check
+inspecting first element 255 = 255.000000
+
+ shoudl step by 3
+inspecting second element 255 = 255.000000
+now coord = 255,6
+inspecting third element 6 = 6.000000
+
+scanning sphere
+checking is float 12.6 
+
+started the coordinate range check
+inspecting first element 1 = 1.000000
+
+ shoudl step by 1
+inspecting second element 1 = 1.000000
+now coord = 1,255
+inspecting third element 255 = 255.000000
+
+scanning sphere
+checking is float 5.6 
+
+started the coordinate range check
+inspecting first element 1 = 1.000000
+
+ shoudl step by 1
+inspecting second element 1 = 1.000000
+now coord = 1,1
+inspecting third element 1 = 1.000000
+
+scanning Cylinder
+checking is float 14.2 
+checking is float 21.42 
+
+started the coordinate range check
+inspecting first element 10 = 10.000000
+
+ shoudl step by 1
+inspecting second element 0 = 0.000000
+now coord = 0,255
+inspecting third element 255 = 255.000000
+
+scanning plane
+
+started the coordinate range check
+inspecting first element 0 = 0.000000
+
+ shoudl step by 1
+inspecting second element 0 = 0.000000
+now coord = 0,225
+inspecting third element 225 = 225.000000
+sp 0.00,0.00,20.60   12.60   1.00,1.00,255.00
+sp 2.00,3.00,40.60   5.60   1.00,1.00,1.00
+
+
+           #-----Visualizing scene-----#
+
+A 1.00	255.00,255.00,6.00
+L -40.00,50.00,0.00   0.10   10.00,0.00,255.00
+C 0.25,0.00,20.00   0.00,0.00,1.00    70.00
+sp 0.00,0.00,20.60   12.60   1.00,1.00,255.00
+sp 2.00,3.00,40.60   5.60   1.00,1.00,1.00

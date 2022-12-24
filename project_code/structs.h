@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
+/*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 01:23:30 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/23 16:36:00 by ayassin          ###   ########.fr       */
+/*   Updated: 2022/12/24 14:08:08 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,28 +32,32 @@ typedef struct t_vec
 }	t_vec;
 typedef struct s_plane
 {
-	t_vec	pos;
-	t_vec	orientation;
-	t_vec	color;
+	t_vec		pos;
+	t_vec		orientation;
+	t_vec		color;
+	int			last_plane;
 }	t_plane;
 typedef struct s_sphere
 {
-	t_vec	center;
-	float	diameter;
-	int		color;
+	t_vec		center;
+	float		diameter;
+	t_vec		color;
+	int			n_spheres;
 }	t_sphere;
 typedef struct s_cylinder
 {
-	t_vec	pos;
-	t_vec	orientation;
-	float	diameter;
-	float	height;
-	t_vec	color;
+	t_vec		pos;
+	t_vec		orientation;
+	float		diameter;
+	float		height;
+	t_vec		color;
+	int			last_cylinder;
 }	t_cylinder;
 typedef struct s_light
 {
 	t_vec	pos;
 	float	brightness;
+	t_vec	color;
 }	t_light;
 typedef struct s_camera
 {
