@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   basic_raytracing.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 18:55:05 by ayassin           #+#    #+#             */
-/*   Updated: 2022/12/24 14:31:20 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/24 22:10:12 by ayassin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ float	hit_sphere(t_sphere *sphere, t_vec *origin, t_vec *dir, float t_min, float
 	vec_init(&co, origin->x - sphere->center.x , origin->y - sphere->center.y, origin->z - sphere->center.z);
 	a = vec_dot(dir, dir);
 	b = 2.0 * vec_dot(&co, dir);
-	c = vec_dot(&co, &co) - sphere->diameter / 2 * sphere->diameter;
+	c = vec_dot(&co, &co) - sphere->diameter / 2 * sphere->diameter / 2;
 	discriminant = b * b - 4.0 * a * c;
 	// printf("First cheack points: %f %f %f with color %x\n", dir->x, dir->y, dir->z, sphere->color);
 	// printf("The sphere has points: %f %f %f with color %x\n", co.x, co.y, co.z, sphere->color);
@@ -40,7 +40,6 @@ float	hit_sphere(t_sphere *sphere, t_vec *origin, t_vec *dir, float t_min, float
 	}
 	root[0] = (-b - sqrt(discriminant)) / (2.0 * a);
 	root[1] = (-b + sqrt(discriminant)) / (2.0 * a);
-	root[1] = root[0];
 	// printf("The roots are: %f %f\n", root[0], root[1]);
 	if (!(t_min < root[0] && root[0] < t_max))
 	{
@@ -61,6 +60,7 @@ int	trace_ray(t_vec *origin, t_vec *dir, float t_min, float t_max, t_sphere *sph
 {
 	float		closest_t;
 	float		temp_t;
+	int			color;
 	t_sphere	*closest_sphere;
 
 	closest_t = t_max;
@@ -76,7 +76,8 @@ int	trace_ray(t_vec *origin, t_vec *dir, float t_min, float t_max, t_sphere *sph
 	}
 	if (closest_sphere == NULL)
 		return (0x000000);
-	return (0x111111);
+	color = (((int)closest_sphere->color.x) << 16) + (((int)closest_sphere->color.y) << 8) + (((int)closest_sphere->color.z));
+	return (color);
 }
 
 //I missed up last parameter in line 95 please fix it witht new structure
@@ -92,7 +93,7 @@ void	basic_raytracing(t_img *img)
 	sphere = malloc((sizeof(t_sphere) * 3));
 	vec_init(&cam, 0, 0, 0);
 	sphere_init(&sphere[0], img->test.center.x, img->test.center.y,
-		img->test.center.z, img->test.diameter, 0x111111);
+		img->test.center.z, img->test.diameter, 0x00FF00);
 	sphere_init(&sphere[1], 200, 400, 25, 100, 0xFF0000);
 	sphere_init(&sphere[2], -200, 400, 25, 100, 0x0000FF);
 	// vec_init(&dir, 10, 0, 1);
