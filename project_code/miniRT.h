@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 21:09:01 by ayassin           #+#    #+#             */
-/*   Updated: 2022/12/24 14:22:06 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/25 01:19:00 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,11 +115,14 @@ int		fill_camera(t_list **all_map_items, t_scene *scene);
 int		fill_coord(char *coord, float *x, float *y, float *z);
 int		fill_spheres(t_list **all_map_items, t_scene *scene);
 int		fill_single_sphere(t_scene *scene, t_list *tmp, int i);
+int		fill_planes(t_list **all_map_items, t_scene *scene);
+int		fill_single_plane(t_scene *scene, t_list *tmp, int i);
 int		fill_first_element(char *coord, float *x);
 int		fill_second_element(char *coord, float *y);
 int		fill_thrid_element(char *coord, float *z);
 int		vector_init(t_vec *vec, t_list *tmp);
-
+int		fill_cylinders(t_list **all_map_items, t_scene *scene);
+int		fill_single_cylinder(t_scene *scene, t_list *tmp, int i);
 /*------------------MLX_RELATED---------------*/
 void	pixel_put(t_img *data, int x, int y, int color);
 void	redraw(t_win *s, t_img *img, void (*draw)(t_img *));
@@ -156,4 +159,8 @@ void	vis_scene(t_scene *scene);
 void	vis_elements(t_scene *scene);
 void	vis_spheres(t_scene *scene);
 void	vis_single_sphere(t_sphere sphere);
+void	vis_planes(t_scene *scene);
+void	vis_single_plane(t_plane plane);
+void	vis_cylinders(t_scene *scene);
+void	vis_single_cylinder(t_cylinder cylinder);
 #endif

@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 01:23:30 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/24 14:08:08 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/25 01:09:36 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef struct s_plane
 	t_vec		pos;
 	t_vec		orientation;
 	t_vec		color;
-	int			last_plane;
+	int			n_planes;
 }	t_plane;
 typedef struct s_sphere
 {
@@ -51,7 +51,7 @@ typedef struct s_cylinder
 	float		diameter;
 	float		height;
 	t_vec		color;
-	int			last_cylinder;
+	int			n_cylinders;
 }	t_cylinder;
 typedef struct s_light
 {
