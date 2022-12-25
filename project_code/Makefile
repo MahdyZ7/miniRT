@@ -6,7 +6,7 @@
 #    By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/16 21:09:20 by ayassin           #+#    #+#              #
-#    Updated: 2022/12/25 02:12:54 by ahsalem          ###   ########.fr        #
+#    Updated: 2022/12/25 14:21:10 by ahsalem          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ SRC = miniRT.c setup_display.c key_hooks.c dummy_functions.c basic_raytracing.c\
 		parsing/fill_shapes.c parsing/fill_scene.c parsing/fill_elements.c \
 		parsing/fill_vector.c\
 		testers/visualizers.c testers/visualizers_utils.c testers/test_math.c\
-		ft_math/vectors.c\
+		ft_math/vectors.c ft_math/math_utils.c\
 
 
 OBJSUBDIRS = parsing error_handling testers ft_math

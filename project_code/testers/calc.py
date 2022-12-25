@@ -9,4 +9,13 @@ print("cross product is", result);
 
 #testing dot product
 result = np.dot(vec1, vec2)
-print("dot product is", result);
+#test adding
+print("addition is", result);
+result = np.add(vec1, vec2)
+print("add is", result);
+#test subtraction
+result = np.subtract(vec1, vec2)
+print("subtraction is", result);
+#test vec scalar multiplicaiton
+result = vec1 * 5
+print("vector scalar mult is", result);
