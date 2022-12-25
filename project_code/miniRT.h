@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 21:09:01 by ayassin           #+#    #+#             */
-/*   Updated: 2022/12/24 14:22:06 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/25 19:09:10 by ayassin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@
 #  define BUFFER_SIZE 1000
 # endif
 
-# define WIN_WIDTH 800
-# define WIN_HIGHT 600
+# define WIN_WIDTH 50
+# define WIN_HIGHT 50
 
 # ifdef linux
 #  define ESC_KEY 65307
