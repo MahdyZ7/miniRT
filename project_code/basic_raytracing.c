@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 18:55:05 by ayassin           #+#    #+#             */
-/*   Updated: 2022/12/25 01:52:35 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/25 16:41:23 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ float	hit_sphere(t_sphere *sphere, t_vec *origin, t_vec *dir, float t_min, float
 	float	root[2];
 
 	vec_init(&co, origin->x - sphere->center.x , origin->y - sphere->center.y, origin->z - sphere->center.z);
+	
+	//quadratic function()
 	a = vec_dot(dir, dir);
 	b = 2.0 * vec_dot(&co, dir);
 	c = vec_dot(&co, &co) - sphere->diameter / 2 * sphere->diameter;
@@ -35,7 +37,6 @@ float	hit_sphere(t_sphere *sphere, t_vec *origin, t_vec *dir, float t_min, float
 	}
 	root[0] = (-b - sqrt(discriminant)) / (2.0 * a);
 	root[1] = (-b + sqrt(discriminant)) / (2.0 * a);
-	root[1] = root[0];
 	// printf("The roots are: %f %f\n", root[0], root[1]);
 	if (!(t_min < root[0] && root[0] < t_max))
 	{
