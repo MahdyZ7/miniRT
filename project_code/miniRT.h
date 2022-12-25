@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 21:09:01 by ayassin           #+#    #+#             */
-/*   Updated: 2022/12/25 14:21:37 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/25 15:56:20 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,7 @@ void	test_vec_dot(void);
 t_vec	vec_add(t_vec vec1, t_vec vec2);
 t_vec	vec_sub(t_vec vec1, t_vec vec2);
 t_vec	vec_scalar_mult(t_vec vec1, float scalar);
+int		color_vec_to_int(t_vec color);
 /*------------------MLX_RELATED---------------*/
 void	pixel_put(t_img *data, int x, int y, int color);
 void	redraw(t_win *s, t_img *img, void (*draw)(t_img *));
