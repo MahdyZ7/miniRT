@@ -21,6 +21,12 @@ import numpy as np
 # print("vector scalar mult is", result);
 
 
+# for i in range(10):
+# 	roots = np.roots([i, i * i , i ])
+# 	print(roots)
+
 for i in range(10):
-	roots = np.roots([i, i * i , i ])
-	print(roots)
+	vector = np.array([i, i * i, i])
+	magnitude = np.linalg.norm(vector)
+	normalized_vector = vector / magnitude
+	print(normalized_vector) 

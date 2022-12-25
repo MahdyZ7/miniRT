@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 02:13:41 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/25 16:58:39 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/25 18:33:40 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ int	main(int argc, char **argv)
 	vis_scene(&scene);
 	clean_scene(scene);
 	(void)img;
-	test_quadratic();
+	test_normalized_float();
+	test_normalized_vec();
 	// window_setup(&win, &img, "miniRT");
 	// sphere_init(&(img.test), 0, 0, 10, 50, 0x00FF00);
 	// redraw(&win, win.img, basic_raytracing);
