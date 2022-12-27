@@ -115,11 +115,27 @@ int		fill_camera(t_list **all_map_items, t_scene *scene);
 int		fill_coord(char *coord, float *x, float *y, float *z);
 int		fill_spheres(t_list **all_map_items, t_scene *scene);
 int		fill_single_sphere(t_scene *scene, t_list *tmp, int i);
+int		fill_planes(t_list **all_map_items, t_scene *scene);
+int		fill_single_plane(t_scene *scene, t_list *tmp, int i);
 int		fill_first_element(char *coord, float *x);
 int		fill_second_element(char *coord, float *y);
 int		fill_thrid_element(char *coord, float *z);
 int		vector_init(t_vec *vec, t_list *tmp);
+int		fill_cylinders(t_list **all_map_items, t_scene *scene);
+int		fill_single_cylinder(t_scene *scene, t_list *tmp, int i);
 
+/*------------------FT_MATH--------------------*/
+void	fill_single_vector(t_vec *vec, float x, float y, float z);
+float	vec_dot(t_vec *vec1, t_vec *vec2);
+t_vec	vec_cross(t_vec vec1, t_vec vec2);
+void	test_vec_dot(void);
+t_vec	vec_add(t_vec vec1, t_vec vec2);
+t_vec	vec_sub(t_vec vec1, t_vec vec2);
+t_vec	vec_scalar_mult(t_vec vec1, float scalar);
+int		color_vec_to_int(t_vec color);
+t_vec	qudratic_equation(float a, float b, float c);
+float	normalize_vec_to_float(t_vec vec);
+t_vec	normalize_vec_to_vec(t_vec vec);
 /*------------------MLX_RELATED---------------*/
 void	pixel_put(t_img *data, int x, int y, int color);
 void	redraw(t_win *s, t_img *img, void (*draw)(t_img *));
@@ -157,4 +173,17 @@ void	vis_scene(t_scene *scene);
 void	vis_elements(t_scene *scene);
 void	vis_spheres(t_scene *scene);
 void	vis_single_sphere(t_sphere sphere);
+void	vis_planes(t_scene *scene);
+void	vis_single_plane(t_plane plane);
+void	vis_cylinders(t_scene *scene);
+void	vis_single_cylinder(t_cylinder cylinder);
+void	vis_vector(t_vec vec);
+void	test_vec_cross(void);
+void	test_vec_dot(void);
+void	test_vec_add(void);
+void	test_vec_sub(void);
+void	test_vec_scalar_mult(void);
+void	test_quadratic(void);
+void	test_normalized_float(void);
+void	test_normalized_vec(void);
 #endif

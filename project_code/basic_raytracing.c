@@ -6,16 +6,11 @@
 /*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 18:55:05 by ayassin           #+#    #+#             */
-/*   Updated: 2022/12/27 16:35:05 by ayassin          ###   ########.fr       */
+/*   Updated: 2022/12/25 16:41:23 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
-
-float	vec_dot(t_vec *vec1, t_vec *vec2)
-{
-	return (vec1->x * vec2->x + vec1->y * vec2->y + vec1->z * vec2->z);
-}
 
 float	hit_sphere(t_sphere *sphere, t_vec *origin, t_vec *dir, float t_min, float t_max)
 {

@@ -6,7 +6,7 @@
 #    By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/16 21:09:20 by ayassin           #+#    #+#              #
-#    Updated: 2022/12/27 16:34:40 by ayassin          ###   ########.fr        #
+#    Updated: 2022/12/25 16:58:05 by ahsalem          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,11 +28,12 @@ SRC = miniRT.c setup_display.c key_hooks.c dummy_functions.c basic_raytracing.c\
 		parsing/cam_light_check.c parsing/classify_elements.c parsing/element_checking_utils.c\
 		parsing/fill_shapes.c parsing/fill_scene.c parsing/fill_elements.c \
 		parsing/fill_vector.c\
-		testers/visualizers.c\
+		ft_math/vectors.c ft_math/math_utils.c ft_math/equations.c\
+		testers/visualizers.c testers/visualizers_utils.c testers/test_math.c testers/test_equations.c\
 		another_raytracing.c
 
 
-OBJSUBDIRS = parsing error_handling testers
+OBJSUBDIRS = parsing error_handling testers ft_math
 
 ifeq ($(shell uname -s), Darwin)
 	CFLAGS += -Werror -Imlx
