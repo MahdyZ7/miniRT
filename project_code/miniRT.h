@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 21:09:01 by ayassin           #+#    #+#             */
-/*   Updated: 2022/12/24 14:22:06 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/27 16:34:02 by ayassin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 #  define BUFFER_SIZE 1000
 # endif
 
-# define WIN_WIDTH 800
+# define WIN_WIDTH 600
 # define WIN_HIGHT 600
 
 # ifdef linux
@@ -142,6 +142,7 @@ void	put_ellipse2(t_img *img, int x, int y);
 void	put_border(t_img *img);
 /*------------------trials---------------------*/
 void	basic_raytracing(t_img *img);
+void	unknown_raytracing(t_img *img);
 void	vec_init(t_vec *vec, float x, float y, float z);
 void	sphere_init(t_sphere *sphere,
 			float x, float y, float z, float diameter, int color);

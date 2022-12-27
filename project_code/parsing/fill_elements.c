@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_elements.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/24 08:17:10 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/24 14:26:22 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/24 22:06:21 by ayassin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,5 +106,5 @@ void	sphere_init(t_sphere *sphere, float x, float y, float z, float diameter, in
 {
 	vec_init(&(sphere->center), x, y, z);
 	sphere->diameter = diameter;
-	(void)color;
+	vec_init(&(sphere->color), color >> 16, (color >> 8) & 0xff, color & 0xff);
 }
