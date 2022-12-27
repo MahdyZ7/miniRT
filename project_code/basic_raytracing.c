@@ -6,7 +6,7 @@
 /*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 18:55:05 by ayassin           #+#    #+#             */
-/*   Updated: 2022/12/26 17:19:28 by ayassin          ###   ########.fr       */
+/*   Updated: 2022/12/27 16:35:05 by ayassin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,10 +89,6 @@ float	simple_hit(t_sphere *sphere, t_vec *dir)
 		return (INFINITY);
 	root[0] = (-b - sqrt(discriminant)) / (2.0 * a);
 	root[1] = (-b + sqrt(discriminant)) / (2.0 * a);
-	// printf("(%f, %f)\n", dir->x, dir->y);
-	// printf("root[0] = %f, root[1] = %f\n", root[0], root[1]);
-	if (root[0] < root[1])
-		return (root[0]);
 	return (root[1]);
 }
 
@@ -112,9 +108,9 @@ void	basic_raytracing(t_img *img)
 	sphere_init(&sphere[0], img->test.center.x, img->test.center.y,
 		img->test.center.z, img->test.diameter, 0x00FF00);
 	vis_single_sphere(sphere[0]);
-	for (int y = 0; y < img->hight; y++)
+	for (int y = img->hight; y > 0; --y)
 	{
-		for (int x = 0; x < img->width; x++)
+		for (int x = 0; x < img->width; ++x)
 		{
 			vec_init(&dir, x - img->width / 2 , y - img->hight / 2, 1);
 			// printf("dir vector %f %f %f\n", dir.x, dir.y, dir.z);
@@ -126,10 +122,10 @@ void	basic_raytracing(t_img *img)
 			}
 			else
 				color = 0x000000;
-			printf("(%d,%d,%d) ", (int)dir.x, (int)dir.y, (int)dir.z);
+			// printf("(%d,%d,%d) ", (int)dir.x, (int)dir.y, (int)dir.z);
 			pixel_put(img, x, y, color);
 		}
-		printf("\n");
+		// printf("\n");
 	}
 	free(sphere);
 }
