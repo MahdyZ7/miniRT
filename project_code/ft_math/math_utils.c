@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fill_scene.c                                       :+:      :+:    :+:   */
+/*   math_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/24 08:17:26 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/25 01:14:59 by ahsalem          ###   ########.fr       */
+/*   Created: 2022/12/25 14:20:46 by ahsalem           #+#    #+#             */
+/*   Updated: 2022/12/25 15:56:56 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../miniRT.h"
 
-int	fill_all_elements_in_scene(t_list **all_map_items, t_scene *scene)
+void	fill_single_vector(t_vec *vec, float x, float y, float z)
 {
-	if (fill_ambient_light(all_map_items, scene)
-		|| fill_light(all_map_items, scene)
-		|| fill_camera(all_map_items, scene)
-		|| fill_spheres(all_map_items, scene)
-		|| fill_planes(all_map_items, scene)
-		|| fill_cylinders(all_map_items, scene)
-		)
-		return (1);
-	return (0);
+	vec->x = x;
+	vec->y = y;
+	vec->z = z;
+}
+
+int	color_vec_to_int(t_vec color)
+{
+	int	result;
+
+	result = (((int)color.x & 0x0ff) << 16)
+		| (((int)color.y & 0x0ff) << 8) | ((int)color.z & 0x0ff);
+	return (result);
 }
