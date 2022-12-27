@@ -3,7 +3,7 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+         #
+#    By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/16 21:09:20 by ayassin           #+#    #+#              #
 #    Updated: 2022/12/25 16:58:05 by ahsalem          ###   ########.fr        #
@@ -30,6 +30,7 @@ SRC = miniRT.c setup_display.c key_hooks.c dummy_functions.c basic_raytracing.c\
 		parsing/fill_vector.c\
 		ft_math/vectors.c ft_math/math_utils.c ft_math/equations.c\
 		testers/visualizers.c testers/visualizers_utils.c testers/test_math.c testers/test_equations.c\
+		another_raytracing.c
 
 
 OBJSUBDIRS = parsing error_handling testers ft_math
