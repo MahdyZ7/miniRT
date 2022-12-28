@@ -6,7 +6,7 @@
 /*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 14:13:26 by ayassin           #+#    #+#             */
-/*   Updated: 2022/12/27 20:01:42 by ayassin          ###   ########.fr       */
+/*   Updated: 2022/12/28 21:01:16 by ayassin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,33 @@ int sphear_intersect(t_vec *origin, t_vec *dir, t_sphere *sphere)
 	if (d2 > sphere->diameter * sphere->diameter / 4.0)
 		return (0);
 	return (1);
-} 
+}
+
+float	simple_hit2(t_sphere *sphere, t_vec *dir)
+{
+	float	a;
+	float	b;
+	float	c;
+	float	discriminant;
+	float	root[2];
+
+	a = dir->x * dir->x + dir->y * dir->y + dir->z * dir->z;
+	b = -2.0 * (dir->x * sphere->center.x + dir->y * sphere->center.y + dir->z * sphere->center.z);
+	c = sphere->center.x * sphere->center.x + sphere->center.y * sphere->center.y + sphere->center.z * sphere->center.z
+		- (sphere->diameter * sphere->diameter / 4.0);
+	discriminant = b * b - 4.0 * a * c;
+	if (discriminant < 0)
+		return (0);
+	root[0] = (-b - sqrt(discriminant)) / (2.0 * a);
+	root[1] = (-b + sqrt(discriminant)) / (2.0 * a);
+	if (root[0] < 1 && root[1] < 1)
+		return (0);
+	if (root[0] < 1)
+		return (root[1]);
+	if (root[1] < 1)
+		return (root[0]);
+	return (root[0] < root[1] ? root[0] : root[1]);
+}
 
 void unknown_raytracing(t_img *img)
 { 
@@ -44,7 +70,7 @@ void unknown_raytracing(t_img *img)
 	int			color;
     unsigned width = img->width, height = img->hight; 
     float invWidth = 1 / (float)width, invHeight = 1 / (float)height; 
-    float fov = 30, aspectratio = width / (float)height;
+    float fov = 50, aspectratio = width / (float)height;
     float angle = tan(M_PI * 0.5 * fov / 180.);
 	sphere = malloc((sizeof(t_sphere) * 3));
 	vec_init(&cam, 0, 0, 0);
@@ -56,14 +82,17 @@ void unknown_raytracing(t_img *img)
         for (unsigned x = 0; x < width; ++x) { 
             float xx = (2 * ((x + 0.5) * invWidth) - 1) * angle * aspectratio; 
             float yy = (1 - 2 * ((y + 0.5) * invHeight)) * angle;
+			// xx = x - width / 2; 
+            // yy = height / 2 - y;
 			vec_init(&raydir, xx, yy, 1);
-            normalize(&raydir); 
-            if (sphear_intersect(&cam, &raydir, &sphere[0]))
+            // normaddlize(&raydir); 
+            // if (sphear_intersect(&cam, &raydir, &sphere[0]))
+			if (simple_hit2(&sphere[0], &raydir))
 				color = 0x00FF00;
 			else
 				color = 0x000000;
 			pixel_put(img, x, y, color);
-        } 
+        }
     }
 	free(sphere);
 } 
