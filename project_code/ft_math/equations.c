@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/25 16:43:11 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/25 18:31:08 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/30 18:22:34 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,24 +44,24 @@ t_vec	qudratic_equation(float a, float b, float c)
 	return (result);
 }
 
-float	normalize_vec_to_float(t_vec vec)
+float	normalize_vec_to_float(t_vec *vec)
 {
 	float	result;
 
-	result = (vec.x + vec.y + vec.z) / sqrt(
-			vec.x * vec.x + vec.y * vec.y + vec.z * vec.z);
+	result = (vec->x + vec->y + vec->z) / sqrt(
+			vec->x * vec->x + vec->y * vec->y + vec->z * vec->z);
 	return (result);
 }
 
-t_vec	normalize_vec_to_vec(t_vec vec)
+t_vec	normalize_vec_to_vec(t_vec *vec)
 {
 	t_vec	result;
 
-	result.x = (vec.x) / sqrt(
-			vec.x * vec.x + vec.y * vec.y + vec.z * vec.z);
-	result.y = (vec.y) / sqrt(
-			vec.x * vec.x + vec.y * vec.y + vec.z * vec.z);
-	result.z = (vec.z) / sqrt(
-			vec.x * vec.x + vec.y * vec.y + vec.z * vec.z);
+	result.x = (vec->x) / sqrt(
+			vec->x * vec->x + vec->y * vec->y + vec->z * vec->z);
+	result.y = (vec->y) / sqrt(
+			vec->x * vec->x + vec->y * vec->y + vec->z * vec->z);
+	result.z = (vec->z) / sqrt(
+			vec->x * vec->x + vec->y * vec->y + vec->z * vec->z);
 	return (result);
 }

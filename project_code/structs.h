@@ -104,6 +104,9 @@ typedef struct s_scene
 	t_sphere	*spheres;
 	t_plane		*plane;
 	t_cylinder	*cylinder;
+	int			n_spheres;
+	int			n_planes;
+	int			n_cylinders;
 	int			error_code;
 	int			number_of_shapes;
 }	t_scene;
