@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   basic_raytracing.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 18:55:05 by ayassin           #+#    #+#             */
-/*   Updated: 2022/12/30 19:46:11 by ayassin          ###   ########.fr       */
+/*   Updated: 2022/12/30 20:23:46 by ayassin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,11 @@ int		compute_color(t_vec *origin, t_vec *dir, t_sphere *sphere, t_scene *scene, 
 	t_vec	light_vec;
 
 	i = 0;
-	hit_point = vec_add(*origin, vec_scalar_mult(*dir, closest_t));
-	normal = vec_sub(hit_point, sphere->center);
+	hit_point = vec_scalar_mult(dir, closest_t);
+	hit_point = vec_add(origin, &hit_point);
+	normal = vec_sub(&hit_point, &(sphere->center));
 	normalize(&normal);
-	light_vec = vec_sub(scene->light.pos, hit_point); 
+	light_vec = vec_sub(&(scene->light.pos), &hit_point); 
 	i += scene->amb_light.ratio;
 	if (vec_dot(&normal, &light_vec) > 0)
 		i += scene->light.brightness * vec_dot(&normal, &light_vec) /
@@ -90,8 +91,8 @@ int	trace_ray(t_vec *origin, t_vec *dir, float t_min, t_scene *scene)
 	if (closest_sphere != NULL)
 	{
 		float m = compute_color(origin, dir, closest_sphere, scene, closest_t);
-		vec_scalar_mult(closest_sphere->color, m);
-		color  = vec_to_color(vec_scalar_mult(closest_sphere->color, m));
+		// vec_scalar_mult(&(closest_sphere->color), m);
+		color  = vec_to_color(vec_scalar_mult(&(closest_sphere->color), m));
 	}
 	return (color);
 }
