@@ -6,7 +6,7 @@
 /*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 10:49:02 by ayassin           #+#    #+#             */
-/*   Updated: 2022/12/28 21:20:27 by ayassin          ###   ########.fr       */
+/*   Updated: 2022/12/30 14:39:52 by ayassin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int	exit_code(t_win *win)
 		exit(0);
 	if (win->img)
 	{
+		if (win->img->scene)
+			clean_scene(*(win->img->scene));
 		if (win->img->img_ptr)
 			mlx_destroy_image(win->mlx_ptr, win->img->img_ptr);
 	}

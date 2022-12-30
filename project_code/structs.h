@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 01:23:30 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/25 01:09:36 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/30 12:26:59 by ayassin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,8 @@ typedef struct s_img
 	int				x_pos;
 	int				y_pos;
 	struct s_sphere	test;
-	struct s_win	*win;	
+	struct s_win	*win;
+	struct s_scene	*scene;	
 }	t_img;
 
 typedef struct s_win
