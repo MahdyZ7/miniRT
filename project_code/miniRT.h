@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
+/*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 21:09:01 by ayassin           #+#    #+#             */
-/*   Updated: 2022/12/28 21:08:36 by ayassin          ###   ########.fr       */
+/*   Updated: 2022/12/30 18:27:14 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,15 +127,15 @@ int		fill_single_cylinder(t_scene *scene, t_list *tmp, int i);
 /*------------------FT_MATH--------------------*/
 void	fill_single_vector(t_vec *vec, float x, float y, float z);
 float	vec_dot(t_vec *vec1, t_vec *vec2);
-t_vec	vec_cross(t_vec vec1, t_vec vec2);
+t_vec	vec_cross(t_vec *vec1, t_vec *vec2);
 void	test_vec_dot(void);
-t_vec	vec_add(t_vec vec1, t_vec vec2);
-t_vec	vec_sub(t_vec vec1, t_vec vec2);
-t_vec	vec_scalar_mult(t_vec vec1, float scalar);
-int		color_vec_to_int(t_vec color);
+t_vec	vec_add(t_vec *vec1, t_vec *vec2);
+t_vec	vec_sub(t_vec *vec1, t_vec *vec2);
+t_vec	vec_scalar_mult(t_vec *vec1, float scalar);
+int		color_vec_to_int(t_vec *color);
 t_vec	qudratic_equation(float a, float b, float c);
-float	normalize_vec_to_float(t_vec vec);
-t_vec	normalize_vec_to_vec(t_vec vec);
+float	normalize_vec_to_float(t_vec *vec);
+t_vec	normalize_vec_to_vec(t_vec *vec);
 /*------------------MLX_RELATED---------------*/
 void	pixel_put(t_img *data, int x, int y, int color);
 void	redraw(t_win *s, t_img *img, void (*draw)(t_img *));

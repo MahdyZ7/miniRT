@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/25 14:20:46 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/25 15:56:56 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/30 18:24:10 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ void	fill_single_vector(t_vec *vec, float x, float y, float z)
 	vec->z = z;
 }
 
-int	color_vec_to_int(t_vec color)
+int	color_vec_to_int(t_vec *color)
 {
 	int	result;
 
-	result = (((int)color.x & 0x0ff) << 16)
-		| (((int)color.y & 0x0ff) << 8) | ((int)color.z & 0x0ff);
+	result = (((int)color->x & 0x0ff) << 16)
+		| (((int)color->y & 0x0ff) << 8) | ((int)color->z & 0x0ff);
 	return (result);
 }
