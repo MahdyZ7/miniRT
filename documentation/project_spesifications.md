@@ -4,6 +4,8 @@ Project objective: Implement basic ray tracing
 
 Why doing this project: Implement any mathematica or physics formula
 
+https://docs.google.com/document/d/1ZUn8sJV5SKje-yurw1b1dVOwP1tbiKDsGnjxgKc2JNM/edit?usp=sharing
+
 Description: using ray-tracing protocol generate image based on scene, with specific angle, position, lighting, geomitry
 
 Allowed functions:
