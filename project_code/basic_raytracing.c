@@ -6,7 +6,7 @@
 /*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 18:55:05 by ayassin           #+#    #+#             */
-/*   Updated: 2022/12/30 20:23:46 by ayassin          ###   ########.fr       */
+/*   Updated: 2022/12/30 20:30:09 by ayassin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,18 @@ int vec_to_color(t_vec vec)
 	int color;
 
 	color = 0;
-	color += (int)(vec.x) << 16;
-	color += (int)(vec.y) << 8;
-	color += (int)(vec.z);
+	if (vec.x >= 255)
+		color += 255  << 16;
+	else
+		color += (int)(vec.x) << 16 ;
+	if (vec.y >= 255)
+		color += 255  << 8;
+	else
+		color += (int)(vec.y) << 8;
+	if (vec.z >= 255)
+		color += 255;
+	else
+		color += (int)(vec.z);
 	return (color);
 }
 
