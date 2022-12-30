@@ -9,7 +9,7 @@ void	test_vec_cross(void)
 	printf("\n\ntesting vectors cross product\n\n");
 	fill_single_vector(&vec1, 1, 2, 3);
 	fill_single_vector(&vec2, 4, 5, 6);
-	result = vec_cross(vec1, vec2);
+	result = vec_cross(&vec1, &vec2);
 	printf("v1 X v2 = ");
 	vis_vector(vec1);
 	printf(" X ");
@@ -46,7 +46,7 @@ void	test_vec_scalar_mult(void)
 	scalar = 5;
 	printf("\n\ntesting vectors Scalara mult\n\n");
 	fill_single_vector(&vec1, 1, 2, 3);
-	result = vec_scalar_mult(vec1, scalar);
+	result = vec_scalar_mult(&vec1, scalar);
 	printf("v1 . %3.2f = ", scalar);
 	vis_vector(vec1);
 	printf(" * ");
@@ -64,7 +64,7 @@ void	test_vec_add(void)
 	printf("\n\ntesting vectors addition\n\n");
 	fill_single_vector(&vec1, 1, 2, 3);
 	fill_single_vector(&vec2, 4, 5, 6);
-	result = vec_add(vec1, vec2);
+	result = vec_add(&vec1, &vec2);
 	printf("v1 + v2 = ");
 	vis_vector(vec1);
 	printf(" + ");
@@ -83,7 +83,7 @@ void	test_vec_sub(void)
 	printf("\n\ntesting vectors subtraction\n\n");
 	fill_single_vector(&vec1, 1, 2, 3);
 	fill_single_vector(&vec2, 4, 5, 6);
-	result = vec_sub(vec1, vec2);
+	result = vec_sub(&vec1, &vec2);
 	printf("v1 - v2 = ");
 	vis_vector(vec1);
 	printf(" - ");

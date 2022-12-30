@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   basic_raytracing.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
+/*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 18:55:05 by ayassin           #+#    #+#             */
-/*   Updated: 2022/12/28 21:26:57 by ayassin          ###   ########.fr       */
+/*   Updated: 2022/12/30 15:32:22 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,8 @@ void	basic_raytracing(t_img *img)
 	free(sphere);
 }
 
+
+//For light, the calculation done of all light sources then added to the object color
 
 //I missed up last parameter in line 95 please fix it witht new structure
 // void	basic_raytracing(t_img *img)

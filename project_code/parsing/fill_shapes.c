@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/24 08:17:32 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/25 01:14:31 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/30 19:37:27 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	fill_spheres(
 	i = 0;
 	tmp = *all_map_items;
 	occurance = count_occurance_in_map(all_map_items, "sp");
+	scene->n_spheres = occurance;
 	if (!occurance)
 		return (0);
 	scene->spheres = ft_calloc(sizeof(t_sphere), (occurance + 2));
@@ -59,6 +60,7 @@ int	fill_planes(
 	i = 0;
 	tmp = *all_map_items;
 	occurance = count_occurance_in_map(all_map_items, "pl");
+	scene->n_planes = occurance;
 	if (!occurance)
 		return (0);
 	scene->plane = ft_calloc(sizeof(t_plane), (occurance + 2));
@@ -96,6 +98,7 @@ int	fill_cylinders(
 	i = 0;
 	tmp = *all_map_items;
 	occurance = count_occurance_in_map(all_map_items, "cy");
+	scene->n_cylinders = occurance;
 	if (!occurance)
 		return (0);
 	scene->cylinder = ft_calloc(sizeof(t_cylinder), (occurance + 2));
