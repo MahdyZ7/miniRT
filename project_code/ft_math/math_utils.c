@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/25 14:20:46 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/30 18:24:10 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/30 19:46:00 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,24 @@ void	fill_single_vector(t_vec *vec, float x, float y, float z)
 	vec->z = z;
 }
 
-int	color_vec_to_int(t_vec *color)
+float	vector_magnitude(t_vec *vec)
 {
-	int	result;
+	return (sqrt((vec->x * vec->x) + (vec->y * vec->y) + (vec->z * vec->z)));
+}
 
-	result = (((int)color->x & 0x0ff) << 16)
-		| (((int)color->y & 0x0ff) << 8) | ((int)color->z & 0x0ff);
+t_vec	fit_coordinate_to_screen(float x, float y, t_scene *scene)
+{
+	float	invWidth;
+	float	invHeight;
+	float	aspectratio;
+	float	angle;
+	t_vec	result;
+
+	invWidth = 1 / (float)WIN_WIDTH;
+	invHeight = 1 / (float)WIN_HIGHT;
+	aspectratio = (float)WIN_WIDTH / (float)WIN_WIDTH;
+	angle = tan(M_PI * 0.5 * scene->camera.view_field / 180.0);
+	result.x = (2 * ((x + 0.5) * invWidth) - 1) * angle * aspectratio;
+	result.y = (1 - 2 * ((y + 0.5) * invHeight)) * angle;
 	return (result);
 }

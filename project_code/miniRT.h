@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 21:09:01 by ayassin           #+#    #+#             */
-/*   Updated: 2022/12/30 18:27:14 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/30 19:45:42 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,10 @@ int		color_vec_to_int(t_vec *color);
 t_vec	qudratic_equation(float a, float b, float c);
 float	normalize_vec_to_float(t_vec *vec);
 t_vec	normalize_vec_to_vec(t_vec *vec);
+
+/*------------------RENDERING_PREPARATION-----*/
+float	color_by_intesity_to_float(t_vec *color, float intensity);
+t_vec	fit_coordinate_to_screen(float x, float y, t_scene *scene);
 /*------------------MLX_RELATED---------------*/
 void	pixel_put(t_img *data, int x, int y, int color);
 void	redraw(t_win *s, t_img *img, void (*draw)(t_img *));

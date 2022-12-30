@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 01:23:30 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/25 01:09:36 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/30 19:36:11 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,9 @@ typedef struct s_scene
 	t_sphere	*spheres;
 	t_plane		*plane;
 	t_cylinder	*cylinder;
+	int			n_spheres;
+	int			n_planes;
+	int			n_cylinders;
 	int			error_code;
 	int			number_of_shapes;
 }	t_scene;
