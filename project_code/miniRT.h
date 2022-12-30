@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 21:09:01 by ayassin           #+#    #+#             */
-/*   Updated: 2022/12/30 19:45:42 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/30 19:38:40 by ayassin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,7 @@ int		color_vec_to_int(t_vec *color);
 t_vec	qudratic_equation(float a, float b, float c);
 float	normalize_vec_to_float(t_vec *vec);
 t_vec	normalize_vec_to_vec(t_vec *vec);
-
+void	normalize(t_vec *v);
 /*------------------RENDERING_PREPARATION-----*/
 float	color_by_intesity_to_float(t_vec *color, float intensity);
 t_vec	fit_coordinate_to_screen(float x, float y, t_scene *scene);
@@ -168,9 +168,9 @@ void	sphere_init(t_sphere *sphere,
 			float x, float y, float z, float diameter, int color);
 float	vec_dot(t_vec *vec1, t_vec *vec2);
 float	hit_sphere(t_sphere *sphere,
-			t_vec *origin, t_vec *dir, float t_min, float t_max);
+			t_vec *origin, t_vec *dir, float t_min);
 int		trace_ray(t_vec *origin,
-			t_vec *dir, float t_min, float t_max, t_sphere *sphere);
+			t_vec *dir, float t_min, t_scene *scene);
 /*--------------------TESTERS-----------------------------*/
 void	vis_list(t_list **head);
 void	vis_scene(t_scene *scene);
