@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 21:09:01 by ayassin           #+#    #+#             */
-/*   Updated: 2022/12/31 10:56:42 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/31 14:52:48 by ayassin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,8 +141,8 @@ int		color_vec_to_int(t_vec *color);
 float	color_by_intesity_to_float(t_vec *color, float intensity);
 t_vec	fit_coordinate_to_screen(float x, float y, t_scene *scene);
 /*------------------RENDERING-----------------*/
-int		trace_plane(t_vec *dir, float t_min, t_scene *scene,float x, float y);
-float	hit_plane(t_plane *plane, t_scene *scene,float x, float y, t_vec *dir);
+int		trace_plane(t_vec *dir, float t_min, t_scene *scene);
+float	hit_plane(t_plane *plane, t_scene *scene, t_vec *dir);
 void	init_ray_trace_kit(t_ray_trace_kit *r, t_img *img);
 /*------------------MLX_RELATED---------------*/
 void	pixel_put(t_img *data, int x, int y, int color);
