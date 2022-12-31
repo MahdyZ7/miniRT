@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 02:13:41 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/30 14:36:11 by ayassin          ###   ########.fr       */
+/*   Updated: 2022/12/31 09:17:31 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	main(int argc, char **argv)
 {
-	t_scene	scene;
+	// t_scene	scene;
 	t_win	win;
 	t_img	img;
 
@@ -31,5 +31,6 @@ int	main(int argc, char **argv)
 	mlx_hook(win.win_ptr, 2, 1L << 0, key_hook, &win);
 	mlx_hook(win.win_ptr, 17, 0, exit_code, &win);
 	mlx_loop(win.mlx_ptr);
+	clean_scene(scene);
 	return (0);
 }
