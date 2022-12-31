@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   plane_tracing.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 07:36:53 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/31 11:08:49 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/31 15:15:58 by ayassin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../miniRT.h"
 
-int	trace_plane(t_vec *dir, float t_min, t_scene *scene, float x, float y)
+int	trace_plane(t_vec *dir, float t_min, t_scene *scene)
 {
 	int			color;
 	float		closest_t;
@@ -26,7 +26,7 @@ int	trace_plane(t_vec *dir, float t_min, t_scene *scene, float x, float y)
 	closest_plane = NULL;
 	for (int i = 0; i < scene->plane->n_planes; i++)
 	{
-		temp_t = hit_plane(&(scene->plane[i]), scene, x, y, dir);
+		temp_t = hit_plane(&(scene->plane[i]), scene, dir);
 		if (temp_t < closest_t)
 		{
 			closest_t = temp_t;
@@ -73,18 +73,17 @@ int	trace_plane(t_vec *dir, float t_min, t_scene *scene, float x, float y)
 // p0 = plane coordinates
 // l0 = camera view point
 // l = fit_coordinate_to_screen(x, y, scene)
-float	hit_plane(t_plane *plane, t_scene *scene,float x, float y, t_vec *dir)
+float	hit_plane(t_plane *plane, t_scene *scene, t_vec *dir)
 {
 	float	t;
 	float	denominator;
 	t_vec	p0l0;
-	t_vec	new_coord;
 
-	new_coord = fit_coordinate_to_screen(x, y, scene);
 	denominator = vec_dot(&plane->orientation, dir);
 	if (denominator > 0.0000001)
 	{
 		p0l0 = vec_sub(&plane->pos, &scene->camera.view_point);
+		normalize(&p0l0);
 		t = vec_dot(&p0l0, &plane->orientation) / denominator;;
 		return (t);
 	}

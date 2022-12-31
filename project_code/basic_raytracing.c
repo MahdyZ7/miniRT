@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   basic_raytracing.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 18:55:05 by ayassin           #+#    #+#             */
-/*   Updated: 2022/12/31 10:56:52 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/31 14:51:36 by ayassin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,14 +114,16 @@ void	basic_raytracing(t_img *img)
 	init_ray_trace_kit(&r, img);
 	while (r.x < WIN_WIDTH)
 	{
-		for (int y = 0; y < WIN_HIGHT; y++)
+		r.y = 0;
+		while (r.y < WIN_HIGHT)
 		{
 			r.new_x = (2 * ((r.x + 0.5) * r.invWidth) - 1) * r.angle * r.aspectratio; 
-			r.new_y = (1 - 2 * ((y + 0.5) * r.invHeight)) * r.angle;
+			r.new_y = (1 - 2 * ((r.y + 0.5) * r.invHeight)) * r.angle;
 			vec_init(&r.dir, r.new_x,r. new_y, 1);
 			// r.color = trace_ray(&r.dir, 1, img->scene);
-			r.color = trace_plane(&r.dir, 1, img->scene, r.x, y);
-			pixel_put(img->scene->win->img, r.x, y, r.color);
+			r.color = trace_plane(&r.dir, 1, img->scene);
+			pixel_put(img->scene->win->img, r.x, r.y, r.color);
+			++r.y;
 		}
 		r.x++;
 	}

@@ -14,7 +14,7 @@
 
 int	main(int argc, char **argv)
 {
-	// t_scene	scene;
+	t_scene	scene;
 	t_win	win;
 	t_img	img;
 
