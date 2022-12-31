@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   basic_raytracing.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
+/*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 18:55:05 by ayassin           #+#    #+#             */
-/*   Updated: 2022/12/30 20:30:09 by ayassin          ###   ########.fr       */
+/*   Updated: 2022/12/31 10:56:52 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ float	hit_sphere(t_sphere *sphere, t_vec *origin, t_vec *dir, float t_min)
 	return (root[1]);
 }
 
-int	trace_ray(t_vec *origin, t_vec *dir, float t_min, t_scene *scene)
+int	trace_ray(t_vec *dir, float t_min, t_scene *scene)
 {
 	int			color;
 	float		closest_t;
@@ -89,7 +89,7 @@ int	trace_ray(t_vec *origin, t_vec *dir, float t_min, t_scene *scene)
 	closest_sphere = NULL;
 	for (int i = 0; i < scene->spheres->n_spheres; i++)
 	{
-		temp_t = hit_sphere(&(scene->spheres[i]), origin, dir, t_min);
+		temp_t = hit_sphere(&(scene->spheres[i]), &scene->camera.view_point, dir, t_min);
 		if (temp_t < closest_t)
 		{
 			closest_t = temp_t;
@@ -99,33 +99,41 @@ int	trace_ray(t_vec *origin, t_vec *dir, float t_min, t_scene *scene)
 	color = 0x000000;
 	if (closest_sphere != NULL)
 	{
-		float m = compute_color(origin, dir, closest_sphere, scene, closest_t);
-		// vec_scalar_mult(&(closest_sphere->color), m);
+		float m = compute_color(&scene->camera.view_point, dir, closest_sphere, scene, closest_t);
+		vec_scalar_mult(&(closest_sphere->color), m);
 		color  = vec_to_color(vec_scalar_mult(&(closest_sphere->color), m));
 	}
 	return (color);
 }
 
+//I have no Idea why when I convert the y for loop to while loop the image disappears
 void	basic_raytracing(t_img *img)
 {
-	int			color;
-	t_vec		dir;
-	t_vec		cam;
+	t_ray_trace_kit	r;
 
-    float invWidth = 1 / (float)img->width, invHeight = 1 / (float)img->hight; 
-    float fov = 70, aspectratio = img->width / (float)img->hight;
-    float angle = tan(M_PI * 0.5 * fov / 180.);
-	color = 0;
-	vec_init(&cam, 0, 0, 0);
-	for (int x = 0; x < img->width; x++)
+	init_ray_trace_kit(&r, img);
+	while (r.x < WIN_WIDTH)
 	{
-		for (int y = 0; y < img->hight; y++)
+		for (int y = 0; y < WIN_HIGHT; y++)
 		{
-			float xx = (2 * ((x + 0.5) * invWidth) - 1) * angle * aspectratio; 
-            float yy = (1 - 2 * ((y + 0.5) * invHeight)) * angle;
-			vec_init(&dir, xx, yy, 1);
-			color = trace_ray(&cam, &dir, 1, img->scene);
-			pixel_put(img, x, y, color);
+			r.new_x = (2 * ((r.x + 0.5) * r.invWidth) - 1) * r.angle * r.aspectratio; 
+			r.new_y = (1 - 2 * ((y + 0.5) * r.invHeight)) * r.angle;
+			vec_init(&r.dir, r.new_x,r. new_y, 1);
+			// r.color = trace_ray(&r.dir, 1, img->scene);
+			r.color = trace_plane(&r.dir, 1, img->scene, r.x, y);
+			pixel_put(img->scene->win->img, r.x, y, r.color);
 		}
+		r.x++;
 	}
+}
+
+void	init_ray_trace_kit(t_ray_trace_kit *r, t_img *img)
+{
+	r->x = 0;
+	r->y = 0;
+	r->invWidth = 1 / (float)WIN_WIDTH;
+	r->invHeight = 1 / (float)WIN_HIGHT;
+	r->aspectratio = (float)WIN_WIDTH / (float)WIN_HIGHT;
+	r->angle = tan(M_PI * 0.5 * img->scene->camera.view_field / 180.);
+	r->color = 0;
 }

@@ -6,7 +6,7 @@
 #    By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/16 21:09:20 by ayassin           #+#    #+#              #
-#    Updated: 2022/12/30 19:11:55 by ahsalem          ###   ########.fr        #
+#    Updated: 2022/12/31 07:37:47 by ahsalem          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,9 +32,10 @@ SRC = miniRT.c setup_display.c key_hooks.c dummy_functions.c basic_raytracing.c\
 		testers/visualizers.c testers/visualizers_utils.c testers/test_math.c testers/test_equations.c\
 		another_raytracing.c\
 		pre_rendering/screen_colors_init.c \
+		trace_objects/plane_tracing.c trace_objects/sphere_tracing.c\
 
 
-OBJSUBDIRS = parsing error_handling testers ft_math pre_rendering
+OBJSUBDIRS = parsing error_handling testers ft_math pre_rendering trace_objects
 
 ifeq ($(shell uname -s), Darwin)
 	CFLAGS += -Werror -Imlx

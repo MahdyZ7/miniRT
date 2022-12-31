@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
+/*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 01:23:30 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/30 12:26:59 by ayassin          ###   ########.fr       */
+/*   Updated: 2022/12/31 09:31:06 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,4 +124,17 @@ typedef struct parsing_kit
 	char	*line;
 }	t_parsing_kit;
 
+typedef struct ray_trace_kit
+{
+	int			color;
+	t_vec		dir;
+	float		aspectratio;
+	float		invWidth;
+	float		invHeight;
+	float		angle;
+	float		new_x;
+	float		new_y;
+	int			x;
+	int			y;
+}	t_ray_trace_kit;
 #endif
