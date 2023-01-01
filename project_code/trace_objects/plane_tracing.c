@@ -6,7 +6,7 @@
 /*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 07:36:53 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/31 15:15:58 by ayassin          ###   ########.fr       */
+/*   Updated: 2022/12/31 16:53:40 by ayassin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ float	hit_plane(t_plane *plane, t_scene *scene, t_vec *dir)
 	t_vec	p0l0;
 
 	denominator = vec_dot(&plane->orientation, dir);
+	
 	if (denominator > 0.0000001)
 	{
 		p0l0 = vec_sub(&plane->pos, &scene->camera.view_point);
