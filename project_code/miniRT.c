@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 02:13:41 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/31 09:17:31 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/31 16:20:51 by ayassin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	main(int argc, char **argv)
 		return (1);
 	if (init_scene(argv, &scene, &win))
 		return (1);
-	vis_scene(&scene);
+	// vis_scene(&scene);
 	window_setup(&win, &img, "miniRT");
 	sphere_init(&(img.test), 0, 0, 30, 10, 0x00FF00);
 	img.scene = &scene;

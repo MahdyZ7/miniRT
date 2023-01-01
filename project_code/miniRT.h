@@ -6,7 +6,7 @@
 /*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 21:09:01 by ayassin           #+#    #+#             */
-/*   Updated: 2022/12/31 14:52:48 by ayassin          ###   ########.fr       */
+/*   Updated: 2023/01/01 13:22:35 by ayassin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,8 @@ t_vec	qudratic_equation(float a, float b, float c);
 float	normalize_vec_to_float(t_vec *vec);
 t_vec	normalize_vec_to_vec(t_vec *vec);
 void	normalize(t_vec *v);
+float	vector_magnitude(t_vec *vec);
+
 /*------------------RENDERING_PREPARATION-----*/
 int		color_vec_to_int(t_vec *color);
 float	color_by_intesity_to_float(t_vec *color, float intensity);
