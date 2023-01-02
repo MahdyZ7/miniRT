@@ -146,6 +146,10 @@ t_vec	fit_coordinate_to_screen(float x, float y, t_scene *scene);
 int		trace_plane(t_vec *dir, float t_min, t_scene *scene);
 float	hit_plane(t_plane *plane, t_scene *scene, t_vec *dir);
 void	init_ray_trace_kit(t_ray_trace_kit *r, t_img *img);
+float	hit_cylinder(t_cylinder *cylinder, t_vec *origin, t_vec *dir, float t_min);
+float	check_capped_part(float t0, float t1,
+	 t_vec *origin, t_vec *dir, t_cylinder *cylinder);
+int	trace_cylinder(t_vec *dir, float t_min, t_scene *scene);
 /*------------------MLX_RELATED---------------*/
 void	pixel_put(t_img *data, int x, int y, int color);
 void	redraw(t_win *s, t_img *img, void (*draw)(t_img *));
