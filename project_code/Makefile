@@ -32,7 +32,7 @@ SRC = miniRT.c setup_display.c key_hooks.c dummy_functions.c basic_raytracing.c\
 		testers/visualizers.c testers/visualizers_utils.c testers/test_math.c testers/test_equations.c\
 		another_raytracing.c\
 		pre_rendering/screen_colors_init.c \
-		trace_objects/plane_tracing.c trace_objects/sphere_tracing.c\
+		trace_objects/plane_tracing.c trace_objects/sphere_tracing.c trace_objects/cylinder_tracing.c\
 
 
 OBJSUBDIRS = parsing error_handling testers ft_math pre_rendering trace_objects
