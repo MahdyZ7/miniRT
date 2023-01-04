@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
+/*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 21:09:01 by ayassin           #+#    #+#             */
-/*   Updated: 2023/01/01 13:22:35 by ayassin          ###   ########.fr       */
+/*   Updated: 2023/01/05 00:42:49 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ int		fill_thrid_element(char *coord, float *z);
 int		vector_init(t_vec *vec, t_list *tmp);
 int		fill_cylinders(t_list **all_map_items, t_scene *scene);
 int		fill_single_cylinder(t_scene *scene, t_list *tmp, int i);
-
+void	fill_4vec(t_vec4 *vec, float t, t_vec child);
 /*------------------FT_MATH--------------------*/
 void	fill_single_vector(t_vec *vec, float x, float y, float z);
 float	vec_dot(t_vec *vec1, t_vec *vec2);
@@ -137,16 +137,19 @@ float	normalize_vec_to_float(t_vec *vec);
 t_vec	normalize_vec_to_vec(t_vec *vec);
 void	normalize(t_vec *v);
 float	vector_magnitude(t_vec *vec);
-
+t_vec	vec_scalar_add(t_vec *vec1, float scalar);
+t_vec	vec_scalar_sub(t_vec *vec1, float scalar);
+float	sign(float x);
 /*------------------RENDERING_PREPARATION-----*/
 int		color_vec_to_int(t_vec *color);
 float	color_by_intesity_to_float(t_vec *color, float intensity);
 t_vec	fit_coordinate_to_screen(float x, float y, t_scene *scene);
+t_vec	get_cylinder_height(t_cylinder *cylinder);
 /*------------------RENDERING-----------------*/
 int		trace_plane(t_vec *dir, float t_min, t_scene *scene);
 float	hit_plane(t_plane *plane, t_scene *scene, t_vec *dir);
 void	init_ray_trace_kit(t_ray_trace_kit *r, t_img *img);
-float	hit_cylinder(t_cylinder *cylinder, t_vec *origin, t_vec *dir, float t_min);
+t_vec4	hit_cylinder(t_cylinder *cylinder, t_vec *origin, t_vec *dir, float t_min);
 float	check_capped_part(float t0, float t1,
 	 t_vec *origin, t_vec *dir, t_cylinder *cylinder);
 int	trace_cylinder(t_vec *dir, float t_min, t_scene *scene);

@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/25 16:43:11 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/30 18:22:34 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/05 00:42:34 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,21 @@ t_vec	normalize_vec_to_vec(t_vec *vec)
 	result.z = (vec->z) / sqrt(
 			vec->x * vec->x + vec->y * vec->y + vec->z * vec->z);
 	return (result);
+}
+
+float	sign(float x)
+{
+	if (x > 0.00001)
+		return (1.0);
+	else if (x < -0.00001)
+		return (-1);
+	else
+		return (0);
+
+}
+
+void	fill_4vec(t_vec4 *vec, float t, t_vec child)
+{
+	vec->t = t;
+	vec->child = child;
 }
