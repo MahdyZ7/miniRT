@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 21:09:01 by ayassin           #+#    #+#             */
-/*   Updated: 2023/01/05 00:42:49 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/05 16:42:20 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,6 +168,7 @@ int		parse_error_message(void);
 int		file_reading_error_message(void);
 int		initial_error_scan(t_list **all_map_items);
 int		not_valid_element(t_list *check_me);
+int		check_normalized_coord(t_vec	vec);
 /*------------------DUMMY---------------------*/
 void	put_ellipse(t_img *img, int width, int hight);
 void	put_serpenski(t_img *img, int width, int hight);

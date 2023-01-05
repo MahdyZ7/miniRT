@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_elements.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
+/*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/24 08:17:10 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/25 00:24:42 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/05 16:45:57 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ int	fill_camera(
 	if (vector_init(&scene->camera.view_point, tmp))
 		return (1);
 	if (vector_init(&scene->camera.orientation, tmp->next))
+		return (1);
+	if (check_normalized_coord(scene->camera.orientation))
 		return (1);
 	scene->camera.view_field = ft_atof((char *)tmp->next->next->content);
 	return (0);
