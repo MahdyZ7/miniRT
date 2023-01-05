@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 21:10:55 by ahsalem           #+#    #+#             */
-/*   Updated: 2023/01/05 21:11:47 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/05 23:31:21 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,14 @@ float	hit_sphere(t_sphere *sphere, t_vec *origin, t_vec *dir, float t_min)
 	return (oc.y);
 }
 
-int	trace_sphere(t_vec *dir, float t_min, t_scene *scene)
+t_vec	trace_sphere(t_vec *dir, float t_min, t_scene *scene)
 {
 	int			color;
 	float		closest_t;
 	float		temp_t;
 	t_sphere	*closest_sphere;
 	int			i;
+	t_vec		result;
 
 	closest_t = INFINITY;
 	closest_sphere = NULL;
@@ -60,5 +61,6 @@ int	trace_sphere(t_vec *dir, float t_min, t_scene *scene)
 		// vec_scalar_mult(&(closest_sphere->color), m);
 		// color = vec_to_color(vec_scalar_mult(&(closest_sphere->color), m));
 	}
-	return (color);
+	fill_single_vector(&result, closest_t, color, 0);
+	return (result);
 }

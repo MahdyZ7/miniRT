@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 07:36:53 by ahsalem           #+#    #+#             */
-/*   Updated: 2023/01/05 21:58:42 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/05 23:31:17 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,14 @@ t_vec	plane_color(t_vec *dir, t_plane *pln, t_scene *scene, float close_t)
 }
 
 
-int	trace_plane(t_vec *dir, float t_min, t_scene *scene)
+t_vec	trace_plane(t_vec *dir, float t_min, t_scene *scene)
 {
 	int			color;
 	float		closest_t;
 	float		temp_t;
 	t_plane		*closest_plane;
 	t_vec		m;
+	t_vec		result;
 
 	(void) t_min;
 	closest_t = INFINITY;
@@ -68,7 +69,8 @@ int	trace_plane(t_vec *dir, float t_min, t_scene *scene)
 		m = plane_color(dir, closest_plane, scene, closest_t);
 		color  = vec_to_color(vec_multiply_two_vectors(&(closest_plane->color), &m));
 	}
-	return (color);
+	fill_single_vector(&result, closest_t, color, 0);
+	return (result);
 }
 
 // float	hit_plane(t_plane *plane, t_vec *origin, t_vec *dir, float t_min)
