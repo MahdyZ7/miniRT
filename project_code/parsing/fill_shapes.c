@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/24 08:17:32 by ahsalem           #+#    #+#             */
-/*   Updated: 2023/01/05 16:49:11 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/05 17:02:12 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,3 +131,6 @@ int	fill_single_cylinder(t_scene *scene, t_list *tmp, int i)
 		return (1);
 	return (0);
 }
+
+
+//for all cokior

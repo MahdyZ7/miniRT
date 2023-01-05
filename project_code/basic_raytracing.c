@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   basic_raytracing.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
+/*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 18:55:05 by ayassin           #+#    #+#             */
 /*   Updated: 2023/01/04 14:29:48 by ayassin          ###   ########.fr       */
@@ -11,47 +11,6 @@
 /* ************************************************************************** */
 
 #include "miniRT.h"
-
-int	vec_to_color(t_vec vec)
-{
-	int	color;
-
-	color = 0;
-	if (vec.x >= 255)
-		color += 255 << 16;
-	else
-		color += (int)(vec.x) << 16 ;
-	if (vec.y >= 255)
-		color += 255 << 8;
-	else
-		color += (int)(vec.y) << 8;
-	if (vec.z >= 255)
-		color += 255;
-	else
-		color += (int)(vec.z);
-	return (color);
-}
-
-float	compute_color(t_vec *dir, t_sphere *sphr, t_scene *scene, float close_t)
-{
-	float	i;
-	t_vec	normal;
-	t_vec	hit_point;
-	t_vec	light_vec;
-
-	i = 0;
-	hit_point = vec_scalar_mult(dir, close_t);
-	hit_point = vec_add(&(scene->camera.view_point), &hit_point);
-	normal = vec_sub(&hit_point, &(sphr->center));
-	// normalize(&normal);
-	light_vec = vec_sub(&(scene->light.pos), &hit_point);
-	// normalize(&light_vec);
-	i += scene->amb_light.ratio;
-	if (vec_dot(&normal, &light_vec) > 0)
-		i += scene->light.brightness * vec_dot(&normal, &light_vec)
-			/ (vector_magnitude(&normal) * vector_magnitude(&light_vec));
-	return (i);
-}
 
 float	hit_sphere(t_sphere *sphere, t_vec *origin, t_vec *dir, float t_min)
 {
@@ -95,9 +54,11 @@ int	trace_ray(t_vec *dir, float t_min, t_scene *scene)
 	color = 0x000000;
 	if (closest_sphere != NULL)
 	{
-		float m = compute_color(dir, closest_sphere, scene, closest_t);
-		vec_scalar_mult(&(closest_sphere->color), m);
-		color = vec_to_color(vec_scalar_mult(&(closest_sphere->color), m));
+		t_vec m = compute_color_to_vec(dir, closest_sphere, scene, closest_t);
+		color = vec_to_color(vec_multiply_two_vectors(&(closest_sphere->color), &m));
+		// float m = compute_color(dir, closest_sphere, scene, closest_t);
+		// vec_scalar_mult(&(closest_sphere->color), m);
+		// color = vec_to_color(vec_scalar_mult(&(closest_sphere->color), m));
 	}
 	return (color);
 }
@@ -117,8 +78,8 @@ void	basic_raytracing(t_img *img)
 			r.new_y = (1 - 2 * ((r.y + 0.5) * r.invHeight)) * r.angle;
 			vec_init(&r.dir, r.new_x, r. new_y,
 				img->scene->camera.view_point.z + 1);
-			// r.color = trace_ray(&r.dir, 1, img->scene);
-			r.color = trace_plane(&r.dir, 1, img->scene);
+			r.color = trace_ray(&r.dir, 1, img->scene);
+			// r.color = trace_plane(&r.dir, 1, img->scene);
 			// r.color = trace_cylinder(&r.dir, 1, img->scene);
 			pixel_put(img->scene->win->img, r.x, r.y, r.color);
 			++r.y;
