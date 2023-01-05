@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 21:09:01 by ayassin           #+#    #+#             */
-/*   Updated: 2023/01/05 17:18:51 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/05 21:49:39 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,6 +146,7 @@ int		color_vec_to_int(t_vec *color);
 float	color_by_intesity_to_float(t_vec *color, float intensity);
 t_vec	fit_coordinate_to_screen(float x, float y, t_scene *scene);
 t_vec	get_cylinder_height(t_cylinder *cylinder);
+t_vec	plane_color(t_vec *dir, t_plane *pln, t_scene *scene, float close_t);
 /*------------------RENDERING-----------------*/
 int		trace_plane(t_vec *dir, float t_min, t_scene *scene);
 float	hit_plane(t_plane *plane, t_scene *scene, t_vec *dir);
@@ -187,7 +188,7 @@ void	sphere_init(t_sphere *sphere,
 float	vec_dot(t_vec *vec1, t_vec *vec2);
 float	hit_sphere(t_sphere *sphere,
 			t_vec *origin, t_vec *dir, float t_min);
-int		trace_ray(
+int		trace_sphere(
 			t_vec *dir, float t_min, t_scene *scene);
 /*--------------------TESTERS-----------------------------*/
 void	vis_list(t_list **head);
