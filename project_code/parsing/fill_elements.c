@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/24 08:17:10 by ahsalem           #+#    #+#             */
-/*   Updated: 2023/01/05 16:45:57 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/05 19:50:45 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int	fill_ambient_light(
 	scene->amb_light.ratio = ft_atof((char *)tmp->content);
 	if (vector_init(&scene->amb_light.color, tmp->next))
 		return (1);
+	scene->amb_light.color = vec_scalar_mult(&scene->amb_light.color,
+			1 / 255.0);
 	return (0);
 }
 
@@ -39,6 +41,7 @@ int	fill_light(
 	scene->light.brightness = ft_atof((char *)tmp->next->content);
 	if (vector_init(&scene->light.color, tmp->next->next))
 		return (1);
+	scene->light.color = vec_scalar_mult(&scene->light.color, 1 / 255.0);
 	return (0);
 }
 

@@ -6,12 +6,16 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 16:57:32 by ahsalem           #+#    #+#             */
-/*   Updated: 2023/01/05 17:25:04 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/05 19:56:22 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../miniRT.h"
 
+
+//move sphere code to sphere file
+//figure out closest t from the plane and sphere then plot it
+//
 int	vec_to_color(t_vec vec)
 {
 	int	color;
@@ -66,16 +70,16 @@ t_vec	compute_color_to_vec(t_vec *dir, t_sphere *sphr, t_scene *scene, float clo
 	normal = vec_sub(&hit_point, &(sphr->center));
 	light_vec = vec_sub(&(scene->light.pos), &hit_point);
 	vec_scalar_add(&i, scene->amb_light.ratio);
-	i.x += scene->amb_light.color.x / 255.0;
-	i.y += scene->amb_light.color.y / 255.0;
-	i.z += scene->amb_light.color.z / 255.0;
+	i.x += scene->amb_light.color.x;
+	i.y += scene->amb_light.color.y;
+	i.z += scene->amb_light.color.z;
 	if (vec_dot(&normal, &light_vec) > 0)
 	{
-		i.x += scene->light.brightness * scene->light.color.x / 255.0 
+		i.x += scene->light.brightness * scene->light.color.x
 		* vec_dot(&normal, &light_vec) / (vector_magnitude(&normal) * vector_magnitude(&light_vec));
-		i.y += scene->light.brightness * scene->light.color.y / 255.0 
+		i.y += scene->light.brightness * scene->light.color.y 
 		* vec_dot(&normal, &light_vec) / (vector_magnitude(&normal) * vector_magnitude(&light_vec));
-		i.z += scene->light.brightness * scene->light.color.z / 255.0 
+		i.z += scene->light.brightness * scene->light.color.z
 		* vec_dot(&normal, &light_vec) / (vector_magnitude(&normal) * vector_magnitude(&light_vec));
 	}
 	return (i);
