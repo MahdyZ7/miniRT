@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 21:09:01 by ayassin           #+#    #+#             */
-/*   Updated: 2023/01/05 16:42:20 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/05 17:18:51 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,7 @@ void	normalize(t_vec *v);
 float	vector_magnitude(t_vec *vec);
 t_vec	vec_scalar_add(t_vec *vec1, float scalar);
 t_vec	vec_scalar_sub(t_vec *vec1, float scalar);
+t_vec	vec_multiply_two_vectors(t_vec *vec1, t_vec *vec2);
 float	sign(float x);
 /*------------------RENDERING_PREPARATION-----*/
 int		color_vec_to_int(t_vec *color);
@@ -151,8 +152,11 @@ float	hit_plane(t_plane *plane, t_scene *scene, t_vec *dir);
 void	init_ray_trace_kit(t_ray_trace_kit *r, t_img *img);
 t_vec4	hit_cylinder(t_cylinder *cylinder, t_vec *origin, t_vec *dir, float t_min);
 float	check_capped_part(float t0, float t1,
-	 t_vec *origin, t_vec *dir, t_cylinder *cylinder);
-int	trace_cylinder(t_vec *dir, float t_min, t_scene *scene);
+		t_vec *origin, t_vec *dir, t_cylinder *cylinder);
+int		trace_cylinder(t_vec *dir, float t_min, t_scene *scene);
+t_vec	compute_color_to_vec(t_vec *dir, t_sphere *sphr, t_scene *scene, float close_t);
+float	compute_color(t_vec *dir, t_sphere *sphr, t_scene *scene, float close_t);
+int	vec_to_color(t_vec vec);
 /*------------------MLX_RELATED---------------*/
 void	pixel_put(t_img *data, int x, int y, int color);
 void	redraw(t_win *s, t_img *img, void (*draw)(t_img *));
