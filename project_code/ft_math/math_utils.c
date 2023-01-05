@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   math_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
+/*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/25 14:20:46 by ahsalem           #+#    #+#             */
-/*   Updated: 2023/01/01 13:23:22 by ayassin          ###   ########.fr       */
+/*   Updated: 2023/01/04 22:02:49 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,25 @@ t_vec	fit_coordinate_to_screen(float x, float y, t_scene *scene)
 	angle = tan(M_PI * 0.5 * scene->camera.view_field / 180.0);
 	result.x = (2 * ((x + 0.5) * inv_width) - 1) * angle * aspectratio;
 	result.y = (1 - 2 * ((y + 0.5) * inv_height)) * angle;
+	return (result);
+}
+
+t_vec	vec_scalar_add(t_vec *vec1, float scalar)
+{
+	t_vec	result;
+
+	result.x = vec1->x + scalar;
+	result.y = vec1->y + scalar;
+	result.z = vec1->z + scalar;
+	return (result);
+}
+
+t_vec	vec_scalar_sub(t_vec *vec1, float scalar)
+{
+	t_vec	result;
+
+	result.x = vec1->x + scalar;
+	result.y = vec1->y + scalar;
+	result.z = vec1->z + scalar;
 	return (result);
 }
