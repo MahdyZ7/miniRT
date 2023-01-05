@@ -6,7 +6,7 @@
 /*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 18:55:05 by ayassin           #+#    #+#             */
-/*   Updated: 2023/01/03 18:56:38 by ayassin          ###   ########.fr       */
+/*   Updated: 2023/01/04 14:29:48 by ayassin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,8 +118,8 @@ void	basic_raytracing(t_img *img)
 			vec_init(&r.dir, r.new_x, r. new_y,
 				img->scene->camera.view_point.z + 1);
 			// r.color = trace_ray(&r.dir, 1, img->scene);
-			// r.color = trace_plane(&r.dir, 1, img->scene);
-			r.color = trace_cylinder(&r.dir, 1, img->scene);
+			r.color = trace_plane(&r.dir, 1, img->scene);
+			// r.color = trace_cylinder(&r.dir, 1, img->scene);
 			pixel_put(img->scene->win->img, r.x, r.y, r.color);
 			++r.y;
 		}
