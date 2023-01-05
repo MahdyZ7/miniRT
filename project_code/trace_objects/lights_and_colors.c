@@ -6,16 +6,15 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 16:57:32 by ahsalem           #+#    #+#             */
-/*   Updated: 2023/01/05 19:56:22 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/05 21:42:03 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../miniRT.h"
 
-
-//move sphere code to sphere file
+//plane lighting, do the same as sphere.
 //figure out closest t from the plane and sphere then plot it
-//
+// 
 int	vec_to_color(t_vec vec)
 {
 	int	color;
