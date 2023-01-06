@@ -1,4 +1,49 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cylinder_tracing.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/06 11:37:30 by ayassin           #+#    #+#             */
+/*   Updated: 2023/01/06 11:43:20 by ayassin          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../miniRT.h"
+
+
+
+// Define the cylinder using a center point (C) and a unit vector (D) 
+// that represents the direction of the cylinder's axis.
+// You will also need to specify the radius (r) and height (h) of the cylinder.
+
+// Define the ray using a starting point (P) and a direction vector (d).
+
+// Translate both the cylinder and the ray so that the cylinder's center point 
+// is at the origin (0,0,0). 
+// This will make the math simpler because you can now treat the cylinder as a
+// centered cylinder with a height of 2h.
+
+// Calculate the dot product of the direction vector d with the cylinder's 
+// unit vector D. Let this value be denoted as tD.
+
+// Calculate the projection of the vector P onto the cylinder's axis by 
+// subtracting the component of P that is orthogonal to D from P.
+// Let this projection be denoted as P'.
+
+// Calculate the length of the vector P' using the Pythagorean theorem.
+// Let this value be denoted as tP'.
+
+// If tP' > r, then the ray does not intersect the cylinder.
+// If tP' <= r, then the ray intersects the cylinder at one or two points.
+
+// To find the intersection points, you can use the quadratic formula
+// to solve for t in the equation P + t * d = P' + tD * D.
+// This will give you the values of t that correspond to the intersection points.
+// You can then use these values of t to find the intersection points by 
+// plugging them back into the equation P + t * d.
+
 
 // cylinder defined by extremes pa and pb, and radious ra
 t_vec4	hit_cylinder(t_cylinder *cylinder, t_vec *origin, t_vec *dir, float t_min)
