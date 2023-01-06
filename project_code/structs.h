@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 01:23:30 by ahsalem           #+#    #+#             */
-/*   Updated: 2023/01/06 17:54:25 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/06 18:14:39 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,7 @@ typedef struct s_vec4
 
 typedef struct s_plane_equation
 {
-	float	A;
-	float	B;
-	float	C;
+	t_vec	abc;
 	float	D;
 }	t_plane_equation;
 

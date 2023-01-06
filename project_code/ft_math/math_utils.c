@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/25 14:20:46 by ahsalem           #+#    #+#             */
-/*   Updated: 2023/01/06 17:52:58 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/06 18:15:45 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,11 @@ t_plane_equation	fill_plane_equation(t_plane plane)
 {
 	t_plane_equation	equation;
 
-	equation.A = plane.orientation.x;
-	equation.B = plane.orientation.y;
-	equation.C = plane.orientation.z;
-	equation.D = (-1 * equation.A * plane.pos.x) - (equation.B * plane.pos.y)
-		- (equation.C * plane.pos.z);
+	equation.abc.x = plane.orientation.x;
+	equation.abc.y = plane.orientation.y;
+	equation.abc.z = plane.orientation.z;
+	equation.D = (-1 * equation.abc.x * plane.pos.x) - (equation.abc.y * plane.pos.y)
+		- (equation.abc.z * plane.pos.z);
 	return (equation);
 }
 /*
