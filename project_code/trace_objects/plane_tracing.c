@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 07:36:53 by ahsalem           #+#    #+#             */
-/*   Updated: 2023/01/05 23:31:17 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/06 17:55:35 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ t_vec	plane_color(t_vec *dir, t_plane *pln, t_scene *scene, float close_t)
 	hit_point = vec_add(&(scene->camera.view_point), &hit_point);
 	normal = pln->orientation;
 	light_vec = vec_sub(&(scene->light.pos), &hit_point);
-	i.x += scene->amb_light.color.x;
-	i.y += scene->amb_light.color.y;
-	i.z += scene->amb_light.color.z;
+	i.x += scene->amb_light.ratio * scene->amb_light.color.x;
+	i.y += scene->amb_light.ratio * scene->amb_light.color.y;
+	i.z += scene->amb_light.ratio * scene->amb_light.color.z;
 	if (vec_dot(&normal, &light_vec) > 0)
 	{
 		i.x += scene->light.brightness * scene->light.color.x
@@ -109,13 +109,16 @@ float	hit_plane(t_plane *plane, t_scene *scene, t_vec *dir)
 
 	denominator = vec_dot(&plane->orientation, dir);
 	
-	if (denominator > 0.0000001)
+	if (denominator != 0)
 	{
 		p0l0 = vec_sub(&plane->pos, &scene->camera.view_point);
 		// normalize(&p0l0);
 		// the t * dir = Where do I hit
-		t = vec_dot(&p0l0, &plane->orientation) / denominator;;
-		return (t);
+		t = vec_dot(&p0l0, &plane->orientation) / denominator;
+		if (t > 0.000001)
+			return (t);
+		else
+			return (INFINITY);
 	}
 	return (INFINITY);
 }

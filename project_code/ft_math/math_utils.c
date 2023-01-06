@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/25 14:20:46 by ahsalem           #+#    #+#             */
-/*   Updated: 2023/01/05 17:16:31 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/06 17:52:58 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,3 +49,21 @@ t_vec	vec_scalar_sub(t_vec *vec1, float scalar)
 	result.z = vec1->z + scalar;
 	return (result);
 }
+
+t_plane_equation	fill_plane_equation(t_plane plane)
+{
+	t_plane_equation	equation;
+
+	equation.A = plane.orientation.x;
+	equation.B = plane.orientation.y;
+	equation.C = plane.orientation.z;
+	equation.D = (-1 * equation.A * plane.pos.x) - (equation.B * plane.pos.y)
+		- (equation.C * plane.pos.z);
+	return (equation);
+}
+/*
+Write the normal to the plane in the form (A, B, C).
+Write the coordinates of the point on the plane as (x1, y1, z1).
+The equation of the plane can be written in the form Ax + By + Cz + D = 0, where D is a constant. To find the value of D, substitute the values of A, B, C, and the coordinates of the point on the plane into the equation: D = -Ax1 - By1 - Cz1.
+The equation of the plane is now given by Ax + By + Cz - D = 0, where A, B, C, and D are the values you have just calculated.
+*/

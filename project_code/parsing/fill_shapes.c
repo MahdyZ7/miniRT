@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/24 08:17:32 by ahsalem           #+#    #+#             */
-/*   Updated: 2023/01/05 17:02:12 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/06 17:46:49 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ int	fill_planes(
 		if (check_normalized_coord(scene->plane[i].orientation))
 			return (1);
 		scene->plane[i].n_planes = occurance;
+		scene->plane[i].equation = fill_plane_equation(scene->plane[i]);
 		i++;
 	}
 	return (0);
