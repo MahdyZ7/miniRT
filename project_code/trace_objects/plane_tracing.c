@@ -3,46 +3,53 @@
 /*                                                        :::      ::::::::   */
 /*   plane_tracing.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
+/*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 07:36:53 by ahsalem           #+#    #+#             */
-/*   Updated: 2023/01/03 18:39:48 by ayassin          ###   ########.fr       */
+/*   Updated: 2023/01/05 23:31:17 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../miniRT.h"
 
-float	plane_color(t_vec *dir, t_plane *pln, t_scene *scene, float close_t)
+//do the same changes as sphere
+t_vec	plane_color(t_vec *dir, t_plane *pln, t_scene *scene, float close_t)
 {
-	float	i;
+	t_vec	i;
 	t_vec	normal;
 	t_vec	hit_point;
 	t_vec	light_vec;
 
-	i = 0;
+	fill_single_vector(&i, 0, 0, 0);
 	hit_point = vec_scalar_mult(dir, close_t);
 	hit_point = vec_add(&(scene->camera.view_point), &hit_point);
 	normal = pln->orientation;
-	// normalize(&normal);
 	light_vec = vec_sub(&(scene->light.pos), &hit_point);
-	// normalize(&light_vec);
-	i += scene->amb_light.ratio;
+	i.x += scene->amb_light.color.x;
+	i.y += scene->amb_light.color.y;
+	i.z += scene->amb_light.color.z;
 	if (vec_dot(&normal, &light_vec) > 0)
 	{
-		i += scene->light.brightness * vec_dot(&normal, &light_vec)
-			/ (vector_magnitude(&normal) * vector_magnitude(&light_vec));
-		// printf("The i is %f\n", i);
+		i.x += scene->light.brightness * scene->light.color.x
+			* vec_dot(&normal, &light_vec) / (vector_magnitude(&normal)
+					* vector_magnitude(&light_vec));
+		i.y += scene->light.brightness * scene->light.color.y 
+		* vec_dot(&normal, &light_vec) / (vector_magnitude(&normal) * vector_magnitude(&light_vec));
+		i.z += scene->light.brightness * scene->light.color.z
+		* vec_dot(&normal, &light_vec) / (vector_magnitude(&normal) * vector_magnitude(&light_vec));
 	}
 	return (i);
 }
 
-int	trace_plane(t_vec *dir, float t_min, t_scene *scene)
+
+t_vec	trace_plane(t_vec *dir, float t_min, t_scene *scene)
 {
 	int			color;
 	float		closest_t;
 	float		temp_t;
 	t_plane		*closest_plane;
-	t_vec		vec_color;
+	t_vec		m;
+	t_vec		result;
 
 	(void) t_min;
 	closest_t = INFINITY;
@@ -59,14 +66,11 @@ int	trace_plane(t_vec *dir, float t_min, t_scene *scene)
 	color = 0x000000;
 	if (closest_plane != NULL)
 	{
-		float m = plane_color(dir, closest_plane, scene, closest_t);
-		// printf("the ")
-		// float m = 1;
-		// vec_scalar_mult(&(closest_plane->color), m);
-		vec_color = vec_scalar_mult(&(closest_plane->color), m);
-		color  = color_vec_to_int(&vec_color);
+		m = plane_color(dir, closest_plane, scene, closest_t);
+		color  = vec_to_color(vec_multiply_two_vectors(&(closest_plane->color), &m));
 	}
-	return (color);
+	fill_single_vector(&result, closest_t, color, 0);
+	return (result);
 }
 
 // float	hit_plane(t_plane *plane, t_vec *origin, t_vec *dir, float t_min)
@@ -109,6 +113,7 @@ float	hit_plane(t_plane *plane, t_scene *scene, t_vec *dir)
 	{
 		p0l0 = vec_sub(&plane->pos, &scene->camera.view_point);
 		// normalize(&p0l0);
+		// the t * dir = Where do I hit
 		t = vec_dot(&p0l0, &plane->orientation) / denominator;;
 		return (t);
 	}

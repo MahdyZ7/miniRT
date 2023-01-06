@@ -6,23 +6,12 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/25 14:20:46 by ahsalem           #+#    #+#             */
-/*   Updated: 2023/01/04 22:02:49 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/05 17:16:31 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../miniRT.h"
 
-void	fill_single_vector(t_vec *vec, float x, float y, float z)
-{
-	vec->x = x;
-	vec->y = y;
-	vec->z = z;
-}
-
-float	vector_magnitude(t_vec *vec)
-{
-	return (sqrt((vec->x * vec->x) + (vec->y * vec->y) + (vec->z * vec->z)));
-}
 
 t_vec	fit_coordinate_to_screen(float x, float y, t_scene *scene)
 {

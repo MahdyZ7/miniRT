@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/24 08:17:32 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/30 19:37:27 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/05 17:02:12 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ int	fill_planes(
 		tmp = get_next_occurance(tmp, "pl");
 		tmp = tmp->next;
 		fill_single_plane(scene, tmp, i);
+		if (check_normalized_coord(scene->plane[i].orientation))
+			return (1);
 		scene->plane[i].n_planes = occurance;
 		i++;
 	}
@@ -109,6 +111,8 @@ int	fill_cylinders(
 		tmp = get_next_occurance(tmp, "cy");
 		tmp = tmp->next;
 		fill_single_cylinder(scene, tmp, i);
+		if (check_normalized_coord(scene->cylinder[i].orientation))
+			return (1);
 		scene->cylinder[i].n_cylinders = occurance;
 		i++;
 	}
@@ -127,3 +131,6 @@ int	fill_single_cylinder(t_scene *scene, t_list *tmp, int i)
 		return (1);
 	return (0);
 }
+
+
+//for all cokior

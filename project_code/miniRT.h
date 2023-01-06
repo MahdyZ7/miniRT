@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 21:09:01 by ayassin           #+#    #+#             */
-/*   Updated: 2023/01/05 00:42:49 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/05 23:23:05 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,20 +139,25 @@ void	normalize(t_vec *v);
 float	vector_magnitude(t_vec *vec);
 t_vec	vec_scalar_add(t_vec *vec1, float scalar);
 t_vec	vec_scalar_sub(t_vec *vec1, float scalar);
+t_vec	vec_multiply_two_vectors(t_vec *vec1, t_vec *vec2);
 float	sign(float x);
 /*------------------RENDERING_PREPARATION-----*/
 int		color_vec_to_int(t_vec *color);
 float	color_by_intesity_to_float(t_vec *color, float intensity);
 t_vec	fit_coordinate_to_screen(float x, float y, t_scene *scene);
 t_vec	get_cylinder_height(t_cylinder *cylinder);
+t_vec	plane_color(t_vec *dir, t_plane *pln, t_scene *scene, float close_t);
 /*------------------RENDERING-----------------*/
-int		trace_plane(t_vec *dir, float t_min, t_scene *scene);
+t_vec	trace_plane(t_vec *dir, float t_min, t_scene *scene);
 float	hit_plane(t_plane *plane, t_scene *scene, t_vec *dir);
 void	init_ray_trace_kit(t_ray_trace_kit *r, t_img *img);
 t_vec4	hit_cylinder(t_cylinder *cylinder, t_vec *origin, t_vec *dir, float t_min);
 float	check_capped_part(float t0, float t1,
-	 t_vec *origin, t_vec *dir, t_cylinder *cylinder);
-int	trace_cylinder(t_vec *dir, float t_min, t_scene *scene);
+		t_vec *origin, t_vec *dir, t_cylinder *cylinder);
+int		trace_cylinder(t_vec *dir, float t_min, t_scene *scene);
+t_vec	compute_color_to_vec(t_vec *dir, t_sphere *sphr, t_scene *scene, float close_t);
+float	compute_color(t_vec *dir, t_sphere *sphr, t_scene *scene, float close_t);
+int		vec_to_color(t_vec vec);
 /*------------------MLX_RELATED---------------*/
 void	pixel_put(t_img *data, int x, int y, int color);
 void	redraw(t_win *s, t_img *img, void (*draw)(t_img *));
@@ -168,6 +173,7 @@ int		parse_error_message(void);
 int		file_reading_error_message(void);
 int		initial_error_scan(t_list **all_map_items);
 int		not_valid_element(t_list *check_me);
+int		check_normalized_coord(t_vec	vec);
 /*------------------DUMMY---------------------*/
 void	put_ellipse(t_img *img, int width, int hight);
 void	put_serpenski(t_img *img, int width, int hight);
@@ -182,7 +188,7 @@ void	sphere_init(t_sphere *sphere,
 float	vec_dot(t_vec *vec1, t_vec *vec2);
 float	hit_sphere(t_sphere *sphere,
 			t_vec *origin, t_vec *dir, float t_min);
-int		trace_ray(
+t_vec	trace_sphere(
 			t_vec *dir, float t_min, t_scene *scene);
 /*--------------------TESTERS-----------------------------*/
 void	vis_list(t_list **head);
