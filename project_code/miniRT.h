@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 21:09:01 by ayassin           #+#    #+#             */
-/*   Updated: 2023/01/07 19:42:15 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/07 22:36:22 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,6 +143,7 @@ t_vec		vec_scalar_sub(t_vec *vec1, float scalar);
 t_vec		vec_multiply_two_vectors(t_vec *vec1, t_vec *vec2);
 float		sign(float x);
 t_pln_equ	fill_plane_equation(t_plane plane);
+void		normalize(t_vec *v);
 /*------------------RENDERING_PREPARATION--------------*/
 int			color_vec_to_int(t_vec *color);
 float		color_by_intesity_to_float(t_vec *color, float intensity);
