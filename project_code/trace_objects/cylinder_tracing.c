@@ -6,7 +6,7 @@
 /*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 11:37:30 by ayassin           #+#    #+#             */
-/*   Updated: 2023/01/06 11:43:20 by ayassin          ###   ########.fr       */
+/*   Updated: 2023/01/07 21:01:28 by ayassin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,60 @@
 // You can then use these values of t to find the intersection points by 
 // plugging them back into the equation P + t * d.
 
+// http://www.illusioncatalyst.com/notes_files/mathematics/line_cylinder_intersection.php
+float	his_hit_cylinder(t_cylinder *cylinder, t_vec *origin, t_vec *dir, float t_min)
+{
+	(void)t_min;
+	t_vec	cylinder_end = get_cylinder_height(cylinder);
+	t_vec	vec_cylinder_height = vec_sub(&cylinder_end, &(cylinder->pos));
+	t_vec	origin_to_cylinder = vec_sub(origin, &(cylinder->pos));
+	normalize(&vec_cylinder_height);
+	// float	height_dot_product = vec_dot(&vec_cylinder_height, &vec_cylinder_height);
+	float	height_by_direction = vec_dot(&vec_cylinder_height, dir);
+	float	height_by_origin_to_cylinder = vec_dot(&vec_cylinder_height, &origin_to_cylinder);
+	float	a =  vec_dot(dir, dir) - height_by_direction * height_by_direction;
+	float 	b = 2 * (vec_dot(dir, &origin_to_cylinder) - height_by_direction * height_by_origin_to_cylinder);
+	float	c = vec_dot(&origin_to_cylinder, &origin_to_cylinder) - height_by_origin_to_cylinder * height_by_origin_to_cylinder - (cylinder->diameter / 2) * (cylinder->diameter / 2);
+	float	discriminant = b * b - 4 * a * c;
+	if (discriminant < 0)
+		return INFINITY;
+	float	t1 = (-b - sqrt(discriminant)) / (2 * a);
+	float	t2 = (-b + sqrt(discriminant)) / (2 * a);
+	if (t1 < t_min && t2 < t_min)
+		return INFINITY;
+	if (t1 < t_min)
+		return t2;
+	if (t2 < t_min || t1 < t2)
+		return t1;
+	return (t2);
+	
+}
+
+float	my_hit_cylinder(t_cylinder *cylinder, t_vec *origin, t_vec *dir, float t_min)
+{
+	(void)t_min;
+	
+	t_vec	cylinder_end = get_cylinder_height(cylinder);
+	t_vec	origin_to_cylinder_bottom = vec_sub(origin, &(cylinder->pos));
+	t_vec	origin_to_cylinder_top = vec_sub(origin, &cylinder_end);
+	// printf(" The cylinder end is %f %f %f and the other end is %f %f %f and the oritation is %f %f %f\n"
+	// 	, cylinder_end.x, cylinder_end.y, cylinder_end.z, cylinder->pos.x, cylinder->pos.y, cylinder->pos.z, cylinder->orientation.x, cylinder->orientation.y, cylinder->orientation.z);
+	float	a = 2 * vec_dot(dir, dir);
+	float	b = 2 * vec_dot(dir, &origin_to_cylinder_bottom) + 2 * vec_dot(dir, &origin_to_cylinder_top);
+	float	c = vec_dot(&origin_to_cylinder_bottom, &origin_to_cylinder_bottom) + vec_dot(&origin_to_cylinder_top, &origin_to_cylinder_top) - (cylinder->diameter / 2) * (cylinder->diameter / 2) - cylinder->height * cylinder->height;
+	float	discriminant = b * b - 4 * a * c;
+	if (discriminant < 0)
+		return INFINITY;
+	float	t1 = (-b - sqrt(discriminant)) / (2 * a);
+	float	t2 = (-b + sqrt(discriminant)) / (2 * a);
+	if (t1 < t_min && t2 < t_min)
+		return INFINITY;
+	if (t1 < t_min)
+		return t2;
+	if (t2 < t_min || t1 < t2)
+		return t1;
+	return (t2);
+}
 
 // cylinder defined by extremes pa and pb, and radious ra
 t_vec4	hit_cylinder(t_cylinder *cylinder, t_vec *origin, t_vec *dir, float t_min)
@@ -58,6 +112,7 @@ t_vec4	hit_cylinder(t_cylinder *cylinder, t_vec *origin, t_vec *dir, float t_min
 	t_vec	second_sub_part;
 	t_vec	cylinder_end = get_cylinder_height(cylinder);
 	t_vec	vec_cylinder_height = vec_sub(&cylinder_end, &(cylinder->pos));
+	normalize(&vec_cylinder_height);
 	t_vec	origin_to_cylinder = vec_sub(origin, &(cylinder->pos));
 	float	height_dot_product = vec_dot(&vec_cylinder_height, &vec_cylinder_height);
 	float	height_by_direction = vec_dot(&vec_cylinder_height, dir);
@@ -133,9 +188,11 @@ int	trace_cylinder(t_vec *dir, float t_min, t_scene *scene)
 	closest_cylinder = NULL;
 	for (int i = 0; i < scene->n_cylinders; i++)
 	{
-		temp_t = (hit_cylinder(&(scene->cylinder[i]), &scene->camera.view_point, dir, t_min)).t;
+		// temp_t = (hit_cylinder(&(scene->cylinder[i]), &scene->camera.view_point, dir, t_min)).t;
+		temp_t = his_hit_cylinder(&(scene->cylinder[i]), &scene->camera.view_point, dir, t_min);
 		if (temp_t < closest_t)
 		{
+			// printf("temp_t: %f\n", temp_t);
 			closest_t = temp_t;
 			closest_cylinder = &(scene->cylinder[i]);
 		}
