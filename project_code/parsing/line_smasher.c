@@ -6,16 +6,11 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 08:07:36 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/19 00:25:48 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/07 18:33:33 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../miniRT.h"
-/*
-	if there is parser error
-	will fill the first flag with parser error code, 
-	check if there is an error if the flag value less than 30
-*/
 
 t_list	*parsing_map(int fd)
 {
@@ -91,7 +86,7 @@ void	init_parsing_kit(t_parsing_kit *s, t_list **head, char *line)
 	s->line = line;
 }
 
-void	update_parsing_kit(t_parsing_kit *s,char *line)
+void	update_parsing_kit(t_parsing_kit *s, char *line)
 {
 	s->start = 0;
 	s->end = 0;
@@ -101,14 +96,4 @@ void	update_parsing_kit(t_parsing_kit *s,char *line)
 	s->parse_error_code = 0;
 	s->line_len = ft_strlen(line);
 	s->line = line;
-}
-
-t_list	*fill_line_node(char *arg, char type)
-{
-	t_list	*new_node;
-
-	new_node = ft_lstnew(NULL);
-	new_node->content = (void *)arg;
-	new_node->type = type;
-	return (new_node);
 }

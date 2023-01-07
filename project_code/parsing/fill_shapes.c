@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/24 08:17:32 by ahsalem           #+#    #+#             */
-/*   Updated: 2023/01/06 17:46:49 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/07 18:33:13 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,19 +119,5 @@ int	fill_cylinders(
 	}
 	return (0);
 }
-
-int	fill_single_cylinder(t_scene *scene, t_list *tmp, int i)
-{
-	if (vector_init(&scene->cylinder[i].pos, tmp))
-		return (1);
-	if (vector_init(&scene->cylinder[i].orientation, tmp->next))
-		return (1);
-	scene->cylinder[i].diameter = ft_atof((char *)tmp->next->next->content);
-	scene->cylinder[i].height = ft_atof((char *)tmp->next->next->next->content);
-	if (vector_init(&scene->cylinder[i].color, tmp->next->next->next->next))
-		return (1);
-	return (0);
-}
-
 
 //for all cokior
