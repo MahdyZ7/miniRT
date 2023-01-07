@@ -6,13 +6,13 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/24 09:26:06 by ahsalem           #+#    #+#             */
-/*   Updated: 2023/01/05 16:45:29 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/07 18:32:12 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../miniRT.h"
 
-int		vector_init(t_vec *vec, t_list *tmp)
+int	vector_init(t_vec *vec, t_list *tmp)
 {
 	float	x;
 	float	y;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   elements_error.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
+/*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 16:12:46 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/31 16:22:00 by ayassin          ###   ########.fr       */
+/*   Updated: 2023/01/07 18:15:00 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,9 @@
 //check for the end of line and the new line
 int	scan_camera_errors(t_list *tmp, int occurance)
 {
-	// printf("\nscanning camera\n");
 	if (occurance > 1 || check_coordinates_error(tmp)
 		|| check_coordinates_error(tmp->next)
-		|| check_int_range(tmp->next->next, 0, 180)
-		)
+		|| check_int_range(tmp->next->next, 0, 180))
 	{
 		return (1);
 	}
@@ -32,7 +30,6 @@ int	scan_camera_errors(t_list *tmp, int occurance)
 
 int	scan_light_errors(t_list *tmp, int occurance)
 {
-	// printf("\nscanning light\n");
 	if (occurance > 1 || check_coordinates_error(tmp)
 		|| check_float_range(tmp->next, 0.0, 1.1)
 		|| check_coordinate_range(tmp->next->next)
@@ -49,7 +46,6 @@ int	scan_light_errors(t_list *tmp, int occurance)
 
 int	scan_ambient_light_errors(t_list *tmp, int occurance)
 {
-	// printf("\nchecking Ambient light \n");
 	if (occurance > 1 || check_float_range(tmp, 0.0, 1.1)
 		|| check_coordinate_range(tmp->next))
 	{

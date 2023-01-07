@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 15:22:02 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/25 02:07:03 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/07 18:35:34 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	vis_list(t_list **head)
 
 void	vis_scene(t_scene *scene)
 {
-
 	printf("\n\n           #-----");
 	printf("Visualizing scene");
 	printf("-----#\n\n");

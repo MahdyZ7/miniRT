@@ -6,58 +6,61 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 07:36:53 by ahsalem           #+#    #+#             */
-/*   Updated: 2023/01/07 16:25:17 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/07 18:52:59 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../miniRT.h"
 
 //do the same changes as sphere
-t_vec	plane_color(t_vec *dir, t_plane *pln, t_scene *scene, float close_t)
+/*
+	// old_hit = vec_scalar_mult(dir, close_t);
+	// old_hit = vec_add(&(scene->camera.view_point), &hit_point);
+	subtraction other option
+	// light_vec = vec_sub(&hit_point, &(scene->light.pos));
+	float a other option
+	// float a= vec_dot(&normal, &light_vec);
+	// normalize(&light_vec);
+*/
+t_vec	plane_color(t_vec *dir, t_plane *pln, t_scene *scene)
 {
 	t_vec	i;
 	t_vec	normal;
 	t_vec	hit_point;
 	t_vec	light_vec;
-	// t_vec	old_hit;
+	float	a;
 
 	fill_single_vector(&i, 0, 0, 0);
-	(void)close_t;
-	// old_hit = vec_scalar_mult(dir, close_t);
-	// old_hit = vec_add(&(scene->camera.view_point), &hit_point);
 	hit_point = hit_actual_plane(pln, scene, dir);
-	// hit_point = old_hit;
-	// printf("old hit vs new hit ");
-	// vis_vector(old_hit);
-	// printf("     ");
-	// vis_vector(hit_point);
-	// printf("\n");
 	normal = pln->orientation;
 	light_vec = vec_sub(&(scene->light.pos), &hit_point);
-	// light_vec = vec_sub(&hit_point, &(scene->light.pos));
 	i.x += scene->amb_light.ratio * scene->amb_light.color.x;
 	i.y += scene->amb_light.ratio * scene->amb_light.color.y;
 	i.z += scene->amb_light.ratio * scene->amb_light.color.z;
 	if (hit_other_object(hit_point, light_vec, scene))
 		return (i);
-	float a= fabsf(vec_dot(&normal, &light_vec));
-	// float a= vec_dot(&normal, &light_vec);
+	a = fabsf(vec_dot(&normal, &light_vec));
 	if (a > 0)
 	{
-		// normalize(&light_vec);
-		i.x += scene->light.brightness * scene->light.color.x
-				* a / (vector_magnitude(&normal)
-				* vector_magnitude(&light_vec));
-		i.y += scene->light.brightness * scene->light.color.y 
-				* a / (vector_magnitude(&normal)
-				* vector_magnitude(&light_vec));
-		i.z += scene->light.brightness * scene->light.color.z
-				* a / (vector_magnitude(&normal) 
-				* vector_magnitude(&light_vec));
+		i = add_plane_spot_light(scene, &normal, &light_vec, &i);
 	}
 	return (i);
 }
 
+t_vec	add_plane_spot_light(
+	t_scene *scene, t_vec *normal, t_vec *light_vec, t_vec *i)
+{
+	float	a;
+
+	a = fabsf(vec_dot(normal, light_vec));
+	i->x += scene->light.brightness * scene->light.color.x
+		* a / (vector_magnitude(normal) * vector_magnitude(light_vec));
+	i->y += scene->light.brightness * scene->light.color.y
+		* a / (vector_magnitude(normal) * vector_magnitude(light_vec));
+	i->z += scene->light.brightness * scene->light.color.z
+		* a / (vector_magnitude(normal) * vector_magnitude(light_vec));
+	return (*i);
+}
 
 int	hit_other_object(t_vec hit_point, t_vec light_vec, t_scene *scene)
 {
@@ -137,7 +140,7 @@ t_vec	trace_plane(t_vec *dir, float t_min, t_scene *scene)
 	color = 0x000000;
 	if (closest_plane != NULL)
 	{
-		m = plane_color(dir, closest_plane, scene, closest_t);
+		m = plane_color(dir, closest_plane, scene);
 		color  = vec_to_color(vec_multiply_two_vectors(&(closest_plane->color), &m));
 	}
 	fill_single_vector(&result, closest_t, color, 0);

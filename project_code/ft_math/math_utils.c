@@ -6,12 +6,11 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/25 14:20:46 by ahsalem           #+#    #+#             */
-/*   Updated: 2023/01/06 18:15:45 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/07 18:17:32 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../miniRT.h"
-
 
 t_vec	fit_coordinate_to_screen(float x, float y, t_scene *scene)
 {
@@ -57,13 +56,8 @@ t_plane_equation	fill_plane_equation(t_plane plane)
 	equation.abc.x = plane.orientation.x;
 	equation.abc.y = plane.orientation.y;
 	equation.abc.z = plane.orientation.z;
-	equation.D = (-1 * equation.abc.x * plane.pos.x) - (equation.abc.y * plane.pos.y)
+	equation.D = (-1 * equation.abc.x * plane.pos.x)
+		- (equation.abc.y * plane.pos.y)
 		- (equation.abc.z * plane.pos.z);
 	return (equation);
 }
-/*
-Write the normal to the plane in the form (A, B, C).
-Write the coordinates of the point on the plane as (x1, y1, z1).
-The equation of the plane can be written in the form Ax + By + Cz + D = 0, where D is a constant. To find the value of D, substitute the values of A, B, C, and the coordinates of the point on the plane into the equation: D = -Ax1 - By1 - Cz1.
-The equation of the plane is now given by Ax + By + Cz - D = 0, where A, B, C, and D are the values you have just calculated.
-*/

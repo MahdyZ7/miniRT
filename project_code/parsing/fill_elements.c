@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/24 08:17:10 by ahsalem           #+#    #+#             */
-/*   Updated: 2023/01/05 19:50:45 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/07 18:31:19 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,11 +68,4 @@ void	vec_init(t_vec *vec, float x, float y, float z)
 	vec->x = x;
 	vec->y = y;
 	vec->z = z;
-}
-
-void	sphere_init(t_sphere *sphere, float x, float y, float z, float diameter, int color)
-{
-	vec_init(&(sphere->center), x, y, z);
-	sphere->diameter = diameter;
-	vec_init(&(sphere->color), color >> 16, (color >> 8) & 0xff, color & 0xff);
 }

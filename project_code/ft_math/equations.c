@@ -6,15 +6,12 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/25 16:43:11 by ahsalem           #+#    #+#             */
-/*   Updated: 2023/01/05 00:42:34 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/07 18:17:45 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../miniRT.h"
 
-/*
-	return value (min_soloution, max_soloution, 0);
-*/
 t_vec	qudratic_equation(float a, float b, float c)
 {
 	float	discremenant;
@@ -74,7 +71,6 @@ float	sign(float x)
 		return (-1);
 	else
 		return (0);
-
 }
 
 void	fill_4vec(t_vec4 *vec, float t, t_vec child)
