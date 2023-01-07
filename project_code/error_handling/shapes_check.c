@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 16:11:02 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/24 09:34:13 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/06 20:26:35 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	scan_sphere_errors(t_list *tmp)
 {
-	printf("\nscanning sphere\n");
+	// printf("\nscanning sphere\n");
 	if (check_coordinates_error(tmp)
 		|| !ft_is_float((char *)tmp->next->content)
 		|| check_coordinate_range(tmp->next->next)
@@ -31,7 +31,7 @@ int	scan_sphere_errors(t_list *tmp)
 
 int	scan_plane_errors(t_list *tmp)
 {
-	printf("\nscanning plane\n");
+	// printf("\nscanning plane\n");
 	if (check_coordinates_error(tmp)
 		|| check_coordinates_error(tmp->next)
 		|| check_coordinate_range(tmp->next->next))
@@ -47,7 +47,7 @@ int	scan_plane_errors(t_list *tmp)
 
 int	scan_cylender_errors(t_list *tmp)
 {
-	printf("\nscanning Cylinder\n");
+	// printf("\nscanning Cylinder\n");
 	if (check_coordinates_error(tmp)
 		|| check_coordinates_error(tmp->next)
 		|| !ft_is_float((char *)tmp->next->next->content)
