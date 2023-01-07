@@ -6,7 +6,7 @@
 #    By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/16 21:09:20 by ayassin           #+#    #+#              #
-#    Updated: 2023/01/07 18:29:59 by ahsalem          ###   ########.fr        #
+#    Updated: 2023/01/07 19:14:09 by ahsalem          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ SRC = miniRT.c setup_display.c key_hooks.c dummy_functions.c basic_raytracing.c\
 		pre_rendering/screen_colors_init.c \
 		trace_objects/plane_tracing.c trace_objects/sphere_tracing.c trace_objects/cylinder_tracing.c\
 		trace_objects/lights_and_colors.c\
+		trace_objects/trace_plane_utils.c\
 
 
 OBJSUBDIRS = parsing error_handling testers ft_math pre_rendering trace_objects

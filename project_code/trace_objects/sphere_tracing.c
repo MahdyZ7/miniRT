@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 21:10:55 by ahsalem           #+#    #+#             */
-/*   Updated: 2023/01/07 15:16:21 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/07 19:31:39 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,34 +33,42 @@ t_vec	trace_sphere(t_vec *dir, float t_min, t_scene *scene)
 {
 	int			color;
 	float		closest_t;
-	float		temp_t;
 	t_sphere	*closest_sphere;
-	int			i;
 	t_vec		result;
+	t_vec		m;
 
 	closest_t = INFINITY;
+	closest_sphere = find_closest_sphere(scene, dir, &closest_t, &t_min);
+	color = 0x000000;
+	if (closest_sphere != NULL)
+	{
+		m = compute_color_to_vec(dir, closest_sphere, scene, closest_t);
+		color = vec_to_color(
+				vec_multiply_two_vectors(&(closest_sphere->color), &m));
+	}
+	fill_single_vector(&result, closest_t, color, 0);
+	return (result);
+}
+
+t_sphere	*find_closest_sphere(
+		t_scene *scene, t_vec *dir, float *closest_t, float *t_min)
+{
+	int			i;
+	float		temp_t;
+	t_sphere	*closest_sphere;
+
 	closest_sphere = NULL;
 	i = 0;
 	while (i < scene->n_spheres)
 	{
 		temp_t = hit_sphere
-			(&(scene->spheres[i]), &scene->camera.view_point, dir, t_min);
-		if (temp_t < closest_t)
+			(&(scene->spheres[i]), &scene->camera.view_point, dir, *t_min);
+		if (temp_t < *closest_t)
 		{
-			closest_t = temp_t;
+			*closest_t = temp_t;
 			closest_sphere = &(scene->spheres[i]);
 		}
 		++i;
 	}
-	color = 0x000000;
-	if (closest_sphere != NULL)
-	{
-		t_vec m = compute_color_to_vec(dir, closest_sphere, scene, closest_t);
-		color = vec_to_color(vec_multiply_two_vectors(&(closest_sphere->color), &m));
-		// float m = compute_color(dir, closest_sphere, scene, closest_t);
-		// vec_scalar_mult(&(closest_sphere->color), m);
-		// color = vec_to_color(vec_scalar_mult(&(closest_sphere->color), m));
-	}
-	fill_single_vector(&result, closest_t, color, 0);
-	return (result);
+	return (closest_sphere);
 }

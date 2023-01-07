@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 16:57:32 by ahsalem           #+#    #+#             */
-/*   Updated: 2023/01/07 18:49:37 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/07 19:13:42 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,4 +90,3 @@ t_vec	add_sphere_spot_light(
 			* vector_magnitude(light_vec));
 	return (*i);
 }
-
