@@ -145,7 +145,7 @@ t_vec4	hit_cylinder(t_cylinder *cylinder, t_vec *origin, t_vec *dir, float t_min
     if(fabsf(k1 + k2 * t) < h)
     {
 		t_vec	vec_cyl_height_by_sin_y = vec_scalar_mult(&vec_cylinder_height, sign(y));
-		t_vec	total =vec_scalar_mult(&vec_cyl_height_by_sin_y,  1 / sqrt(height_dot_product));
+		t_vec	total = vec_scalar_mult(&vec_cyl_height_by_sin_y,  1 / sqrt(height_dot_product));
 		fill_4vec(&result, t, total);
 		return (result);
 	}

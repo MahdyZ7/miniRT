@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 16:57:32 by ahsalem           #+#    #+#             */
-/*   Updated: 2023/01/05 23:05:02 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/07 14:29:14 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,11 @@ t_vec	compute_color_to_vec(t_vec *dir, t_sphere *sphr, t_scene *scene, float clo
 	normal = vec_sub(&hit_point, &(sphr->center));
 	light_vec = vec_sub(&(scene->light.pos), &hit_point);
 	vec_scalar_add(&i, scene->amb_light.ratio);
-	i.x += scene->amb_light.color.x;
-	i.y += scene->amb_light.color.y;
-	i.z += scene->amb_light.color.z;
+	i.x += scene->amb_light.ratio * scene->amb_light.color.x;
+	i.y += scene->amb_light.ratio * scene->amb_light.color.y;
+	i.z += scene->amb_light.ratio * scene->amb_light.color.z;
+	if (hit_other_object(hit_point, light_vec, scene))
+		return (i);
 	if (vec_dot(&normal, &light_vec) > 0)
 	{
 		i.x += scene->light.brightness * scene->light.color.x

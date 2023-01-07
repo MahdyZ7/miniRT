@@ -6,7 +6,7 @@
 /*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 18:55:05 by ayassin           #+#    #+#             */
-/*   Updated: 2023/01/07 18:56:42 by ayassin          ###   ########.fr       */
+/*   Updated: 2023/01/07 16:10:16 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,13 @@ void	basic_raytracing(t_img *img)
 				* r.angle * r.aspectratio;
 			r.new_y = (1 - 2 * ((r.y + 0.5) * r.invHeight)) * r.angle;
 			vec_init(&r.dir, r.new_x, r. new_y, 1);
-			// plane_result = trace_plane(&r.dir, 1, img->scene);
-			// sphere_result = trace_sphere(&r.dir, 1, img->scene);
-			// if (plane_result.x < sphere_result.x)
-			// 	r.color = plane_result.y;
-			// else
-			// 	r.color = sphere_result.y;
-			r.color = trace_cylinder(&r.dir, 1, img->scene);
+			plane_result = trace_plane(&r.dir, 1, img->scene);
+			sphere_result = trace_sphere(&r.dir, img->scene->camera.view_point.z + 1, img->scene);
+			if (plane_result.x < sphere_result.x)
+				r.color = plane_result.y;
+			else
+				r.color = sphere_result.y;
+			// r.color = trace_cylinder(&r.dir, 1, img->scene);
 			pixel_put(img->scene->win->img, r.x, r.y, r.color);
 			++r.y;
 		}
