@@ -6,7 +6,7 @@
 /*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 18:55:05 by ayassin           #+#    #+#             */
-/*   Updated: 2023/01/07 16:10:16 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/07 19:44:23 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ void	basic_raytracing(t_img *img)
 		r.y = 0;
 		while (r.y < WIN_HIGHT)
 		{
-			r.new_x = (2 * ((r.x + 0.5) * r.invWidth) - 1)
+			r.new_x = (2 * ((r.x + 0.5) * r.invwidth) - 1)
 				* r.angle * r.aspectratio;
-			r.new_y = (1 - 2 * ((r.y + 0.5) * r.invHeight)) * r.angle;
+			r.new_y = (1 - 2 * ((r.y + 0.5) * r.invheight)) * r.angle;
 			vec_init(&r.dir, r.new_x, r. new_y, 1);
-			plane_result = trace_plane(&r.dir, 1, img->scene);
+			plane_result = trace_plane(&r.dir, img->scene);
 			sphere_result = trace_sphere(&r.dir, img->scene->camera.view_point.z + 1, img->scene);
 			if (plane_result.x < sphere_result.x)
 				r.color = plane_result.y;
@@ -46,8 +46,8 @@ void	init_ray_trace_kit(t_ray_trace_kit *r, t_img *img)
 {
 	r->x = 0;
 	r->y = 0;
-	r->invWidth = 1 / (float)WIN_WIDTH;
-	r->invHeight = 1 / (float)WIN_HIGHT;
+	r->invwidth = 1 / (float)WIN_WIDTH;
+	r->invheight = 1 / (float)WIN_HIGHT;
 	r->aspectratio = (float)WIN_WIDTH / (float)WIN_HIGHT;
 	r->angle = tan(M_PI * 0.5 * img->scene->camera.view_field / 180.);
 	r->color = 0;

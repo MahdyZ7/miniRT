@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 16:12:46 by ahsalem           #+#    #+#             */
-/*   Updated: 2023/01/06 20:27:05 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/07 18:26:42 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ int	check_int_range(t_list *tmp, int start, int end)
 	given_value = ft_atoi(check_me);
 	if (!(given_value >= start && given_value <= end))
 		return (1);
-	// ft_printf("%s is in correct range\n", check_me);
 	return (0);
 }
 
@@ -80,7 +79,6 @@ int	check_float_range(t_list *tmp, float start, float end)
 	if (!ft_is_float(check_me)
 		|| !(given_value >= start && given_value <= end))
 	{
-		// printf("not float %s, %f\n", check_me, ft_atof(check_me));
 		return (1);
 	}
 	return (0);
@@ -91,7 +89,6 @@ int	ft_is_float(char *check_me)
 	int	i;
 
 	i = 0;
-	// printf("checking is float %s \n", check_me);
 	while (check_me[i])
 	{
 		if (!ft_isdigit(check_me[i]))

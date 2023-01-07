@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_all_elements_for_errors.c                                :+:      :+:    :+:   */
+/*   classify_elements.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/19 22:42:56 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/23 16:06:34 by ahsalem          ###   ########.fr       */
+/*   Created: 2023/01/07 18:21:33 by ahsalem           #+#    #+#             */
+/*   Updated: 2023/01/07 18:21:50 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,6 @@ int	count_occurance_in_map(t_list **all_map_items, char *element)
 		if (!ft_the_strcmp((char *)tmp->content, element))
 		{
 			i++;
-			// tmp = fetch_next_element(tmp);
-			// if (!tmp)
-			// 	return (i);
 		}
 		tmp = tmp->next;
 	}

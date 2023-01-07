@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 01:23:30 by ahsalem           #+#    #+#             */
-/*   Updated: 2023/01/06 18:14:39 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/07 20:58:58 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,16 +41,16 @@ typedef struct s_vec4
 typedef struct s_plane_equation
 {
 	t_vec	abc;
-	float	D;
-}	t_plane_equation;
+	float	d;
+}	t_pln_equ;
 
 typedef struct s_plane
 {
-	t_vec				pos;
-	t_vec				orientation;
-	t_vec				color;
-	int					n_planes;
-	t_plane_equation	equation;
+	t_vec		pos;
+	t_vec		orientation;
+	t_vec		color;
+	int			n_planes;
+	t_pln_equ	equation;
 }	t_plane;
 typedef struct s_sphere
 {
@@ -100,7 +100,7 @@ typedef struct s_img
 	int				y_pos;
 	struct s_sphere	test;
 	struct s_win	*win;
-	struct s_scene	*scene;	
+	struct s_scene	*scene;
 }	t_img;
 
 typedef struct s_win
@@ -141,15 +141,15 @@ typedef struct parsing_kit
 
 typedef struct ray_trace_kit
 {
-	int			color;
-	t_vec		dir;
-	float		aspectratio;
-	float		invWidth;
-	float		invHeight;
-	float		angle;
-	float		new_x;
-	float		new_y;
-	int			x;
-	int			y;
+	int		color;
+	t_vec	dir;
+	float	aspectratio;
+	float	invwidth;
+	float	invheight;
+	float	angle;
+	float	new_x;
+	float	new_y;
+	int		x;
+	int		y;
 }	t_ray_trace_kit;
 #endif

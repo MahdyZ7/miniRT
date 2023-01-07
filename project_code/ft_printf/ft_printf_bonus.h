@@ -6,12 +6,12 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/30 14:57:03 by ayassin           #+#    #+#             */
-/*   Updated: 2022/12/24 09:34:13 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/07 18:19:34 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_printf_BONUS_H
-# define FT_printf_BONUS_H
+#ifndef FT_PRINTF_BONUS_H
+# define FT_PRINTF_BONUS_H
 # include <stdarg.h>
 # include <unistd.h>
 # include "../libft/libft.h"

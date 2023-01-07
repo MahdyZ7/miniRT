@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 23:54:06 by ahsalem           #+#    #+#             */
-/*   Updated: 2023/01/06 20:25:32 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/07 18:20:57 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int	check_coordinates_error(t_list *tmp)
 		return (1);
 	if (!is_cordinate((char *)tmp->content))
 	{
-		// ft_printf("not coordinate :(\n");
 		return (1);
 	}
 	else
@@ -47,7 +46,7 @@ int	is_cordinate(char *coordinate)
 			return (0);
 		items++;
 		if (i > ft_strlen(coordinate) - 1)
-			break;
+			break ;
 		i++;
 	}
 	return (1);
@@ -55,7 +54,6 @@ int	is_cordinate(char *coordinate)
 
 int	ft_is_float_and_update_i(char *check_me, int *i)
 {
-	// ft_printf("checking %s\n",& check_me[*i]);
 	if (check_me[*i] == '+' || check_me[*i] == '-')
 		*i = *i + 1;
 	if (!ft_isdigit(check_me[*i]))
@@ -83,6 +81,3 @@ t_list	*get_next_occurance(t_list *tmp, char *element)
 	}
 	return (NULL);
 }
-
-//isaad;
-//ircserv;
