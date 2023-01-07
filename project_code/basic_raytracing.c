@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   basic_raytracing.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 18:55:05 by ayassin           #+#    #+#             */
 /*   Updated: 2023/01/07 16:10:16 by ahsalem          ###   ########.fr       */
@@ -15,8 +15,8 @@
 void	basic_raytracing(t_img *img)
 {
 	t_ray_trace_kit	r;
-	t_vec			plane_result;
-	t_vec			sphere_result;
+	// t_vec			plane_result;
+	// t_vec			sphere_result;
 
 	init_ray_trace_kit(&r, img);
 	while (r.x < WIN_WIDTH)
