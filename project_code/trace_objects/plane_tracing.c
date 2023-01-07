@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 07:36:53 by ahsalem           #+#    #+#             */
-/*   Updated: 2023/01/06 17:55:35 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/07 16:25:17 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,28 +19,99 @@ t_vec	plane_color(t_vec *dir, t_plane *pln, t_scene *scene, float close_t)
 	t_vec	normal;
 	t_vec	hit_point;
 	t_vec	light_vec;
+	// t_vec	old_hit;
 
 	fill_single_vector(&i, 0, 0, 0);
-	hit_point = vec_scalar_mult(dir, close_t);
-	hit_point = vec_add(&(scene->camera.view_point), &hit_point);
+	(void)close_t;
+	// old_hit = vec_scalar_mult(dir, close_t);
+	// old_hit = vec_add(&(scene->camera.view_point), &hit_point);
+	hit_point = hit_actual_plane(pln, scene, dir);
+	// hit_point = old_hit;
+	// printf("old hit vs new hit ");
+	// vis_vector(old_hit);
+	// printf("     ");
+	// vis_vector(hit_point);
+	// printf("\n");
 	normal = pln->orientation;
 	light_vec = vec_sub(&(scene->light.pos), &hit_point);
+	// light_vec = vec_sub(&hit_point, &(scene->light.pos));
 	i.x += scene->amb_light.ratio * scene->amb_light.color.x;
 	i.y += scene->amb_light.ratio * scene->amb_light.color.y;
 	i.z += scene->amb_light.ratio * scene->amb_light.color.z;
-	if (vec_dot(&normal, &light_vec) > 0)
+	if (hit_other_object(hit_point, light_vec, scene))
+		return (i);
+	float a= fabsf(vec_dot(&normal, &light_vec));
+	// float a= vec_dot(&normal, &light_vec);
+	if (a > 0)
 	{
+		// normalize(&light_vec);
 		i.x += scene->light.brightness * scene->light.color.x
-			* vec_dot(&normal, &light_vec) / (vector_magnitude(&normal)
-					* vector_magnitude(&light_vec));
+				* a / (vector_magnitude(&normal)
+				* vector_magnitude(&light_vec));
 		i.y += scene->light.brightness * scene->light.color.y 
-		* vec_dot(&normal, &light_vec) / (vector_magnitude(&normal) * vector_magnitude(&light_vec));
+				* a / (vector_magnitude(&normal)
+				* vector_magnitude(&light_vec));
 		i.z += scene->light.brightness * scene->light.color.z
-		* vec_dot(&normal, &light_vec) / (vector_magnitude(&normal) * vector_magnitude(&light_vec));
+				* a / (vector_magnitude(&normal) 
+				* vector_magnitude(&light_vec));
 	}
 	return (i);
 }
 
+
+int	hit_other_object(t_vec hit_point, t_vec light_vec, t_scene *scene)
+{
+	// float		closest_t;
+	float		temp_t;
+	// t_plane		*closest_plane;
+	// t_vec		m;
+	// t_vec		result;
+	int			i;
+
+	// closest_t = INFINITY;
+	// closest_plane = NULL;
+	i = 0;
+	// normalize(&light_vec);
+	for (int i = 0; i < scene->n_planes; i++)
+	{
+		temp_t = hit_plane(&(scene->plane[i]), scene, &light_vec);
+		if (temp_t && temp_t > 0.00001 && temp_t < 1.0)
+		{
+			return (1);
+			// closest_t = temp_t;
+			// closest_plane = &(scene->plane[i]);
+		}
+	}
+	while (i < scene->n_spheres)
+	{
+		temp_t = hit_sphere
+			(&(scene->spheres[i]), &hit_point, &light_vec, 0.00001);
+		if (temp_t && temp_t > 0.00001 && temp_t < 1.0)
+		{
+			return (1);
+			// closest_t = temp_t;
+			// closest_sphere = &(scene->spheres[i]);
+		}
+		++i;
+	}
+	return (0);
+}
+
+
+
+
+t_vec	hit_actual_plane(t_plane *pln, t_scene *scene, t_vec *dir)
+{
+	float	alpha;
+	t_vec	hit_point;
+	t_vec	tmp;
+
+	alpha = ((-1 * pln->equation.D) - vec_dot(&pln->equation.abc, &scene->camera.view_point))
+			/ vec_dot(&pln->equation.abc, dir);
+	tmp = vec_scalar_mult(dir, alpha);
+	hit_point = vec_add(&scene->camera.view_point, &tmp);
+	return (hit_point);
+}
 
 t_vec	trace_plane(t_vec *dir, float t_min, t_scene *scene)
 {
@@ -54,7 +125,7 @@ t_vec	trace_plane(t_vec *dir, float t_min, t_scene *scene)
 	(void) t_min;
 	closest_t = INFINITY;
 	closest_plane = NULL;
-	for (int i = 0; i < scene->plane->n_planes; i++)
+	for (int i = 0; i < scene->n_planes; i++)
 	{
 		temp_t = hit_plane(&(scene->plane[i]), scene, dir);
 		if (temp_t < closest_t)
@@ -73,34 +144,6 @@ t_vec	trace_plane(t_vec *dir, float t_min, t_scene *scene)
 	return (result);
 }
 
-// float	hit_plane(t_plane *plane, t_vec *origin, t_vec *dir, float t_min)
-// {
-// 	t_vec	oc;
-// 	float	a;
-// 	float	b;
-// 	float	c;
-// 	float	discriminant;
-// 	float	root[2];
-
-// 	vec_init(&oc, origin->x - plane->center.x,  origin->y - plane->center.y,  origin->z - plane->center.z);
-// 	a = vec_dot(dir, dir);
-// 	b = 2.0 * vec_dot(&oc, dir);
-// 	c = vec_dot(&oc, &oc) - pow(plane->diameter / 2, 2);
-// 	discriminant = b * b - 4 * a * c;
-// 	if (discriminant < 0)
-// 		return (INFINITY);
-// 	if (!(t_min < root[0] && t_min < root[1]))
-// 			return (INFINITY);
-// 	if (root[1] < t_min || root[0] < root[1])
-// 		return (root[0]);
-// 	return (root[1]);
-// }
-
-
-// n = plane_orientation;
-// p0 = plane coordinates
-// l0 = camera view point
-// l = fit_coordinate_to_screen(x, y, scene)
 float	hit_plane(t_plane *plane, t_scene *scene, t_vec *dir)
 {
 	float	t;
@@ -122,9 +165,3 @@ float	hit_plane(t_plane *plane, t_scene *scene, t_vec *dir)
 	}
 	return (INFINITY);
 }
-
-/*
-	after reading again
-l0 -> origin of the array ->camera.viewpoint
-l ->  ray direction       -> dir
-*/

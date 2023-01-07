@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 21:09:01 by ayassin           #+#    #+#             */
-/*   Updated: 2023/01/06 17:55:31 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/06 21:47:23 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,6 +159,8 @@ int		trace_cylinder(t_vec *dir, float t_min, t_scene *scene);
 t_vec	compute_color_to_vec(t_vec *dir, t_sphere *sphr, t_scene *scene, float close_t);
 float	compute_color(t_vec *dir, t_sphere *sphr, t_scene *scene, float close_t);
 int		vec_to_color(t_vec vec);
+t_vec	hit_actual_plane(t_plane *pln, t_scene *scene, t_vec *dir);
+int	hit_other_object(t_vec hit_point, t_vec light_vec, t_scene *scene);
 /*------------------MLX_RELATED---------------*/
 void	pixel_put(t_img *data, int x, int y, int color);
 void	redraw(t_win *s, t_img *img, void (*draw)(t_img *));

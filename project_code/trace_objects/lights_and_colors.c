@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 16:57:32 by ahsalem           #+#    #+#             */
-/*   Updated: 2023/01/06 16:14:23 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/07 14:29:14 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ t_vec	compute_color_to_vec(t_vec *dir, t_sphere *sphr, t_scene *scene, float clo
 	i.x += scene->amb_light.ratio * scene->amb_light.color.x;
 	i.y += scene->amb_light.ratio * scene->amb_light.color.y;
 	i.z += scene->amb_light.ratio * scene->amb_light.color.z;
+	if (hit_other_object(hit_point, light_vec, scene))
+		return (i);
 	if (vec_dot(&normal, &light_vec) > 0)
 	{
 		i.x += scene->light.brightness * scene->light.color.x
