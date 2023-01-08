@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 21:09:01 by ayassin           #+#    #+#             */
-/*   Updated: 2023/01/07 22:36:22 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/08 14:57:45 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,14 @@
 #  define A_KEY 97
 #  define S_KEY 115
 #  define D_KEY 100
+#  define Q_KEY 81
+#  define E_KEY 69
+#  define UP_KEY 65362
+#  define DOWN_KEY 65364
 // #  define LEFT_KEY 65361
 // #  define RIGHT_KEY 65363
 // #  define M_KEY 109
 // #  define H_KEY 104
-// #  define UP_KEY 65362
-// #  define DOWN_KEY 65364
 // #  define I_KEY 34
 # endif
 
@@ -50,10 +52,12 @@
 #  define A_KEY 0
 #  define S_KEY 1
 #  define D_KEY 2
+#  define UP_KEY 126
+#  define DOWN_KEY 125
+// #  define Q_KEY 81
+// #  define E_KEY 69
 // #  define LEFT_KEY 123
 // #  define RIGHT_KEY 124
-// #  define UP_KEY 126
-// #  define DOWN_KEY 125
 // #  define M_KEY 46
 // #  define H_KEY 4
 // #  define C_KEY 8
@@ -173,6 +177,7 @@ t_vec		add_plane_spot_light(
 t_plane		*find_closest_plane(t_scene *scene, t_vec *dir, float *closest_t);
 t_sphere	*find_closest_sphere(
 				t_scene *scene, t_vec *dir, float *closest_t, float *t_min);
+t_vec		compute_cylinder_color(t_scene *scene, t_vec *dir,t_cylinder *closest_cylinder);
 /*------------------MLX_RELATED---------------*/
 void		pixel_put(t_img *data, int x, int y, int color);
 void		redraw(t_win *s, t_img *img, void (*draw)(t_img *));
