@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder_tracing.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 11:37:30 by ayassin           #+#    #+#             */
-/*   Updated: 2023/01/08 15:00:40 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/08 18:27:05 by ayassin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,19 @@ float	his_hit_cylinder(t_cylinder *cylinder, t_vec *origin, t_vec *dir, float t_
 	float	t2 = (-b + sqrt(discriminant)) / (2 * a);
 	if (t1 < t_min && t2 < t_min)
 		return INFINITY;
-	if (t1 < t_min)
+	t_vec 	temp_vec = vec_scalar_mult(dir, t1);
+	t_vec 	limit_1 = vec_add(&origin_to_cylinder, &temp_vec);
+	float	h_limit_1 = vec_dot(&vec_cylinder_height, &limit_1);
+	temp_vec = vec_scalar_mult(dir, t2);
+	t_vec 	limit_2 = vec_add(&origin_to_cylinder, &temp_vec);
+	float	h_limit_2 = vec_dot(&vec_cylinder_height, &limit_2);
+	if (t1 < t_min && h_limit_2 > 0 && h_limit_2 < cylinder->height)
 		return t2;
-	if (t2 < t_min || t1 < t2)
+	if ((t2 < t_min || t1 < t2) && h_limit_1 > 0 && h_limit_1 < cylinder->height)
 		return t1;
-	return (t2);
+	if (h_limit_2 > 0 && h_limit_2 < cylinder->height)
+		return (t2);
+	return (INFINITY);
 	
 }
 
@@ -177,12 +185,13 @@ float	check_capped_part(float t0, float t1,
 	return (INFINITY);
 }
 
-int	trace_cylinder(t_vec *dir, float t_min, t_scene *scene)
+t_vec	trace_cylinder(t_vec *dir, float t_min, t_scene *scene)
 {
 	int			color;
 	float		closest_t;
 	float		temp_t;
 	t_cylinder	*closest_cylinder;
+	t_vec		result;
 
 	closest_t = INFINITY;
 	closest_cylinder = NULL;
@@ -192,7 +201,6 @@ int	trace_cylinder(t_vec *dir, float t_min, t_scene *scene)
 		temp_t = his_hit_cylinder(&(scene->cylinder[i]), &scene->camera.view_point, dir, t_min);
 		if (temp_t < closest_t)
 		{
-			// printf("temp_t: %f\n", temp_t);
 			closest_t = temp_t;
 			closest_cylinder = &(scene->cylinder[i]);
 		}
@@ -200,14 +208,12 @@ int	trace_cylinder(t_vec *dir, float t_min, t_scene *scene)
 	color = 0x000000;
 	if (closest_cylinder != NULL)
 	{
-		// float m = compute_color(&scene->camera.view_point, dir, closest_cylinder, scene, closest_t);
 		t_vec m = compute_cylinder_color(scene, dir, closest_cylinder);
 		t_vec cyl_color = vec_multiply_two_vectors(&(closest_cylinder->color), &m);
 		color  = color_vec_to_int(&cyl_color);
-		// color = vec_to_color(
-		// 		vec_multiply_two_vectors(&(closest_plane->color), &m));
 	}
-	return (color);
+	fill_single_vector(&result, closest_t, color, 0);
+	return (result);
 }
 
 t_vec	get_cylinder_height(t_cylinder *cylinder)
