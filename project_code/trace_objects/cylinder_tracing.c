@@ -6,7 +6,7 @@
 /*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 11:37:30 by ayassin           #+#    #+#             */
-/*   Updated: 2023/01/07 21:01:28 by ayassin          ###   ########.fr       */
+/*   Updated: 2023/01/08 09:48:24 by ayassin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,19 @@ float	his_hit_cylinder(t_cylinder *cylinder, t_vec *origin, t_vec *dir, float t_
 	float	t2 = (-b + sqrt(discriminant)) / (2 * a);
 	if (t1 < t_min && t2 < t_min)
 		return INFINITY;
-	if (t1 < t_min)
+	t_vec 	temp_vec = vec_scalar_mult(dir, t1);
+	t_vec 	limit_1 = vec_add(&origin_to_cylinder, &temp_vec);
+	float	h_limit_1 = vec_dot(&vec_cylinder_height, &limit_1);
+	temp_vec = vec_scalar_mult(dir, t2);
+	t_vec 	limit_2 = vec_add(&origin_to_cylinder, &temp_vec);
+	float	h_limit_2 = vec_dot(&vec_cylinder_height, &limit_2);
+	if (t1 < t_min && h_limit_2 > 0 && h_limit_2 < cylinder->height)
 		return t2;
-	if (t2 < t_min || t1 < t2)
+	if ((t2 < t_min || t1 < t2) && h_limit_1 > 0 && h_limit_1 < cylinder->height)
 		return t1;
-	return (t2);
+	if (h_limit_2 > 0 && h_limit_2 < cylinder->height)
+		return (t2);
+	return (INFINITY);
 	
 }
 
