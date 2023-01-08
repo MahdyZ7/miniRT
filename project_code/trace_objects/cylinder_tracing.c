@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder_tracing.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
+/*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 11:37:30 by ayassin           #+#    #+#             */
 /*   Updated: 2023/01/08 09:48:24 by ayassin          ###   ########.fr       */
@@ -209,9 +209,11 @@ int	trace_cylinder(t_vec *dir, float t_min, t_scene *scene)
 	if (closest_cylinder != NULL)
 	{
 		// float m = compute_color(&scene->camera.view_point, dir, closest_cylinder, scene, closest_t);
-		float m = 1; // for now
-		vec_scalar_mult(&(closest_cylinder->color), m);
-		color  = color_vec_to_int(&(closest_cylinder->color));
+		t_vec m = compute_cylinder_color(scene, dir, closest_cylinder);
+		t_vec cyl_color = vec_multiply_two_vectors(&(closest_cylinder->color), &m);
+		color  = color_vec_to_int(&cyl_color);
+		// color = vec_to_color(
+		// 		vec_multiply_two_vectors(&(closest_plane->color), &m));
 	}
 	return (color);
 }

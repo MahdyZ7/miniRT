@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   trace_plain_utils.c                                :+:      :+:    :+:   */
+/*   trace_plane_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 19:13:24 by ahsalem           #+#    #+#             */
-/*   Updated: 2023/01/07 19:13:44 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/08 14:46:13 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,23 @@
 	// float a= vec_dot(&normal, &light_vec);
 	// normalize(&light_vec);
 */
+t_vec	compute_cylinder_color(t_scene *scene, t_vec *dir,t_cylinder *closest_cylinder)
+{
+	t_vec	i;
+	t_vec	normal;
+	t_vec	hit_point;
+	t_vec	light_vec;
+
+	fill_single_vector(&i, 0, 0, 0);
+	hit_point = (hit_cylinder(closest_cylinder, &scene->camera.view_point, dir, 1)).child;
+	normal = closest_cylinder->orientation;
+	light_vec = vec_sub(&(scene->light.pos), &hit_point);
+	i.x += scene->amb_light.ratio * scene->amb_light.color.x;
+	i.y += scene->amb_light.ratio * scene->amb_light.color.y;
+	i.z += scene->amb_light.ratio * scene->amb_light.color.z;
+	return (i);
+}
+
 t_vec	plane_color(t_vec *dir, t_plane *pln, t_scene *scene)
 {
 	t_vec	i;

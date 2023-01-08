@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 10:49:02 by ayassin           #+#    #+#             */
-/*   Updated: 2023/01/07 19:35:42 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/08 14:57:57 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,10 @@ int	exit_code(t_win *win)
 /*switch function for keys*/
 int	key_hook(int key, t_win *win)
 {
+	if (key == UP_KEY)
+		win->img->scene->camera.view_point.z += 5;
+	if (key == DOWN_KEY)
+		win->img->scene->camera.view_point.z -= 5;
 	if (key == W_KEY)
 		win->img->scene->camera.view_point.y += 5;
 	if (key == S_KEY)
