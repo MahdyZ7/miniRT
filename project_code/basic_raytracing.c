@@ -6,7 +6,7 @@
 /*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 18:55:05 by ayassin           #+#    #+#             */
-/*   Updated: 2023/01/08 18:28:47 by ayassin          ###   ########.fr       */
+/*   Updated: 2023/01/08 18:30:44 by ayassin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void	basic_raytracing(t_img *img)
 				r.color = sphere_result.y;
 			else
 				r.color = cylinder_result.y;
-			// r.color = trace_cylinder(&r.dir, 1, img->scene);
 			pixel_put(img->scene->win->img, r.x, r.y, r.color);
 			++r.y;
 		}
