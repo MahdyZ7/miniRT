@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 21:09:01 by ayassin           #+#    #+#             */
-/*   Updated: 2023/01/08 14:57:45 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/08 18:27:35 by ayassin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,7 +164,7 @@ float		check_capped_part(float t0, float t1,
 				t_vec *origin, t_vec *dir, t_cylinder *cylinder);
 t_vec		add_sphere_spot_light(t_scene *scene,
 				t_vec *normal, t_vec *light_vec, t_vec *i);
-int			trace_cylinder(t_vec *dir, float t_min, t_scene *scene);
+t_vec		trace_cylinder(t_vec *dir, float t_min, t_scene *scene);
 t_vec		compute_color_to_vec(t_vec *dir,
 				t_sphere *sphr, t_scene *scene, float close_t);
 float		compute_color(t_vec *dir,
