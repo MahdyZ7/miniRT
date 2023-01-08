@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   basic_raytracing.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 18:55:05 by ayassin           #+#    #+#             */
 /*   Updated: 2023/01/08 14:39:09 by ahsalem          ###   ########.fr       */
