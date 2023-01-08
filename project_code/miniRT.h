@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 21:09:01 by ayassin           #+#    #+#             */
-/*   Updated: 2023/01/08 14:57:45 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/08 17:36:18 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,6 +178,7 @@ t_plane		*find_closest_plane(t_scene *scene, t_vec *dir, float *closest_t);
 t_sphere	*find_closest_sphere(
 				t_scene *scene, t_vec *dir, float *closest_t, float *t_min);
 t_vec		compute_cylinder_color(t_scene *scene, t_vec *dir,t_cylinder *closest_cylinder);
+t_vec		dir_with_camera_orientation(t_vec *dir, t_scene *scene);
 /*------------------MLX_RELATED---------------*/
 void		pixel_put(t_img *data, int x, int y, int color);
 void		redraw(t_win *s, t_img *img, void (*draw)(t_img *));
