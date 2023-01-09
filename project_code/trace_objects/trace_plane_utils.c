@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   trace_plane_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 19:13:24 by ahsalem           #+#    #+#             */
-/*   Updated: 2023/01/08 14:46:13 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/09 14:56:22 by ayassin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,37 @@
 	// float a= vec_dot(&normal, &light_vec);
 	// normalize(&light_vec);
 */
-t_vec	compute_cylinder_color(t_scene *scene, t_vec *dir,t_cylinder *closest_cylinder)
+t_vec	compute_cylinder_color(t_scene *scene, t_vec *dir,t_cylinder *closest_cylinder, float close_t)
 {
 	t_vec	i;
 	t_vec	normal;
-	t_vec	hit_point;
+	t_vec	hit_pt;
 	t_vec	light_vec;
 
 	fill_single_vector(&i, 0, 0, 0);
-	hit_point = (hit_cylinder(closest_cylinder, &scene->camera.view_point, dir, 1)).child;
-	normal = closest_cylinder->orientation;
-	light_vec = vec_sub(&(scene->light.pos), &hit_point);
+	hit_pt = vec_scalar_mult(dir, close_t);
+	hit_pt = vec_add(&(scene->camera.view_point), &hit_pt);
+	t_vec temp = vec_sub(&hit_pt, &(closest_cylinder->pos));
+	float t = vec_dot(&temp, &(closest_cylinder->orientation)); // cy.ori should be normalized and so has the length of 1.
+    temp = vec_scalar_mult(&(closest_cylinder->orientation), t);
+	temp = vec_add(&temp, &(closest_cylinder->pos));
+	// pt = cy.bottom_center + t * cy.ori;
+	normal = vec_sub(&hit_pt, &temp);
+	normalize(&normal);
+    // surface_normal = normalize(hit_pt - pt)));
+	light_vec = vec_sub(&(scene->light.pos), &hit_pt);
 	i.x += scene->amb_light.ratio * scene->amb_light.color.x;
 	i.y += scene->amb_light.ratio * scene->amb_light.color.y;
 	i.z += scene->amb_light.ratio * scene->amb_light.color.z;
+	if (hit_other_object(hit_pt, light_vec, scene))
+		return (i);
+	// vis_vector(normal);
+	// printf("\n");
+	if (vec_dot(&normal, &light_vec) > 0)
+	{
+		// printf("ASASASAS");
+		i = add_sphere_spot_light(scene, &normal, &light_vec, &i);
+	}
 	return (i);
 }
 
