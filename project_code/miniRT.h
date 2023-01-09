@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 21:09:01 by ayassin           #+#    #+#             */
-/*   Updated: 2023/01/08 19:36:03 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/09 19:58:15 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ int			scan_cylender_errors(t_list *tmp);
 int			inspect_first_element(char *coord);
 int			inspect_second_element(char *coord);
 int			inspect_thrid_element(char *coord);
+void		fill_calculated_vars(t_cylinder *cylinder, t_scene *scene);
 /*-----------------FILLERS-------------------*/
 int			fill_all_elements_in_scene(
 				t_list **all_map_items, t_scene *scene);
@@ -150,6 +151,9 @@ float		sign(float x);
 t_pln_equ	fill_plane_equation(t_plane plane);
 void		normalize(t_vec *v);
 t_vec	find_rotation_matrix(t_vec *orientation, t_vec *dir);
+void	rotate_around_x(t_vec *result, t_vec *dir, float theta_x);
+void	rotate_around_y(t_vec *result, t_vec *dir, float theta_y);
+void	rotate_around_z(t_vec *result, t_vec *dir, float theta_z);
 /*------------------RENDERING_PREPARATION--------------*/
 int			color_vec_to_int(t_vec *color);
 float		color_by_intesity_to_float(t_vec *color, float intensity);
