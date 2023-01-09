@@ -6,7 +6,7 @@
 #    By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/16 21:09:20 by ayassin           #+#    #+#              #
-#    Updated: 2023/01/07 19:14:09 by ahsalem          ###   ########.fr        #
+#    Updated: 2023/01/08 17:26:52 by ahsalem          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ SRC = miniRT.c setup_display.c key_hooks.c dummy_functions.c basic_raytracing.c\
 		parsing/fill_shapes.c parsing/fill_scene.c parsing/fill_elements.c \
 		parsing/fill_vector.c parsing/checkers_utils.c\
 		ft_math/vectors.c ft_math/math_utils.c ft_math/equations.c\
-		ft_math/vectors_utils.c\
+		ft_math/vectors_utils.c ft_math/orientation_calculation.c\
 		testers/visualizers.c testers/visualizers_utils.c testers/test_math.c testers/test_equations.c\
 		pre_rendering/screen_colors_init.c \
 		trace_objects/plane_tracing.c trace_objects/sphere_tracing.c trace_objects/cylinder_tracing.c\

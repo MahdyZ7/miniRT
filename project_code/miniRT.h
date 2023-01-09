@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
+/*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 21:09:01 by ayassin           #+#    #+#             */
-/*   Updated: 2023/01/09 12:46:08 by ayassin          ###   ########.fr       */
+/*   Updated: 2023/01/08 19:36:03 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef MINIRT_H
 # define MINIRT_H
@@ -148,6 +149,7 @@ t_vec		vec_multiply_two_vectors(t_vec *vec1, t_vec *vec2);
 float		sign(float x);
 t_pln_equ	fill_plane_equation(t_plane plane);
 void		normalize(t_vec *v);
+t_vec	find_rotation_matrix(t_vec *orientation, t_vec *dir);
 /*------------------RENDERING_PREPARATION--------------*/
 int			color_vec_to_int(t_vec *color);
 float		color_by_intesity_to_float(t_vec *color, float intensity);
@@ -178,6 +180,7 @@ t_vec		add_plane_spot_light(
 t_plane		*find_closest_plane(t_scene *scene, t_vec *dir, float *closest_t);
 t_sphere	*find_closest_sphere(
 				t_scene *scene, t_vec *dir, float *closest_t, float *t_min);
+t_vec		dir_with_camera_orientation(t_vec *dir, t_scene *scene);
 t_vec		compute_cylinder_color(t_scene *scene, t_vec *dir,t_cylinder *closest_cylinder, float close_t);
 /*------------------MLX_RELATED---------------*/
 void		pixel_put(t_img *data, int x, int y, int color);
