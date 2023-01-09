@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 21:20:49 by ahsalem           #+#    #+#             */
-/*   Updated: 2023/01/09 17:32:15 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/09 17:56:44 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ t_vec	find_rotation_matrix(t_vec *orientation, t_vec *dir)
 	theta_z = orientation->z * M_PI_2;
 	// rotate_around_x(&result, dir, theta_x);
 	rotate_around_x(&result, dir, theta_x);
-	rotate_around_y(&result, dir, theta_y); 
+	rotate_around_y(&result, dir, theta_y);
 	rotate_around_z(&result, dir, theta_z);
 // //rotate y_axis
 

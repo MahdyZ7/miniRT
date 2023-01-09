@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 21:09:01 by ayassin           #+#    #+#             */
-/*   Updated: 2023/01/09 16:44:21 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/09 19:58:15 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ int			scan_cylender_errors(t_list *tmp);
 int			inspect_first_element(char *coord);
 int			inspect_second_element(char *coord);
 int			inspect_thrid_element(char *coord);
+void		fill_calculated_vars(t_cylinder *cylinder, t_scene *scene);
 /*-----------------FILLERS-------------------*/
 int			fill_all_elements_in_scene(
 				t_list **all_map_items, t_scene *scene);
