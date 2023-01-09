@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 21:09:01 by ayassin           #+#    #+#             */
-/*   Updated: 2023/01/08 19:36:03 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/09 16:44:21 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,6 +150,9 @@ float		sign(float x);
 t_pln_equ	fill_plane_equation(t_plane plane);
 void		normalize(t_vec *v);
 t_vec	find_rotation_matrix(t_vec *orientation, t_vec *dir);
+void	rotate_around_x(t_vec *result, t_vec *dir, float theta_x);
+void	rotate_around_y(t_vec *result, t_vec *dir, float theta_y);
+void	rotate_around_z(t_vec *result, t_vec *dir, float theta_z);
 /*------------------RENDERING_PREPARATION--------------*/
 int			color_vec_to_int(t_vec *color);
 float		color_by_intesity_to_float(t_vec *color, float intensity);
