@@ -6,7 +6,7 @@
 /*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 19:13:24 by ahsalem           #+#    #+#             */
-/*   Updated: 2023/01/09 14:56:22 by ayassin          ###   ########.fr       */
+/*   Updated: 2023/01/09 15:02:48 by ayassin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ t_vec	compute_cylinder_color(t_scene *scene, t_vec *dir,t_cylinder *closest_cyli
 	i.z += scene->amb_light.ratio * scene->amb_light.color.z;
 	if (hit_other_object(hit_pt, light_vec, scene))
 		return (i);
-	// vis_vector(normal);
-	// printf("\n");
+	// // vis_vector(normal);
+	// // printf("\n");
 	if (vec_dot(&normal, &light_vec) > 0)
 	{
 		// printf("ASASASAS");

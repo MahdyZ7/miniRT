@@ -6,7 +6,7 @@
 /*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 07:36:53 by ahsalem           #+#    #+#             */
-/*   Updated: 2023/01/09 12:34:51 by ayassin          ###   ########.fr       */
+/*   Updated: 2023/01/09 15:03:28 by ayassin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int	hit_other_object(t_vec hit_point, t_vec light_vec, t_scene *scene)
 			return (1);
 		++i;
 	}
+	i = 0;
 	while (i < scene->n_cylinders)
 	{
 		temp_t = his_hit_cylinder
