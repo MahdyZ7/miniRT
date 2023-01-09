@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 18:55:05 by ayassin           #+#    #+#             */
-/*   Updated: 2023/01/08 18:41:35 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/08 19:40:12 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,17 @@ void	basic_raytracing(t_img *img)
 				* r.angle * r.aspectratio;
 			r.new_y = (1 - 2 * ((r.y + 0.5) * r.invheight)) * r.angle;
 			vec_init(&r.dir, r.new_x, r. new_y, 1);
-			r.dir = dir_with_camera_orientation(&r.dir, r.new_x, r. new_y, img->scene);
+			r.dir = dir_with_camera_orientation(&r.dir, img->scene);
 			plane_result = trace_plane(&r.dir, img->scene);
 			sphere_result = trace_sphere(&r.dir, img->scene->camera.view_point.z + 1, img->scene);
-			cylinder_result = trace_cylinder(&r.dir, img->scene->camera.view_point.z + 1, img->scene);
+			// cylinder_result = trace_cylinder(&r.dir, img->scene->camera.view_point.z + 1, img->scene);
+			cylinder_result.x = INFINITY;
 			if (plane_result.x < sphere_result.x && plane_result.x < cylinder_result.x)
 				r.color = plane_result.y;
 			else if (sphere_result.x < plane_result.x && sphere_result.x < cylinder_result.x)
 				r.color = sphere_result.y;
-			else
-				r.color = cylinder_result.y;
+			// else
+			// 	r.color = cylinder_result.y;
 			pixel_put(img->scene->win->img, r.x, r.y, r.color);
 			++r.y;
 		}

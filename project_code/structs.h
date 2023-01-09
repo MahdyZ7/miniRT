@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 01:23:30 by ahsalem           #+#    #+#             */
-/*   Updated: 2023/01/07 20:58:58 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/08 19:52:12 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,10 @@ typedef struct s_sphere
 	t_vec		color;
 	int			n_spheres;
 }	t_sphere;
+
+	// t_vec	pos_top = get_cylinder_height(cylinder);
+	// t_vec	vec_height = vec_sub(&cylinder_end, &(cylinder->pos));
+	// float	in_cylinder = vec_dot(&vec_cylinder_height, &origin_to_cylinder);
 typedef struct s_cylinder
 {
 	t_vec		pos;

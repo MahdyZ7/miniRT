@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 21:20:49 by ahsalem           #+#    #+#             */
-/*   Updated: 2023/01/08 17:37:42 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/08 19:35:34 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ t_vec	dir_with_camera_orientation(t_vec *dir,t_scene *scene)
 	theta = find_rotation_angle(&scene->camera.orientation, &refrence);
 	
 	result = find_rotation_matrix(&scene->camera.orientation, dir);
-	return (*dir);
+	return (result);
 }
 
 t_vec	find_rotation_matrix(t_vec *orientation, t_vec *dir)
@@ -46,12 +46,15 @@ t_vec	find_rotation_matrix(t_vec *orientation, t_vec *dir)
 	float	theta_y;
 	float	theta_z;
 
-	theta_x = orientation->x * 180;
-	theta_y = orientation->y * 180;
-	theta_z = orientation->z * 180;
-	result.x = ://do the matrix rotation here
-	result.x = :
-	result.x = :
+	theta_x = orientation->x * M_PI_2;
+	theta_y = orientation->y * M_PI_2;
+	theta_z = orientation->z * M_PI_2;
+	result.x = dir->x;
+	result.y = dir->y * cos(theta_x) - dir->z *sin(theta_x);
+	result.z = dir->y * sin(theta_x)+ dir->z * cos(theta_x);
+	// result.x = ://do the matrix rotation here
+	// result.x = :
+	// result.x = :
 	return (result);
 }
 //make the rotation matrix to multiply each theta as follows
