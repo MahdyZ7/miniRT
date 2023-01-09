@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   plane_tracing.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 07:36:53 by ahsalem           #+#    #+#             */
-/*   Updated: 2023/01/07 21:00:03 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/09 12:34:51 by ayassin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,14 @@ int	hit_other_object(t_vec hit_point, t_vec light_vec, t_scene *scene)
 	{
 		temp_t = hit_sphere
 			(&(scene->spheres[i]), &hit_point, &light_vec, 0.00001);
+		if (temp_t && temp_t > 0.00001 && temp_t < 1.0)
+			return (1);
+		++i;
+	}
+	while (i < scene->n_cylinders)
+	{
+		temp_t = his_hit_cylinder
+			(&(scene->cylinder[i]), &hit_point, &light_vec, 0.00001);
 		if (temp_t && temp_t > 0.00001 && temp_t < 1.0)
 			return (1);
 		++i;

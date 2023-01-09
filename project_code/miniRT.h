@@ -6,7 +6,7 @@
 /*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 21:09:01 by ayassin           #+#    #+#             */
-/*   Updated: 2023/01/08 18:27:35 by ayassin          ###   ########.fr       */
+/*   Updated: 2023/01/09 12:46:08 by ayassin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,6 +157,7 @@ t_vec		plane_color(t_vec *dir, t_plane *pln, t_scene *scene);
 /*------------------RENDERING-----------------*/
 t_vec		trace_plane(t_vec *dir, t_scene *scene);
 float		hit_plane(t_plane *plane, t_scene *scene, t_vec *dir);
+float	his_hit_cylinder(t_cylinder *cylinder, t_vec *origin, t_vec *dir, float t_min);
 void		init_ray_trace_kit(t_ray_trace_kit *r, t_img *img);
 t_vec4		hit_cylinder(t_cylinder *cylinder,
 				t_vec *origin, t_vec *dir, float t_min);
@@ -177,7 +178,7 @@ t_vec		add_plane_spot_light(
 t_plane		*find_closest_plane(t_scene *scene, t_vec *dir, float *closest_t);
 t_sphere	*find_closest_sphere(
 				t_scene *scene, t_vec *dir, float *closest_t, float *t_min);
-t_vec		compute_cylinder_color(t_scene *scene, t_vec *dir,t_cylinder *closest_cylinder);
+t_vec		compute_cylinder_color(t_scene *scene, t_vec *dir,t_cylinder *closest_cylinder, float close_t);
 /*------------------MLX_RELATED---------------*/
 void		pixel_put(t_img *data, int x, int y, int color);
 void		redraw(t_win *s, t_img *img, void (*draw)(t_img *));
