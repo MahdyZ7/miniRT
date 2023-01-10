@@ -6,7 +6,7 @@
 /*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 21:09:01 by ayassin           #+#    #+#             */
-/*   Updated: 2023/01/09 12:46:08 by ayassin          ###   ########.fr       */
+/*   Updated: 2023/01/10 23:11:37 by ayassin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 # include "minilibx_macos/mlx.h"
 # include "minilibx_linux/mlx.h"
 # include "libft/libft.h"
-# include "ft_printf/ft_printf.h"
 # include <math.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -149,7 +148,6 @@ float		sign(float x);
 t_pln_equ	fill_plane_equation(t_plane plane);
 void		normalize(t_vec *v);
 /*------------------RENDERING_PREPARATION--------------*/
-int			color_vec_to_int(t_vec *color);
 float		color_by_intesity_to_float(t_vec *color, float intensity);
 t_vec		fit_coordinate_to_screen(float x, float y, t_scene *scene);
 t_vec		get_cylinder_height(t_cylinder *cylinder);
