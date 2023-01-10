@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/24 08:17:10 by ahsalem           #+#    #+#             */
-/*   Updated: 2023/01/10 05:04:18 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/10 07:26:04 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,19 @@ void	vec_init(t_vec *vec, float x, float y, float z)
 	vec->x = x;
 	vec->y = y;
 	vec->z = z;
+}
+
+void	fill_calculated_vars(t_cylinder *cylinder, t_scene *scene)
+{
+	t_vec	cylinder_end;
+	t_vec	vec_cylinder_height;
+	t_vec	origin_to_cylinder;
+
+	cylinder_end = get_cylinder_height(cylinder);
+	vec_cylinder_height = vec_sub(&cylinder_end, &(cylinder->pos));
+	origin_to_cylinder = vec_sub(&scene->camera.view_point, &(cylinder->pos));
+	normalize(&vec_cylinder_height);
+	cylinder->pos_top = get_cylinder_height(cylinder);
+	cylinder->vec_height = vec_sub(&cylinder_end, &(cylinder->pos));
+	cylinder->in_cylinder = vec_dot(&vec_cylinder_height, &origin_to_cylinder);
 }
