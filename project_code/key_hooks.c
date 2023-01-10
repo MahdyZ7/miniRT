@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 10:49:02 by ayassin           #+#    #+#             */
-/*   Updated: 2023/01/08 14:57:57 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/10 06:47:30 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,20 +33,38 @@ int	exit_code(t_win *win)
 /*switch function for keys*/
 int	key_hook(int key, t_win *win)
 {
-	if (key == UP_KEY)
-		win->img->scene->camera.view_point.z += 5;
 	if (key == DOWN_KEY)
+		win->img->scene->camera.xyz_angles.x += 0.05;
+	if (key == UP_KEY)
+		win->img->scene->camera.xyz_angles.x -= 0.05;
+	if (key == RIGHT_KEY)
+		win->img->scene->camera.xyz_angles.y += 0.05;
+	if (key == LEFT_KEY)
+		win->img->scene->camera.xyz_angles.y  -= 0.05;
+
+	if (key == M_KEY)
+		win->img->scene->camera.xyz_angles.z += 0.05;
+	if (key == H_KEY)
+		win->img->scene->camera.xyz_angles.z -= 0.05;
+	
+	if (key == Q_KEY)
+		win->img->scene->camera.view_point.z += 5;	
+	if (key == E_KEY)
 		win->img->scene->camera.view_point.z -= 5;
+
 	if (key == W_KEY)
 		win->img->scene->camera.view_point.y += 5;
 	if (key == S_KEY)
 		win->img->scene->camera.view_point.y -= 5;
+
 	if (key == A_KEY)
 		win->img->scene->camera.view_point.x -= 5;
 	if (key == D_KEY)
 		win->img->scene->camera.view_point.x += 5;
+
 	if (key == ESC_KEY)
 		exit_code(win);
+	printf("Key = %d\n", key);
 	vis_scene(win->img->scene);
 	redraw(win, win->img, basic_raytracing);
 	return (0);

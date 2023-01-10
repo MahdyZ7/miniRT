@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 01:23:30 by ahsalem           #+#    #+#             */
-/*   Updated: 2023/01/07 20:58:58 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/10 08:20:21 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ typedef struct s_sphere
 	t_vec		color;
 	int			n_spheres;
 }	t_sphere;
+
 typedef struct s_cylinder
 {
 	t_vec		pos;
@@ -67,6 +68,9 @@ typedef struct s_cylinder
 	float		height;
 	t_vec		color;
 	int			n_cylinders;
+	t_vec		pos_top ;
+	t_vec		vec_height;
+	float		in_cylinder;
 }	t_cylinder;
 typedef struct s_light
 {
@@ -78,6 +82,7 @@ typedef struct s_camera
 {
 	t_vec	view_point;
 	t_vec	orientation;
+	t_vec	xyz_angles;
 	float	view_field;
 }	t_camera;
 typedef struct s_amb_light
@@ -151,5 +156,8 @@ typedef struct ray_trace_kit
 	float	new_y;
 	int		x;
 	int		y;
+	t_vec	plane_result;
+	t_vec	sphere_result;
+	t_vec	cylinder_result;
 }	t_ray_trace_kit;
 #endif

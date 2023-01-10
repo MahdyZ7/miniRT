@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
+/*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 21:09:01 by ayassin           #+#    #+#             */
-/*   Updated: 2023/01/10 23:11:37 by ayassin          ###   ########.fr       */
+/*   Updated: 2023/01/10 08:39:35 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef MINIRT_H
 # define MINIRT_H
@@ -38,10 +39,12 @@
 #  define E_KEY 69
 #  define UP_KEY 65362
 #  define DOWN_KEY 65364
-// #  define LEFT_KEY 65361
-// #  define RIGHT_KEY 65363
+#  define LEFT_KEY 65361
+#  define RIGHT_KEY 65363
 // #  define M_KEY 109
 // #  define H_KEY 104
+#  define Q_KEY 81
+#  define E_KEY 69
 // #  define I_KEY 34
 # endif
 
@@ -51,14 +54,14 @@
 #  define A_KEY 0
 #  define S_KEY 1
 #  define D_KEY 2
+#  define Q_KEY 12
+#  define E_KEY 14
 #  define UP_KEY 126
 #  define DOWN_KEY 125
-// #  define Q_KEY 81
-// #  define E_KEY 69
-// #  define LEFT_KEY 123
-// #  define RIGHT_KEY 124
-// #  define M_KEY 46
-// #  define H_KEY 4
+#  define LEFT_KEY 123
+#  define RIGHT_KEY 124
+#  define M_KEY 46
+#  define H_KEY 4
 // #  define C_KEY 8
 // #  define I_KEY 34
 # endif
@@ -110,6 +113,7 @@ int			scan_cylender_errors(t_list *tmp);
 int			inspect_first_element(char *coord);
 int			inspect_second_element(char *coord);
 int			inspect_thrid_element(char *coord);
+void		fill_calculated_vars(t_cylinder *cylinder, t_scene *scene);
 /*-----------------FILLERS-------------------*/
 int			fill_all_elements_in_scene(
 				t_list **all_map_items, t_scene *scene);
@@ -147,6 +151,10 @@ t_vec		vec_multiply_two_vectors(t_vec *vec1, t_vec *vec2);
 float		sign(float x);
 t_pln_equ	fill_plane_equation(t_plane plane);
 void		normalize(t_vec *v);
+t_vec		find_rotation_matrix(t_vec *dir, t_scene *scene);
+void		rotate_around_x(t_vec *result, t_vec *dir, float theta_x);
+void		rotate_around_y(t_vec *result, t_vec *dir, float theta_y);
+void		rotate_around_z(t_vec *result, t_vec *dir, float theta_z);
 /*------------------RENDERING_PREPARATION--------------*/
 float		color_by_intesity_to_float(t_vec *color, float intensity);
 t_vec		fit_coordinate_to_screen(float x, float y, t_scene *scene);
@@ -176,7 +184,12 @@ t_vec		add_plane_spot_light(
 t_plane		*find_closest_plane(t_scene *scene, t_vec *dir, float *closest_t);
 t_sphere	*find_closest_sphere(
 				t_scene *scene, t_vec *dir, float *closest_t, float *t_min);
+t_vec		dir_with_camera_orientation(t_vec *dir, t_scene *scene);
 t_vec		compute_cylinder_color(t_scene *scene, t_vec *dir,t_cylinder *closest_cylinder, float close_t);
+void		trace_all_shapes(t_ray_trace_kit *r, t_img *img);
+void		trace_only_spheres(t_ray_trace_kit *r, t_img *img);
+void		trace_only_planes(t_ray_trace_kit *r, t_img *img);
+void		trace_only_cylinders(t_ray_trace_kit *r, t_img *img);
 /*------------------MLX_RELATED---------------*/
 void		pixel_put(t_img *data, int x, int y, int color);
 void		redraw(t_win *s, t_img *img, void (*draw)(t_img *));

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   trace_plane_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
+/*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 19:13:24 by ahsalem           #+#    #+#             */
-/*   Updated: 2023/01/10 20:42:05 by ayassin          ###   ########.fr       */
+/*   Updated: 2023/01/10 07:17:56 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ t_vec	plane_color(t_vec *dir, t_plane *pln, t_scene *scene)
 	}
 	return (i);
 }
+
 t_vec	add_plane_spot_light(
 	t_scene *scene, t_vec *normal, t_vec *light_vec, t_vec *i)
 {

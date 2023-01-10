@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/24 08:17:32 by ahsalem           #+#    #+#             */
-/*   Updated: 2023/01/07 18:33:13 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/10 07:25:55 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,7 @@ int	fill_cylinders(
 		fill_single_cylinder(scene, tmp, i);
 		if (check_normalized_coord(scene->cylinder[i].orientation))
 			return (1);
+		fill_calculated_vars(&scene->cylinder[i], scene);
 		scene->cylinder[i].n_cylinders = occurance;
 		i++;
 	}

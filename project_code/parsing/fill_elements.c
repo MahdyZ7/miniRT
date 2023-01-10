@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/24 08:17:10 by ahsalem           #+#    #+#             */
-/*   Updated: 2023/01/07 19:37:08 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/10 07:26:04 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,12 @@ int	fill_camera(
 	if (check_normalized_coord(scene->camera.orientation))
 		return (1);
 	scene->camera.view_field = ft_atof((char *)tmp->next->next->content);
+	scene->camera.xyz_angles.x = (float)((int)scene->camera.xyz_angles.x % 180) * M_PI / 180;
+	scene->camera.xyz_angles.y = (float)((int)scene->camera.xyz_angles.y % 180) * M_PI / 180;
+	scene->camera.xyz_angles.z = (float)((int)scene->camera.xyz_angles.z % 180) * M_PI / 180;
+	// scene->camera.xyz_angles.x = scene->camera.orientation.x * M_PI;
+	// scene->camera.xyz_angles.y = scene->camera.orientation.y * M_PI;
+	// scene->camera.xyz_angles.z = scene->camera.orientation.z * M_PI;
 	return (0);
 }
 
@@ -68,4 +74,19 @@ void	vec_init(t_vec *vec, float x, float y, float z)
 	vec->x = x;
 	vec->y = y;
 	vec->z = z;
+}
+
+void	fill_calculated_vars(t_cylinder *cylinder, t_scene *scene)
+{
+	t_vec	cylinder_end;
+	t_vec	vec_cylinder_height;
+	t_vec	origin_to_cylinder;
+
+	cylinder_end = get_cylinder_height(cylinder);
+	vec_cylinder_height = vec_sub(&cylinder_end, &(cylinder->pos));
+	origin_to_cylinder = vec_sub(&scene->camera.view_point, &(cylinder->pos));
+	normalize(&vec_cylinder_height);
+	cylinder->pos_top = get_cylinder_height(cylinder);
+	cylinder->vec_height = vec_sub(&cylinder_end, &(cylinder->pos));
+	cylinder->in_cylinder = vec_dot(&vec_cylinder_height, &origin_to_cylinder);
 }

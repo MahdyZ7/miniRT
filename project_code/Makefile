@@ -29,7 +29,7 @@ SRC = miniRT.c setup_display.c key_hooks.c dummy_functions.c basic_raytracing.c\
 		parsing/fill_shapes.c parsing/fill_scene.c parsing/fill_elements.c \
 		parsing/fill_vector.c parsing/checkers_utils.c\
 		ft_math/vectors.c ft_math/math_utils.c ft_math/equations.c\
-		ft_math/vectors_utils.c\
+		ft_math/vectors_utils.c ft_math/orientation_calculation.c\
 		testers/visualizers.c testers/visualizers_utils.c testers/test_math.c testers/test_equations.c\
 		pre_rendering/screen_colors_init.c \
 		trace_objects/plane_tracing.c trace_objects/sphere_tracing.c trace_objects/cylinder_tracing.c\
