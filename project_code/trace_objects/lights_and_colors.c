@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   lights_and_colors.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 16:57:32 by ahsalem           #+#    #+#             */
 /*   Updated: 2023/01/10 07:36:16 by ahsalem          ###   ########.fr       */

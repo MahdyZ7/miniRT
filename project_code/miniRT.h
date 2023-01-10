@@ -16,7 +16,6 @@
 # include "minilibx_macos/mlx.h"
 # include "minilibx_linux/mlx.h"
 # include "libft/libft.h"
-# include "ft_printf/ft_printf.h"
 # include <math.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -157,7 +156,6 @@ void		rotate_around_x(t_vec *result, t_vec *dir, float theta_x);
 void		rotate_around_y(t_vec *result, t_vec *dir, float theta_y);
 void		rotate_around_z(t_vec *result, t_vec *dir, float theta_z);
 /*------------------RENDERING_PREPARATION--------------*/
-int			color_vec_to_int(t_vec *color);
 float		color_by_intesity_to_float(t_vec *color, float intensity);
 t_vec		fit_coordinate_to_screen(float x, float y, t_scene *scene);
 t_vec		get_cylinder_height(t_cylinder *cylinder);

@@ -6,7 +6,7 @@
 /*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 11:37:30 by ayassin           #+#    #+#             */
-/*   Updated: 2023/01/09 12:29:11 by ayassin          ###   ########.fr       */
+/*   Updated: 2023/01/10 20:38:21 by ayassin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -210,7 +210,9 @@ t_vec	trace_cylinder(t_vec *dir, float t_min, t_scene *scene)
 	{
 		t_vec m = compute_cylinder_color(scene, dir, closest_cylinder, closest_t);
 		t_vec cyl_color = vec_multiply_two_vectors(&(closest_cylinder->color), &m);
-		color  = color_vec_to_int(&cyl_color);
+		color  = vec_to_color(cyl_color);
+		// vis_vector(cyl_color);
+		// printf("\n");
 	}
 	fill_single_vector(&result, closest_t, color, 0);
 	return (result);

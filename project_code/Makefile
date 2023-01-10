@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+         #
+#    By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/16 21:09:20 by ayassin           #+#    #+#              #
-#    Updated: 2023/01/08 17:26:52 by ahsalem          ###   ########.fr        #
+#    Updated: 2023/01/10 23:09:11 by ayassin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,7 @@ else ifeq ($(shell uname -s), Linux)
 	MLX_LIB = minilibx_linux
 endif
 
-SUBDIRS = libft ft_printf $(MLX_LIB)
+SUBDIRS = libft $(MLX_LIB)
 
 CC = gcc
 
@@ -62,21 +62,25 @@ all: $(NAME)
 
 # $(OBJS)/%.o:%.c
 # 	mkdir -p $(OBJDIR)
-# 	$(CC) $(CFLAGS) -Ilibft -Ift_printf -c $^ -o $@
+# 	$(CC) $(CFLAGS) -Ilibft  -c $^ -o $@
 # $(ODIR)/%.o : %.c
 $(OBJDIR)/%.o : %.c
-	mkdir -p $(OBJDIR)
+	if [ ! -d $(OBJDIR)]; then \
+		mkdir -p $(OBJDIR); \
+	fi;
 	for dir in $(OBJSUBDIRS); do \
-		mkdir -p $(OBJDIR)/$$dir; \
+		if [ ! -d $(OBJDIR)/$$dir ]; then \
+			mkdir -p $(OBJDIR)/$$dir; \
+		fi; \
 	done
-	$(CC) $(CFLAGS) -Ilibft -Ift_printf -c $^ -o $@
+	$(CC) $(CFLAGS) -Ilibft  -c $^ -o $@
 
 $(NAME): $(SUBDIRS) $(OBJS)
 	for dir in $(SUBDIRS); do \
         $(MAKE) all -C $$dir; \
     done
 	$(CC) $(CFLAGS) $(OBJS) $(LINK_MLX) \
-		-Lft_printf -lftprintf -Llibft -lft -o $(NAME)
+		-Llibft -lft -o $(NAME)
 
 $(SUBDIRS):
 	for dir in $(SUBDIRS); do \
