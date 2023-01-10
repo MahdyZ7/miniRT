@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 01:23:30 by ahsalem           #+#    #+#             */
-/*   Updated: 2023/01/09 22:03:27 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/10 08:20:21 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,5 +156,8 @@ typedef struct ray_trace_kit
 	float	new_y;
 	int		x;
 	int		y;
+	t_vec	plane_result;
+	t_vec	sphere_result;
+	t_vec	cylinder_result;
 }	t_ray_trace_kit;
 #endif
