@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   visualizers.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 15:22:02 by ahsalem           #+#    #+#             */
-/*   Updated: 2023/01/07 18:35:34 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/10 23:11:56 by ayassin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	vis_list(t_list **head)
 	tmp = *head;
 	while (tmp)
 	{
-		ft_printf("%s~", tmp->content);
+		printf("%s~", tmp->content);
 		tmp = tmp->next;
 	}
 }

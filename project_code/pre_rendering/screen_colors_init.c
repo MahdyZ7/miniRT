@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   screen_colors_init.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 19:12:34 by ahsalem           #+#    #+#             */
-/*   Updated: 2023/01/06 20:08:56 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/10 20:38:50 by ayassin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,6 @@ float	color_by_intesity_to_float(t_vec *color, float intensity)
 	tmp.x = color->x * intensity;
 	tmp.y = color->y * intensity;
 	tmp.z = color->z * intensity;
-	result = (float)color_vec_to_int(&tmp);
-	return (result);
-}
-
-int	color_vec_to_int(t_vec *color)
-{
-	int	result;
-
-	result = (((int)color->x & 0x0ff) << 16)
-		| (((int)color->y & 0x0ff) << 8) | ((int)color->z & 0x0ff);
+	result = (float)vec_to_color(tmp);
 	return (result);
 }
