@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/24 08:17:10 by ahsalem           #+#    #+#             */
-/*   Updated: 2023/01/07 19:37:08 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/09 22:19:36 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,12 @@ int	fill_camera(
 	if (check_normalized_coord(scene->camera.orientation))
 		return (1);
 	scene->camera.view_field = ft_atof((char *)tmp->next->next->content);
+	scene->camera.xyz_angles.x = (float)((int)scene->camera.xyz_angles.x % 180) * M_PI / 180;
+	scene->camera.xyz_angles.y = (float)((int)scene->camera.xyz_angles.y % 180) * M_PI / 180;
+	scene->camera.xyz_angles.z = (float)((int)scene->camera.xyz_angles.z % 180) * M_PI / 180;
+	// scene->camera.xyz_angles.x = scene->camera.orientation.x * M_PI;
+	// scene->camera.xyz_angles.y = scene->camera.orientation.y * M_PI;
+	// scene->camera.xyz_angles.z = scene->camera.orientation.z * M_PI;
 	return (0);
 }
 
