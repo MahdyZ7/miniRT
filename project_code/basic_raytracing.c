@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 18:55:05 by ayassin           #+#    #+#             */
-/*   Updated: 2023/01/10 08:40:04 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/11 04:21:23 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,13 @@ void	basic_raytracing(t_img *img)
 {
 	t_ray_trace_kit	r;
 
+	img->scene->camera.xyz_angles.x = img->scene->camera.orientation.x;
+	img->scene->camera.xyz_angles.y = img->scene->camera.orientation.y;
+	img->scene->camera.xyz_angles.z = (float)((int)(img->scene->camera.orientation.z * 1000) % 350) / 1000;
+	printf("\nOrientation = ");
+	vis_vector(img->scene->camera.xyz_angles);
+	printf("\n\n");
+	init_ray_trace_kit(&r, img);
 	init_ray_trace_kit(&r, img);
 	if(img->scene->spheres > 0 && img->scene->n_cylinders == 0
 		&& img->scene->n_planes == 0)
