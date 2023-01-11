@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/24 08:17:10 by ahsalem           #+#    #+#             */
-/*   Updated: 2023/01/11 04:21:49 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/11 19:43:51 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,17 @@ int	fill_camera(
 	if (check_normalized_coord(scene->camera.orientation))
 		return (1);
 	scene->camera.view_field = ft_atof((char *)tmp->next->next->content);
+	if (scene->camera.orientation.z == 1)
+		scene->camera.orientation.z = 0;
+	if (scene->camera.orientation.z == -1)
+		scene->camera.orientation.y = 3.15;
 	// scene->camera.xyz_angles.x = (float)((int)scene->camera.xyz_angles.x % 180) * M_PI / 180;
 	// scene->camera.xyz_angles.y = (float)((int)scene->camera.xyz_angles.y % 180) * M_PI / 180;
 	// scene->camera.xyz_angles.z = (float)((int)scene->camera.xyz_angles.z % 180) * M_PI / 180;
-	scene->camera.xyz_angles.x = scene->camera.orientation.x;
-	scene->camera.xyz_angles.y = scene->camera.orientation.y;
-	scene->camera.xyz_angles.z = (float)((int)(scene->camera.orientation.z * 1000) % 350) / 1000;
+	scene->camera.xyz_angles.x = scene->camera.orientation.y * -1;
+	scene->camera.xyz_angles.y = scene->camera.orientation.x;
+	scene->camera.xyz_angles.z = 0.0;
+	// scene->camera.xyz_angles.z = (float)((int)(scene->camera.orientation.z * 1000) % 350) / 1000;
 	// scene->camera.xyz_angles.x = scene->camera.orientation.x * M_PI;
 	// scene->camera.xyz_angles.y = scene->camera.orientation.y * M_PI;
 	// scene->camera.xyz_angles.z = scene->camera.orientation.z * M_PI;
