@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 10:49:02 by ayassin           #+#    #+#             */
-/*   Updated: 2023/01/11 04:22:17 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/11 19:45:01 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,14 @@ int	exit_code(t_win *win)
 /*switch function for keys*/
 int	key_hook(int key, t_win *win)
 {
-	if (key == DOWN_KEY)
-		win->img->scene->camera.orientation.x += 0.05;
-	if (key == UP_KEY)
-		win->img->scene->camera.orientation.x -= 0.05;
-	if (key == RIGHT_KEY)
+if (key == DOWN_KEY)
 		win->img->scene->camera.orientation.y += 0.05;
+	if (key == UP_KEY)
+		win->img->scene->camera.orientation.y -= 0.05;
+	if (key == RIGHT_KEY)
+		win->img->scene->camera.orientation.x += 0.05;
 	if (key == LEFT_KEY)
-		win->img->scene->camera.orientation.y  -= 0.05;
+		win->img->scene->camera.orientation.x  -= 0.05;
 
 	if (key == M_KEY)
 		win->img->scene->camera.orientation.z += 0.05;
@@ -61,7 +61,6 @@ int	key_hook(int key, t_win *win)
 		win->img->scene->camera.view_point.x -= 5;
 	if (key == D_KEY)
 		win->img->scene->camera.view_point.x += 5;
-
 	if (key == ESC_KEY)
 		exit_code(win);
 	printf("Key = %d\n", key);
