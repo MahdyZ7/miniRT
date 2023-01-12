@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 21:09:01 by ayassin           #+#    #+#             */
-/*   Updated: 2023/01/12 12:16:19 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/12 20:10:56 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,7 +163,7 @@ t_vec		plane_color(t_vec *dir, t_plane *pln, t_scene *scene);
 /*------------------RENDERING-----------------*/
 t_vec		trace_plane(t_vec *dir, t_scene *scene);
 float		hit_plane(t_plane *plane, t_scene *scene, t_vec *dir);
-float	hit_cylinder(t_cylinder *cylinder, t_vec *origin, t_vec *dir, float t_min);
+float		hit_cylinder(t_cylinder *cylinder, t_vec *origin, t_vec *dir, float t_min);
 void		init_ray_trace_kit(t_ray_trace_kit *r, t_img *img);
 float		check_capped_part(float t0, float t1,
 				t_vec *origin, t_vec *dir, t_cylinder *cylinder);
@@ -188,6 +188,8 @@ void		trace_all_shapes(t_ray_trace_kit *r, t_img *img);
 void		trace_only_spheres(t_ray_trace_kit *r, t_img *img);
 void		trace_only_planes(t_ray_trace_kit *r, t_img *img);
 void		trace_only_cylinders(t_ray_trace_kit *r, t_img *img);
+void	init_ct_kit(t_cylinder_tracing_kit *c, t_vec *dir, t_vec *origin, t_cylinder *cylinder);
+t_vec	solve_cylinder_quadratic(t_cylinder *cylinder, t_cylinder_tracing_kit *c);
 /*------------------MLX_RELATED---------------*/
 void		pixel_put(t_img *data, int x, int y, int color);
 void		redraw(t_win *s, t_img *img, void (*draw)(t_img *));

@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 15:11:24 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/24 06:32:31 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/12 16:57:29 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,4 +85,14 @@ int	check_plane(t_list **all_map_items, t_scene *scene)
 		i++;
 	}
 	return (0);
+}
+
+t_vec	get_cylinder_height(t_cylinder *cylinder)
+{
+	t_vec	result;
+
+	result.x = cylinder->pos.x + cylinder->orientation.x * cylinder->height;
+	result.y = cylinder->pos.y + cylinder->orientation.y * cylinder->height;
+	result.z = cylinder->pos.z + cylinder->orientation.z * cylinder->height;
+	return (result);
 }

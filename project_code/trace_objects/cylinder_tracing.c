@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 11:37:30 by ayassin           #+#    #+#             */
-/*   Updated: 2023/01/12 12:16:10 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/12 20:14:02 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,50 +14,49 @@
 
 float	hit_cylinder(t_cylinder *cylinder, t_vec *origin, t_vec *dir, float t_min)
 {
-	t_vec	origin_to_cylinder;
-	float	height_by_direction;
-	float	a;
-	float 	b;
-	float	c;
-	float	discriminant;
-	float	t1;
-	float	t2;
-	t_vec 	temp_vec;
-	t_vec 	limit_1;
-	float	h_limit_1;
-	t_vec 	limit_2;
-	float	h_limit_2;
+	t_cylinder_tracing_kit	c;
 
-	(void)t_min;
-	origin_to_cylinder = vec_sub(origin, &(cylinder->pos));
-	normalize(&cylinder->vec_height);
-	// float	height_dot_product = vec_dot(&cylinder->vec_height, &cylinder->vec_height);
-	height_by_direction = vec_dot(&cylinder->vec_height, dir);
-	cylinder->in_cylinder = vec_dot(&cylinder->vec_height, &origin_to_cylinder);
-	a =  vec_dot(dir, dir) - height_by_direction * height_by_direction;
-	b = 2 * (vec_dot(dir, &origin_to_cylinder) - height_by_direction * cylinder->in_cylinder);
-	c = vec_dot(&origin_to_cylinder, &origin_to_cylinder) - cylinder->in_cylinder * cylinder->in_cylinder - cylinder->radius_square;
-	discriminant = b * b - 4 * a * c;
-	if (discriminant < 0)
+	init_ct_kit(&c, dir, origin, cylinder);
+	c.qudratic = solve_cylinder_quadratic(cylinder, &c);
+	if (c.qudratic.x < t_min && c.qudratic.y < t_min)
 		return INFINITY;
-	t1 = (-b - sqrt(discriminant)) / (2 * a);
-	t2 = (-b + sqrt(discriminant)) / (2 * a);
-	if (t1 < t_min && t2 < t_min)
-		return INFINITY;
-	temp_vec = vec_scalar_mult(dir, t1);
-	limit_1 = vec_add(&origin_to_cylinder, &temp_vec);
-	h_limit_1 = vec_dot(&cylinder->vec_height, &limit_1);
-	temp_vec = vec_scalar_mult(dir, t2);
-	limit_2 = vec_add(&origin_to_cylinder, &temp_vec);
-	h_limit_2 = vec_dot(&cylinder->vec_height, &limit_2);
-	if (t1 < t_min && h_limit_2 > 0 && h_limit_2 < cylinder->height)
-		return t2;
-	if ((t2 < t_min || t1 < t2) && h_limit_1 > 0 && h_limit_1 < cylinder->height)
-		return t1;
-	if (h_limit_2 > 0 && h_limit_2 < cylinder->height)
-		return (t2);
+	c.temp_vec = vec_scalar_mult(dir, c.qudratic.x);
+	c.limit_1 = vec_add(&c.origin_to_cylinder, &c.temp_vec);
+	c.h_limit_1 = vec_dot(&cylinder->vec_height, &c.limit_1);
+	c.temp_vec = vec_scalar_mult(c.dir, c.qudratic.y);
+	c.limit_2 = vec_add(&c.origin_to_cylinder, &c.temp_vec);
+	c.h_limit_2 = vec_dot(&cylinder->vec_height, &c.limit_2);
+	if (c.qudratic.x < t_min && c.h_limit_2 > 0 && c.h_limit_2 < cylinder->height)
+		return c.qudratic.y;
+	if ((c.qudratic.y < t_min || c.qudratic.x < c.qudratic.y) && c.h_limit_1 > 0 && c.h_limit_1 < cylinder->height)
+		return c.qudratic.x;
+	if (c.h_limit_2 > 0 && c.h_limit_2 < cylinder->height)
+		return (c.qudratic.y);
 	return (INFINITY);
-	
+}
+
+void	init_ct_kit(t_cylinder_tracing_kit *c, t_vec *dir, t_vec *origin, t_cylinder *cylinder)
+{
+	c->dir = dir;
+	c->dir = dir;
+	c->origin_to_cylinder = vec_sub(origin, &(cylinder->pos));
+	normalize(&cylinder->vec_height);
+	c->height_by_direction = vec_dot(&cylinder->vec_height, dir);
+	cylinder->in_cylinder = vec_dot(&cylinder->vec_height, &(c->origin_to_cylinder));
+
+}
+
+t_vec	solve_cylinder_quadratic(t_cylinder *cylinder, t_cylinder_tracing_kit *cy)
+{
+	float	a;
+	float	b;
+	float	c;
+
+	a =  vec_dot(cy->dir, cy->dir) - cy->height_by_direction * cy->height_by_direction;
+	b = 2 * (vec_dot(cy->dir, &cy->origin_to_cylinder) - cy->height_by_direction * cylinder->in_cylinder);
+	c = vec_dot(&cy->origin_to_cylinder, &cy->origin_to_cylinder)
+		- cylinder->in_cylinder * cylinder->in_cylinder - cylinder->radius_square;
+	return(qudratic_equation(a, b, c));
 }
 
 float	check_capped_part(float t0, float t1,
@@ -97,7 +96,6 @@ t_vec	trace_cylinder(t_vec *dir, float t_min, t_scene *scene)
 	closest_cylinder = NULL;
 	for (int i = 0; i < scene->n_cylinders; i++)
 	{
-		// temp_t = (hit_cylinder(&(scene->cylinder[i]), &scene->camera.view_point, dir, t_min)).t;
 		temp_t = hit_cylinder(&(scene->cylinder[i]), &scene->camera.view_point, dir, t_min);
 		if (temp_t < closest_t)
 		{
@@ -111,22 +109,11 @@ t_vec	trace_cylinder(t_vec *dir, float t_min, t_scene *scene)
 		t_vec m = compute_cylinder_color(scene, dir, closest_cylinder, closest_t);
 		t_vec cyl_color = vec_multiply_two_vectors(&(closest_cylinder->color), &m);
 		color  = vec_to_color(cyl_color);
-		// vis_vector(cyl_color);
-		// printf("\n");
 	}
 	fill_single_vector(&result, closest_t, color, 0);
 	return (result);
 }
 
-t_vec	get_cylinder_height(t_cylinder *cylinder)
-{
-	t_vec	result;
-
-	result.x = cylinder->pos.x + cylinder->orientation.x * cylinder->height;
-	result.y = cylinder->pos.y + cylinder->orientation.y * cylinder->height;
-	result.z = cylinder->pos.z + cylinder->orientation.z * cylinder->height;
-	return (result);
-}
 /* old code
 float	hit_cylinder(t_cylinder *cylinder, t_vec *origin, t_vec *dir, float t_min)
  {
@@ -134,7 +121,7 @@ float	hit_cylinder(t_cylinder *cylinder, t_vec *origin, t_vec *dir, float t_min)
 
 	oc = vec_sub(origin, &(cylinder->pos));
     float	a = (dir->x * dir->x) + (dir->y * dir->y);
-    float	b = 2 * ((dir->x * oc.x) + (dir->y * oc.y));
+    float	b = 2 * ((dir->x * ocy->x) + (dir->y * oc.y));
     float	c = (oc.x * oc.x)+ (oc.y * oc.y)
 		- ((cylinder->diameter / 2) * (cylinder->diameter /2));
     float	discriminant = (b * b) - (4 * a * c);
