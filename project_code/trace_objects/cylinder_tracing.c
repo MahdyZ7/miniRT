@@ -6,13 +6,13 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 11:37:30 by ayassin           #+#    #+#             */
-/*   Updated: 2023/01/12 12:15:03 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/12 12:16:10 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../miniRT.h"
 
-float	his_hit_cylinder(t_cylinder *cylinder, t_vec *origin, t_vec *dir, float t_min)
+float	hit_cylinder(t_cylinder *cylinder, t_vec *origin, t_vec *dir, float t_min)
 {
 	t_vec	origin_to_cylinder;
 	float	height_by_direction;
@@ -98,7 +98,7 @@ t_vec	trace_cylinder(t_vec *dir, float t_min, t_scene *scene)
 	for (int i = 0; i < scene->n_cylinders; i++)
 	{
 		// temp_t = (hit_cylinder(&(scene->cylinder[i]), &scene->camera.view_point, dir, t_min)).t;
-		temp_t = his_hit_cylinder(&(scene->cylinder[i]), &scene->camera.view_point, dir, t_min);
+		temp_t = hit_cylinder(&(scene->cylinder[i]), &scene->camera.view_point, dir, t_min);
 		if (temp_t < closest_t)
 		{
 			closest_t = temp_t;

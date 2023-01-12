@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 21:09:01 by ayassin           #+#    #+#             */
-/*   Updated: 2023/01/10 08:39:35 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/12 12:16:19 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,10 +163,8 @@ t_vec		plane_color(t_vec *dir, t_plane *pln, t_scene *scene);
 /*------------------RENDERING-----------------*/
 t_vec		trace_plane(t_vec *dir, t_scene *scene);
 float		hit_plane(t_plane *plane, t_scene *scene, t_vec *dir);
-float	his_hit_cylinder(t_cylinder *cylinder, t_vec *origin, t_vec *dir, float t_min);
+float	hit_cylinder(t_cylinder *cylinder, t_vec *origin, t_vec *dir, float t_min);
 void		init_ray_trace_kit(t_ray_trace_kit *r, t_img *img);
-t_vec4		hit_cylinder(t_cylinder *cylinder,
-				t_vec *origin, t_vec *dir, float t_min);
 float		check_capped_part(float t0, float t1,
 				t_vec *origin, t_vec *dir, t_cylinder *cylinder);
 t_vec		add_sphere_spot_light(t_scene *scene,
