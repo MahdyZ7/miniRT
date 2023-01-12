@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 21:09:01 by ayassin           #+#    #+#             */
-/*   Updated: 2023/01/10 08:39:35 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/12 14:50:01 by ayassin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,7 +159,7 @@ void		rotate_around_z(t_vec *result, t_vec *dir, float theta_z);
 float		color_by_intesity_to_float(t_vec *color, float intensity);
 t_vec		fit_coordinate_to_screen(float x, float y, t_scene *scene);
 t_vec		get_cylinder_height(t_cylinder *cylinder);
-t_vec		plane_color(t_vec *dir, t_plane *pln, t_scene *scene);
+t_vec		plane_color(t_vec *dir, t_plane *pln, t_scene *scene, float closest_t);
 /*------------------RENDERING-----------------*/
 t_vec		trace_plane(t_vec *dir, t_scene *scene);
 float		hit_plane(t_plane *plane, t_scene *scene, t_vec *dir);
