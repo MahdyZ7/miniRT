@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 02:13:41 by ahsalem           #+#    #+#             */
-/*   Updated: 2023/01/10 04:26:20 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/12 12:15:12 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,6 @@ int	main(int argc, char **argv)
 	For spheres, camera orientation, light, and shadows:
 	https://gabrielgambetta.com/computer-graphics-from-scratch/
 	For Cylinder:
-	 https://iquilezles.org/articles/intersectors/
+	https://iquilezles.org/articles/intersectors/
+	// http://www.illusioncatalyst.com/notes_files/mathematics/line_cylinder_intersection.php
 */

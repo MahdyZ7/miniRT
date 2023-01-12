@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/24 08:17:10 by ahsalem           #+#    #+#             */
-/*   Updated: 2023/01/11 19:43:51 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/12 12:12:48 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,4 +97,7 @@ void	fill_calculated_vars(t_cylinder *cylinder, t_scene *scene)
 	cylinder->pos_top = get_cylinder_height(cylinder);
 	cylinder->vec_height = vec_sub(&cylinder_end, &(cylinder->pos));
 	cylinder->in_cylinder = vec_dot(&vec_cylinder_height, &origin_to_cylinder);
+	cylinder->in_cylinder_square = cylinder->in_cylinder * cylinder->in_cylinder ;
+	cylinder->radius = cylinder->diameter / 2;
+	cylinder->radius_square = cylinder->radius * cylinder->radius;
 }
