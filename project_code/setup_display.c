@@ -6,7 +6,7 @@
 /*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 10:38:06 by ayassin           #+#    #+#             */
-/*   Updated: 2023/01/04 14:18:12 by ayassin          ###   ########.fr       */
+/*   Updated: 2023/01/11 22:06:40 by ayassin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,41 @@ void	pixel_put(t_img *data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
+void	orint_planes(t_scene *scene)
+{
+	int		i;
+	t_plane	*plane;
+
+	i = 0;
+	plane = scene->plane;
+	while( i < scene->n_planes)
+	{
+		if (plane[i].pos.x > scene->camera.view_point.x)
+			if (plane[i].orientation.x < 0)
+				plane[i].orientation.x *= -1;
+		if (plane[i].pos.x < scene->camera.view_point.x)
+			if (plane[i].orientation.x > 0)
+				plane[i].orientation.x *= -1;
+		if (plane[i].pos.y > scene->camera.view_point.y)
+			if (plane[i].orientation.y < 0)
+				plane[i].orientation.y *= -1;
+		if (plane[i].pos.y < scene->camera.view_point.y)
+			if (plane[i].orientation.y > 0)
+				plane[i].orientation.y *= -1;
+		if (plane[i].pos.z > scene->camera.view_point.z)
+			if (plane[i].orientation.z < 0)
+				plane[i].orientation.z *= -1;
+		if (plane[i].pos.z < scene->camera.view_point.z)
+			if (plane[i].orientation.z > 0)
+				plane[i].orientation.z *= -1;
+		++i;
+	}
+}
 /* Destroy the imgae and then palce a new ceated image on the window.
 Used to update the image on the window for any change that occures*/
 void	redraw(t_win *s, t_img *img, void (*draw)(t_img *))
 {
+	orint_planes(img->scene);
 	draw(img);
 	mlx_clear_window(s->mlx_ptr, s->win_ptr);
 	mlx_put_image_to_window(s->mlx_ptr, s->win_ptr, img->img_ptr, 0, 0);
