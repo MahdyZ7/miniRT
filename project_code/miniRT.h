@@ -6,7 +6,7 @@
 /*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 21:09:01 by ayassin           #+#    #+#             */
-/*   Updated: 2023/01/12 14:50:01 by ayassin          ###   ########.fr       */
+/*   Updated: 2023/01/13 19:36:57 by ayassin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,7 +162,7 @@ t_vec		get_cylinder_height(t_cylinder *cylinder);
 t_vec		plane_color(t_vec *dir, t_plane *pln, t_scene *scene, float closest_t);
 /*------------------RENDERING-----------------*/
 t_vec		trace_plane(t_vec *dir, t_scene *scene);
-float		hit_plane(t_plane *plane, t_scene *scene, t_vec *dir);
+float		hit_plane(t_plane *plane, t_vec *orgin, t_vec *dir);
 float	his_hit_cylinder(t_cylinder *cylinder, t_vec *origin, t_vec *dir, float t_min);
 void		init_ray_trace_kit(t_ray_trace_kit *r, t_img *img);
 t_vec4		hit_cylinder(t_cylinder *cylinder,
