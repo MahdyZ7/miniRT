@@ -6,7 +6,7 @@
 /*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 07:36:53 by ahsalem           #+#    #+#             */
-/*   Updated: 2023/01/13 19:36:51 by ayassin          ###   ########.fr       */
+/*   Updated: 2023/01/12 16:53:16 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	hit_other_object(t_vec hit_point, t_vec light_vec, t_scene *scene)
 	i = 0;
 	while (i < scene->n_cylinders)
 	{
-		temp_t = his_hit_cylinder
+		temp_t = hit_cylinder
 			(&(scene->cylinder[i]), &hit_point, &light_vec, 0.00001);
 		if (temp_t && temp_t > 0.00001 && temp_t < 1.0)
 			return (1);

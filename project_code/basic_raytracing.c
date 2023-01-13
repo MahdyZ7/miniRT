@@ -6,7 +6,7 @@
 /*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 18:55:05 by ayassin           #+#    #+#             */
-/*   Updated: 2023/01/13 18:17:10 by ayassin          ###   ########.fr       */
+/*   Updated: 2023/01/12 21:03:21 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,13 @@ void	basic_raytracing(t_img *img)
 {
 	t_ray_trace_kit	r;
 
+	img->scene->camera.xyz_angles.x = img->scene->camera.orientation.y * -1;
+	img->scene->camera.xyz_angles.y = img->scene->camera.orientation.x;
+	// img->scene->camera.xyz_angles.z = (float)((int)(img->scene->camera.orientation.z * 1000) % 350) / 1000;
+	printf("\nOrientation = ");
+	vis_vector(img->scene->camera.xyz_angles);
+	printf("\n\n");
+	init_ray_trace_kit(&r, img);
 	init_ray_trace_kit(&r, img);
 	if(img->scene->spheres > 0 && img->scene->n_cylinders == 0
 		&& img->scene->n_planes == 0)
@@ -137,3 +144,10 @@ void	init_ray_trace_kit(t_ray_trace_kit *r, t_img *img)
 	fill_single_vector(&r->sphere_result, 0, 0, 0);
 	fill_single_vector(&r->cylinder_result, 0, 0, 0);
 }
+
+
+/*
+1) add pos of camera to pos of each objects
+2) apply rotation to every object except camera
+3) remove pos of camera from each object
+*/

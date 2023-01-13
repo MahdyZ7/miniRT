@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 01:23:30 by ahsalem           #+#    #+#             */
-/*   Updated: 2023/01/10 08:20:21 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/12 17:09:10 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,19 @@ typedef struct s_plane_equation
 	float	d;
 }	t_pln_equ;
 
+typedef struct s_cylinder_tracing_kit
+{
+	t_vec	*dir;
+	t_vec	origin_to_cylinder;
+	float	height_by_direction;
+	t_vec 	temp_vec;
+	t_vec 	limit_1;
+	float	h_limit_1;
+	t_vec 	limit_2;
+	float	h_limit_2;
+	t_vec	qudratic;
+}	t_cylinder_tracing_kit;
+
 typedef struct s_plane
 {
 	t_vec		pos;
@@ -65,12 +78,15 @@ typedef struct s_cylinder
 	t_vec		pos;
 	t_vec		orientation;
 	float		diameter;
+	float		radius;
+	float		radius_square;
 	float		height;
 	t_vec		color;
 	int			n_cylinders;
 	t_vec		pos_top ;
 	t_vec		vec_height;
 	float		in_cylinder;
+	float		in_cylinder_square;
 }	t_cylinder;
 typedef struct s_light
 {

@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/24 08:17:10 by ahsalem           #+#    #+#             */
-/*   Updated: 2023/01/10 07:26:04 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/12 17:17:52 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,17 @@ int	fill_camera(
 	if (check_normalized_coord(scene->camera.orientation))
 		return (1);
 	scene->camera.view_field = ft_atof((char *)tmp->next->next->content);
-	scene->camera.xyz_angles.x = (float)((int)scene->camera.xyz_angles.x % 180) * M_PI / 180;
-	scene->camera.xyz_angles.y = (float)((int)scene->camera.xyz_angles.y % 180) * M_PI / 180;
-	scene->camera.xyz_angles.z = (float)((int)scene->camera.xyz_angles.z % 180) * M_PI / 180;
+	if (scene->camera.orientation.z == 1)
+		scene->camera.orientation.z = 0;
+	if (scene->camera.orientation.z == -1)
+		scene->camera.orientation.y = 3.15;
+	// scene->camera.xyz_angles.x = (float)((int)scene->camera.xyz_angles.x % 180) * M_PI / 180;
+	// scene->camera.xyz_angles.y = (float)((int)scene->camera.xyz_angles.y % 180) * M_PI / 180;
+	// scene->camera.xyz_angles.z = (float)((int)scene->camera.xyz_angles.z % 180) * M_PI / 180;
+	scene->camera.xyz_angles.x = scene->camera.orientation.y * -1;
+	scene->camera.xyz_angles.y = scene->camera.orientation.x;
+	scene->camera.xyz_angles.z = 0.0;
+	// scene->camera.xyz_angles.z = (float)((int)(scene->camera.orientation.z * 1000) % 350) / 1000;
 	// scene->camera.xyz_angles.x = scene->camera.orientation.x * M_PI;
 	// scene->camera.xyz_angles.y = scene->camera.orientation.y * M_PI;
 	// scene->camera.xyz_angles.z = scene->camera.orientation.z * M_PI;
@@ -89,4 +97,7 @@ void	fill_calculated_vars(t_cylinder *cylinder, t_scene *scene)
 	cylinder->pos_top = get_cylinder_height(cylinder);
 	cylinder->vec_height = vec_sub(&cylinder_end, &(cylinder->pos));
 	cylinder->in_cylinder = vec_dot(&vec_cylinder_height, &origin_to_cylinder);
+	cylinder->in_cylinder_square = cylinder->in_cylinder * cylinder->in_cylinder ;
+	cylinder->radius = cylinder->diameter / 2;
+	cylinder->radius_square = cylinder->radius * cylinder->radius;
 }
