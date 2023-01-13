@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 16:12:46 by ahsalem           #+#    #+#             */
-/*   Updated: 2023/01/07 18:15:00 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/12 17:20:37 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	scan_camera_errors(t_list *tmp, int occurance)
 {
 	if (occurance > 1 || check_coordinates_error(tmp)
 		|| check_coordinates_error(tmp->next)
-		|| check_int_range(tmp->next->next, 0, 180))
+		|| check_int_range(tmp->next->next, 1, 179))
 	{
 		return (1);
 	}

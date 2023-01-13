@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 18:55:05 by ayassin           #+#    #+#             */
-/*   Updated: 2023/01/11 19:44:17 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/12 21:03:21 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,3 +144,10 @@ void	init_ray_trace_kit(t_ray_trace_kit *r, t_img *img)
 	fill_single_vector(&r->sphere_result, 0, 0, 0);
 	fill_single_vector(&r->cylinder_result, 0, 0, 0);
 }
+
+
+/*
+1) add pos of camera to pos of each objects
+2) apply rotation to every object except camera
+3) remove pos of camera from each object
+*/
