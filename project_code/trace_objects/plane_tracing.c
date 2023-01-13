@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   plane_tracing.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 07:36:53 by ahsalem           #+#    #+#             */
 /*   Updated: 2023/01/12 16:53:16 by ahsalem          ###   ########.fr       */
@@ -20,8 +20,9 @@ int	hit_other_object(t_vec hit_point, t_vec light_vec, t_scene *scene)
 	i = 0;
 	while (i < scene->n_planes)
 	{
-		temp_t = hit_plane(&(scene->plane[i]), scene, &light_vec);
-		if (temp_t && temp_t > 0.00001 && temp_t < 1.0)
+		// hit_point = vec_scalar_mult(&hit_point, 7);
+		temp_t = hit_plane(&(scene->plane[i]), &hit_point, &light_vec);
+		if (temp_t && temp_t > 0.00001 && temp_t < 1)
 			return (1);
 		i++;
 	}
@@ -73,7 +74,7 @@ t_vec	trace_plane(t_vec *dir, t_scene *scene)
 	color = 0x000000;
 	if (closest_plane != NULL)
 	{
-		m = plane_color(dir, closest_plane, scene);
+		m = plane_color(dir, closest_plane, scene, closest_t);
 		color = vec_to_color(
 				vec_multiply_two_vectors(&(closest_plane->color), &m));
 	}
@@ -91,7 +92,7 @@ t_plane	*find_closest_plane(t_scene *scene, t_vec *dir, float *closest_t)
 	closest_plane = NULL;
 	while (i < scene->n_planes)
 	{
-		temp_t = hit_plane(&(scene->plane[i]), scene, dir);
+		temp_t = hit_plane(&(scene->plane[i]), &(scene->camera.view_point), dir);
 		if (temp_t < *closest_t)
 		{
 			*closest_t = temp_t;
@@ -102,7 +103,7 @@ t_plane	*find_closest_plane(t_scene *scene, t_vec *dir, float *closest_t)
 	return (closest_plane);
 }
 
-float	hit_plane(t_plane *plane, t_scene *scene, t_vec *dir)
+float	hit_plane(t_plane *plane, t_vec *origin, t_vec *dir)
 {
 	float	t;
 	float	denominator;
@@ -111,7 +112,7 @@ float	hit_plane(t_plane *plane, t_scene *scene, t_vec *dir)
 	denominator = vec_dot(&plane->orientation, dir);
 	if (denominator != 0)
 	{
-		p0l0 = vec_sub(&plane->pos, &scene->camera.view_point);
+		p0l0 = vec_sub(&plane->pos, origin);
 		t = vec_dot(&p0l0, &plane->orientation) / denominator;
 		if (t > 0.000001)
 			return (t);
@@ -120,3 +121,22 @@ float	hit_plane(t_plane *plane, t_scene *scene, t_vec *dir)
 	}
 	return (INFINITY);
 }
+
+// float	hit_plane_shadow(t_plane *plane, t_scene *scene, t_vec *dir)
+// {
+// 	float	t;
+// 	float	denominator;
+// 	t_vec	p0l0;
+
+// 	denominator = vec_dot(&plane->orientation, dir);
+// 	if (denominator > 0)
+// 	{
+// 		p0l0 = vec_sub(&plane->pos, &scene->camera.view_point);
+// 		t = vec_dot(&p0l0, &plane->orientation) / denominator;
+// 		if (t > 0.000001)
+// 			return (t);
+// 		else
+// 			return (INFINITY);
+// 	}
+// 	return (INFINITY);
+// }

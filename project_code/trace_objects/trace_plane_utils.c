@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   trace_plane_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 19:13:24 by ahsalem           #+#    #+#             */
-/*   Updated: 2023/01/10 07:17:56 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/13 19:40:21 by ayassin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ t_vec	compute_cylinder_color(t_scene *scene, t_vec *dir,t_cylinder *closest_cyli
 	return (i);
 }
 
-t_vec	plane_color(t_vec *dir, t_plane *pln, t_scene *scene)
+t_vec	plane_color(t_vec *dir, t_plane *pln, t_scene *scene, float close_t)
 {
 	t_vec	i;
 	t_vec	normal;
@@ -66,7 +66,8 @@ t_vec	plane_color(t_vec *dir, t_plane *pln, t_scene *scene)
 	float	a;
 
 	fill_single_vector(&i, 0, 0, 0);
-	hit_point = hit_actual_plane(pln, scene, dir);
+	hit_point = vec_scalar_mult(dir, close_t);
+	hit_point = vec_add(&(scene->camera.view_point), &hit_point);
 	normal = pln->orientation;
 	light_vec = vec_sub(&(scene->light.pos), &hit_point);
 	i.x += scene->amb_light.ratio * scene->amb_light.color.x;
@@ -74,8 +75,8 @@ t_vec	plane_color(t_vec *dir, t_plane *pln, t_scene *scene)
 	i.z += scene->amb_light.ratio * scene->amb_light.color.z;
 	if (hit_other_object(hit_point, light_vec, scene))
 		return (i);
-	a = fabsf(vec_dot(&normal, &light_vec));
-	if (a > 0)
+	a = ((vec_dot(&normal, &light_vec)));
+	if (a < 0)
 	{
 		i = add_plane_spot_light(scene, &normal, &light_vec, &i);
 	}

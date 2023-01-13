@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 21:09:01 by ayassin           #+#    #+#             */
 /*   Updated: 2023/01/12 20:10:56 by ahsalem          ###   ########.fr       */
@@ -159,11 +159,11 @@ void		rotate_around_z(t_vec *result, t_vec *dir, float theta_z);
 float		color_by_intesity_to_float(t_vec *color, float intensity);
 t_vec		fit_coordinate_to_screen(float x, float y, t_scene *scene);
 t_vec		get_cylinder_height(t_cylinder *cylinder);
-t_vec		plane_color(t_vec *dir, t_plane *pln, t_scene *scene);
+t_vec		plane_color(t_vec *dir, t_plane *pln, t_scene *scene, float closest_t);
 /*------------------RENDERING-----------------*/
 t_vec		trace_plane(t_vec *dir, t_scene *scene);
-float		hit_plane(t_plane *plane, t_scene *scene, t_vec *dir);
 float		hit_cylinder(t_cylinder *cylinder, t_vec *origin, t_vec *dir, float t_min);
+float		hit_plane(t_plane *plane, t_vec *orgin, t_vec *dir);
 void		init_ray_trace_kit(t_ray_trace_kit *r, t_img *img);
 float		check_capped_part(float t0, float t1,
 				t_vec *origin, t_vec *dir, t_cylinder *cylinder);
