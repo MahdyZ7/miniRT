@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/25 14:20:46 by ahsalem           #+#    #+#             */
-/*   Updated: 2023/01/07 20:59:28 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/14 16:50:44 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,15 @@ t_pln_equ	fill_plane_equation(t_plane plane)
 		- (equation.abc.y * plane.pos.y)
 		- (equation.abc.z * plane.pos.z);
 	return (equation);
+}
+
+void	init_rototion_angels(t_scene *scene)
+{
+	if (scene->camera.orientation.z == 1)
+		scene->camera.orientation.z = 0;
+	if (scene->camera.orientation.z == -1)
+		scene->camera.orientation.y = 3.15;
+	scene->camera.xyz_angles.x = scene->camera.orientation.y * -1;
+	scene->camera.xyz_angles.y = scene->camera.orientation.x;
+	scene->camera.xyz_angles.z = 0.0;
 }

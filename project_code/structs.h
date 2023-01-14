@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 01:23:30 by ahsalem           #+#    #+#             */
-/*   Updated: 2023/01/12 17:09:10 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/14 18:43:52 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,23 @@ typedef struct s_cylinder_tracing_kit
 	t_vec	*dir;
 	t_vec	origin_to_cylinder;
 	float	height_by_direction;
-	t_vec 	temp_vec;
-	t_vec 	limit_1;
+	t_vec	temp_vec;
+	t_vec	limit_1;
 	float	h_limit_1;
-	t_vec 	limit_2;
+	t_vec	limit_2;
 	float	h_limit_2;
 	t_vec	qudratic;
 }	t_cylinder_tracing_kit;
 
+typedef struct t_compute_cy_color_kit
+{
+	t_vec	i;
+	t_vec	normal;
+	t_vec	hit_point;
+	t_vec	light_vec;
+	double	t;
+	t_vec	temp;
+}	t_compute_cy_color_kit;
 typedef struct s_plane
 {
 	t_vec		pos;
@@ -106,7 +115,6 @@ typedef struct s_amb_light
 	float	ratio;
 	t_vec	color;
 }	t_amb_light;
-// hold image related information
 typedef struct s_img
 {
 	void			*img_ptr;
@@ -147,7 +155,19 @@ typedef struct s_scene
 	int			number_of_shapes;
 }	t_scene;
 
-typedef struct parsing_kit
+typedef struct s_trace_cylinder_kit
+{
+	int			color;
+	float		closest_t;
+	float		temp_t;
+	t_cylinder	*closest_cylinder;
+	t_vec		result;
+	t_vec		m;
+	t_vec		cyl_color;
+	int			i;
+}	t_trace_cylinder_kit;
+
+typedef struct s_parsing_kit
 {
 	int		i;
 	t_list	*tmp;

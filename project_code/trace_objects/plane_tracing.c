@@ -3,49 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   plane_tracing.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
+/*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 07:36:53 by ahsalem           #+#    #+#             */
-/*   Updated: 2023/01/12 16:53:16 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/14 17:17:02 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../miniRT.h"
-
-int	hit_other_object(t_vec hit_point, t_vec light_vec, t_scene *scene)
-{
-	float		temp_t;
-	int			i;
-
-	i = 0;
-	while (i < scene->n_planes)
-	{
-		// hit_point = vec_scalar_mult(&hit_point, 7);
-		temp_t = hit_plane(&(scene->plane[i]), &hit_point, &light_vec);
-		if (temp_t && temp_t > 0.00001 && temp_t < 1)
-			return (1);
-		i++;
-	}
-	i = 0;
-	while (i < scene->n_spheres)
-	{
-		temp_t = hit_sphere
-			(&(scene->spheres[i]), &hit_point, &light_vec, 0.00001);
-		if (temp_t && temp_t > 0.00001 && temp_t < 1.0)
-			return (1);
-		++i;
-	}
-	i = 0;
-	while (i < scene->n_cylinders)
-	{
-		temp_t = hit_cylinder
-			(&(scene->cylinder[i]), &hit_point, &light_vec, 0.00001);
-		if (temp_t && temp_t > 0.00001 && temp_t < 1.0)
-			return (1);
-		++i;
-	}
-	return (0);
-}
 
 t_vec	hit_actual_plane(t_plane *pln, t_scene *scene, t_vec *dir)
 {
@@ -92,7 +57,8 @@ t_plane	*find_closest_plane(t_scene *scene, t_vec *dir, float *closest_t)
 	closest_plane = NULL;
 	while (i < scene->n_planes)
 	{
-		temp_t = hit_plane(&(scene->plane[i]), &(scene->camera.view_point), dir);
+		temp_t = hit_plane(&(scene->plane[i]),
+				&(scene->camera.view_point), dir);
 		if (temp_t < *closest_t)
 		{
 			*closest_t = temp_t;
@@ -121,22 +87,3 @@ float	hit_plane(t_plane *plane, t_vec *origin, t_vec *dir)
 	}
 	return (INFINITY);
 }
-
-// float	hit_plane_shadow(t_plane *plane, t_scene *scene, t_vec *dir)
-// {
-// 	float	t;
-// 	float	denominator;
-// 	t_vec	p0l0;
-
-// 	denominator = vec_dot(&plane->orientation, dir);
-// 	if (denominator > 0)
-// 	{
-// 		p0l0 = vec_sub(&plane->pos, &scene->camera.view_point);
-// 		t = vec_dot(&p0l0, &plane->orientation) / denominator;
-// 		if (t > 0.000001)
-// 			return (t);
-// 		else
-// 			return (INFINITY);
-// 	}
-// 	return (INFINITY);
-// }

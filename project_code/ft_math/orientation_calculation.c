@@ -12,16 +12,16 @@
 
 #include "../miniRT.h"
 
-float	find_rotation_angle(t_vec *a, t_vec *b)
+float	find_rotation_angle(t_vec a, t_vec b)
 {
 	float	dot;
 	float	norm_a;
 	float	norm_b;
 	float	theta;
 
-	dot = vec_dot(a, b);
-	norm_a = sqrt(a->x * a->x + a->y * a->y + a->z * a->z);
-	norm_b = sqrt(b->x * b->x + b->y * b->y + b->z * b->z);
+	dot = vec_dot(&a, &b);
+	norm_a = sqrt(a.x * a.x + a.y * a.y + a.z * a.z);
+	norm_b = sqrt(b.x * b.x + b.y * b.y + b.z * b.z);
 	theta = acos(dot / (norm_a * norm_b));
 	return (theta);
 }
@@ -30,9 +30,11 @@ t_vec	dir_with_camera_orientation(t_vec *dir, t_scene *scene)
 {
 	t_vec	result;
 
+	normalize(dir);
 	rotate_around_z(dir, dir, scene->camera.xyz_angles.z);
 	rotate_around_x(dir, dir, scene->camera.xyz_angles.x);
 	rotate_around_y(dir, dir, scene->camera.xyz_angles.y);
+	normalize(dir);
 	result = *dir;
 	return (result);
 }
@@ -64,19 +66,18 @@ void	rotate_around_z(t_vec *result, t_vec *dir, float theta_z)
 	result->y = tmp.x * sin(theta_z) + tmp.y * cos(theta_z);
 }
 
-//my brilliant soloution that doesn't work
-// result.x = dir->x * cos(y) * cos(z) - dir->y 
-//* sin(z) * cos(y) + dir->z * sin(y);
-// result.y = dir->x * sin(z) * cos(x) - dir->y * cos(z) * sin(x) 
-// 	+ dir->x * sin(y) * cos(z) * sin(x) - dir->y * sin(z) * sin(y) * sin (x)
-// 	- dir->z * cos(y) * sin(x);
-// result.z = dir->x * sin(z) * sin(x) + dir->y * cos(z) * sin(x)
-// 	- dir->x * sin(y) * cos(z) * cos(x) + y * sin(z) * sin(y) * cos(x)
-// 	+ dir->z * cos(y) * cos(x);
+// void init_rototion_angels(t_scene *scene)
+// {
+// 	t_vec	ref;
 
-//chat gpt solution has only y and z axis working
-	// result.x = dir->x * cos(z) * cos(y) 
-	//- dir->y * sin(z) + dir->z * cos(z) * sin(y);
-	// result.y = dir->x * sin(z)
-	//* cos(y) + dir->y * cos(z) + dir->z * sin(z) * sin(y);
-	// result.z = dir->x * sin(y) + dir->z * cos(y);
+// 	fill_single_vector(&ref, 1, 0, 0);
+// 	normalize(&scene->camera.orientation);
+// 	scene->camera.xyz_angles.x = 
+//find_rotation_angle(scene->camera.orientation, ref) - 1.57;
+// 	fill_single_vector(&ref, 0, 1, 0);
+// 	scene->camera.xyz_angles.y 
+//= find_rotation_angle(scene->camera.orientation, ref) - 1.57;
+// 	fill_single_vector(&ref, 0, 0, 1);
+// 	scene->camera.xyz_angles.z 
+//= find_rotation_angle(scene->camera.orientation, ref) * 0;
+// }

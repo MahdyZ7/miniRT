@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup_display.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
+/*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 10:38:06 by ayassin           #+#    #+#             */
-/*   Updated: 2023/01/11 22:06:40 by ayassin          ###   ########.fr       */
+/*   Updated: 2023/01/14 18:57:51 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	orint_planes(t_scene *scene)
 
 	i = 0;
 	plane = scene->plane;
-	while( i < scene->n_planes)
+	while (i < scene->n_planes)
 	{
 		if (plane[i].pos.x > scene->camera.view_point.x)
 			if (plane[i].orientation.x < 0)
@@ -54,6 +54,7 @@ void	orint_planes(t_scene *scene)
 		++i;
 	}
 }
+
 /* Destroy the imgae and then palce a new ceated image on the window.
 Used to update the image on the window for any change that occures*/
 void	redraw(t_win *s, t_img *img, void (*draw)(t_img *))
