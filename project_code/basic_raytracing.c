@@ -6,7 +6,7 @@
 /*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 18:55:05 by ayassin           #+#    #+#             */
-/*   Updated: 2023/01/12 21:03:21 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/14 17:42:24 by ayassin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	basic_raytracing(t_img *img)
 	printf("\nOrientation = ");
 	vis_vector(img->scene->camera.xyz_angles);
 	printf("\n\n");
-	init_ray_trace_kit(&r, img);
 	init_ray_trace_kit(&r, img);
 	if(img->scene->spheres > 0 && img->scene->n_cylinders == 0
 		&& img->scene->n_planes == 0)
@@ -69,6 +68,9 @@ void	trace_all_shapes(t_ray_trace_kit *r, t_img *img)
 
 void	trace_only_planes(t_ray_trace_kit *r, t_img *img)
 {
+	printf("trace_only_planes\n");
+	printf("x angle = %f, y angle = %f, z angle = %f\n"
+		, img->scene->camera.xyz_angles.x, img->scene->camera.xyz_angles.y, img->scene->camera.xyz_angles.z);
 	while (r->x < WIN_WIDTH)
 	{
 		r->y = 0;
@@ -78,7 +80,12 @@ void	trace_only_planes(t_ray_trace_kit *r, t_img *img)
 				* r->angle * r->aspectratio;
 			r->new_y = (1 - 2 * ((r->y + 0.5) * r->invheight)) * r->angle;
 			vec_init(&r->dir, r->new_x, r-> new_y, 1);
+			normalize(&r->dir);
 			r->dir = dir_with_camera_orientation(&r->dir, img->scene);
+			// img->scene->camera.view_point
+			// 	= dir_with_camera_orientation(&img->scene->camera.view_point, img->scene);
+			// r->dir = vec_sub(&r->dir, &img->scene->camera.view_point);
+			normalize(&r->dir);
 			r->plane_result = trace_plane(&r->dir, img->scene);
 				r->color = r->plane_result.y;
 			pixel_put(img->scene->win->img, r->x, r->y, r->color);
@@ -120,7 +127,10 @@ void	trace_only_spheres(t_ray_trace_kit *r, t_img *img)
 				* r->angle * r->aspectratio;
 			r->new_y = (1 - 2 * ((r->y + 0.5) * r->invheight)) * r->angle;
 			vec_init(&r->dir, r->new_x, r-> new_y, 1);
+			normalize(&r->dir);
 			r->dir = dir_with_camera_orientation(&r->dir, img->scene);
+			r->dir = vec_sub(&r->dir, &img->scene->camera.view_point);
+			normalize(&r->dir);
 			r->plane_result = trace_plane(&r->dir, img->scene);
 			r->sphere_result = trace_sphere(&r->dir, img->scene->camera.view_point.z + 1, img->scene);
 			r->color = r->sphere_result.y;
