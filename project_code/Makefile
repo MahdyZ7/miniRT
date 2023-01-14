@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+         #
+#    By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/16 21:09:20 by ayassin           #+#    #+#              #
-#    Updated: 2023/01/10 23:09:11 by ayassin          ###   ########.fr        #
+#    Updated: 2023/01/14 18:42:56 by ahsalem          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ CFLAGS =  -Wall -Wextra -Werror -g
 
 OBJDIR=obj
 
-SRC = miniRT.c setup_display.c key_hooks.c dummy_functions.c basic_raytracing.c\
+SRC = miniRT.c setup_display.c key_hooks.c  basic_raytracing.c\
 		error_handling/file_error.c\
 		error_handling/elements_error.c  error_handling/shapes_check.c\
 		parsing/read_file.c parsing/mem_clean.c parsing/check_element_items.c\
@@ -34,7 +34,7 @@ SRC = miniRT.c setup_display.c key_hooks.c dummy_functions.c basic_raytracing.c\
 		pre_rendering/screen_colors_init.c \
 		trace_objects/plane_tracing.c trace_objects/sphere_tracing.c trace_objects/cylinder_tracing.c\
 		trace_objects/lights_and_colors.c\
-		trace_objects/trace_plane_utils.c\
+		trace_objects/trace_plane_utils.c trace_objects/shadow_utils.c \
 
 
 OBJSUBDIRS = parsing error_handling testers ft_math pre_rendering trace_objects

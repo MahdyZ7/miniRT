@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
+/*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 21:09:01 by ayassin           #+#    #+#             */
-/*   Updated: 2023/01/12 20:10:56 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/14 18:52:41 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef MINIRT_H
 # define MINIRT_H
@@ -155,18 +154,20 @@ t_vec		find_rotation_matrix(t_vec *dir, t_scene *scene);
 void		rotate_around_x(t_vec *result, t_vec *dir, float theta_x);
 void		rotate_around_y(t_vec *result, t_vec *dir, float theta_y);
 void		rotate_around_z(t_vec *result, t_vec *dir, float theta_z);
+float		find_rotation_angle(t_vec a, t_vec b);
 /*------------------RENDERING_PREPARATION--------------*/
 float		color_by_intesity_to_float(t_vec *color, float intensity);
 t_vec		fit_coordinate_to_screen(float x, float y, t_scene *scene);
 t_vec		get_cylinder_height(t_cylinder *cylinder);
-t_vec		plane_color(t_vec *dir, t_plane *pln, t_scene *scene, float closest_t);
+t_vec		plane_color(
+				t_vec *dir, t_plane *pln, t_scene *scene, float closest_t);
 /*------------------RENDERING-----------------*/
+int			pick_shape_color(t_ray_trace_kit *r);
 t_vec		trace_plane(t_vec *dir, t_scene *scene);
-float		hit_cylinder(t_cylinder *cylinder, t_vec *origin, t_vec *dir, float t_min);
+float		hit_cylinder(
+				t_cylinder *cylinder, t_vec *origin, t_vec *dir, float t_min);
 float		hit_plane(t_plane *plane, t_vec *orgin, t_vec *dir);
 void		init_ray_trace_kit(t_ray_trace_kit *r, t_img *img);
-float		check_capped_part(float t0, float t1,
-				t_vec *origin, t_vec *dir, t_cylinder *cylinder);
 t_vec		add_sphere_spot_light(t_scene *scene,
 				t_vec *normal, t_vec *light_vec, t_vec *i);
 t_vec		trace_cylinder(t_vec *dir, float t_min, t_scene *scene);
@@ -183,13 +184,25 @@ t_plane		*find_closest_plane(t_scene *scene, t_vec *dir, float *closest_t);
 t_sphere	*find_closest_sphere(
 				t_scene *scene, t_vec *dir, float *closest_t, float *t_min);
 t_vec		dir_with_camera_orientation(t_vec *dir, t_scene *scene);
-t_vec		compute_cylinder_color(t_scene *scene, t_vec *dir,t_cylinder *closest_cylinder, float close_t);
+t_vec		compute_cylinder_color(t_scene *scene,
+				t_vec *dir, t_cylinder *closest_cylinder, float close_t);
 void		trace_all_shapes(t_ray_trace_kit *r, t_img *img);
 void		trace_only_spheres(t_ray_trace_kit *r, t_img *img);
 void		trace_only_planes(t_ray_trace_kit *r, t_img *img);
 void		trace_only_cylinders(t_ray_trace_kit *r, t_img *img);
-void	init_ct_kit(t_cylinder_tracing_kit *c, t_vec *dir, t_vec *origin, t_cylinder *cylinder);
-t_vec	solve_cylinder_quadratic(t_cylinder *cylinder, t_cylinder_tracing_kit *c);
+void		init_ct_kit(
+				t_cylinder_tracing_kit *c,
+				t_vec *dir, t_vec *origin,
+				t_cylinder *cylinder);
+t_vec		solve_cylinder_quadratic(
+				t_cylinder *cylinder, t_cylinder_tracing_kit *c);
+void		init_rototion_angels(t_scene *scene);
+void		init_trace_cylinder_kit(t_trace_cylinder_kit *t);
+int			is_plane_shadow(t_vec hit_point, t_vec light_vec, t_scene *scene);
+int			is_sphere_shadow(t_vec hit_point, t_vec light_vec, t_scene *scene);
+int			is_cylinder_shadow(
+				t_vec hit_point, t_vec light_vec, t_scene *scene);
+void		init_compute_cy_color_kit(t_compute_cy_color_kit *kit);
 /*------------------MLX_RELATED---------------*/
 void		pixel_put(t_img *data, int x, int y, int color);
 void		redraw(t_win *s, t_img *img, void (*draw)(t_img *));
@@ -197,7 +210,7 @@ void		setup_img(t_img *img, t_win *win, int width, int hight);
 int			window_setup(t_win *win, t_img *img, char *map_title);
 int			exit_code(t_win *win);
 int			key_hook(int key, t_win *win);
-
+void		move_camera_hooks(int key, t_win *win);
 /*----------------ERRORS-----------------------*/
 int			not_valid_file(int argc, char **argv);
 int			bad_file(char **argv);

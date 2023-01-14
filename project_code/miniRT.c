@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 02:13:41 by ahsalem           #+#    #+#             */
-/*   Updated: 2023/01/12 17:03:17 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/14 18:43:32 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,10 @@ int	main(int argc, char **argv)
 	return (0);
 }
 
-/*
-	refrence:
-	For spheres, camera orientation, light, and shadows:
-	https://gabrielgambetta.com/computer-graphics-from-scratch/
-	For Cylinder:
-	https://iquilezles.org/articles/intersectors/
-	http://www.illusioncatalyst.com/notes_files/mathematics/line_cylinder_intersection.php
-*/
+//refrence:
+//For spheres, camera orientation, light, and shadows:
+// https://gabrielgambetta.com/computer-graphics-from-scratch/
+// For Cylinder:
+// https://iquilezles.org/articles/intersectors/
+//http://www.illusioncatalyst.com/notes_files/mathematics
+///line_cylinder_intersection.php
