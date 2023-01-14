@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   orientation_calculation.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 21:20:49 by ahsalem           #+#    #+#             */
-/*   Updated: 2023/01/14 16:51:46 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/14 18:03:12 by ayassin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,20 +41,29 @@ t_vec	dir_with_camera_orientation(t_vec *dir, t_scene *scene)
 
 void	rotate_around_x(t_vec *result, t_vec *dir, float theta_x)
 {
-	result->y = dir->y * cos(theta_x) - dir->z * sin(theta_x);
-	result->z = dir->y * sin(theta_x) + dir->z * cos(theta_x);
+	t_vec 	tmp;
+	
+	vec_init(&tmp, dir->x, dir->y, dir->z);
+	result->y = tmp.y * cos(theta_x) - tmp.z * sin(theta_x);
+	result->z = tmp.y * sin(theta_x) + tmp.z * cos(theta_x);
 }
 
 void	rotate_around_y(t_vec *result, t_vec *dir, float theta_y)
 {
-	result->x = dir->x * cos(theta_y) + dir->z * sin(theta_y);
-	result->z = -1 * dir->x * sin(theta_y) + dir->z * cos(theta_y);
+	t_vec 	tmp;
+	
+	vec_init(&tmp, dir->x, dir->y, dir->z);
+	result->x = tmp.x * cos(theta_y) + tmp.z * sin(theta_y);
+	result->z = -1 * tmp.x * sin(theta_y) + tmp.z * cos(theta_y);
 }
 
 void	rotate_around_z(t_vec *result, t_vec *dir, float theta_z)
 {
-	result->x = dir->x * cos(theta_z) - dir->y * sin(theta_z);
-	result->y = dir->x * sin(theta_z) + dir->y * cos(theta_z);
+	t_vec 	tmp;
+	
+	vec_init(&tmp, dir->x, dir->y, dir->z);
+	result->x = tmp.x * cos(theta_z) - tmp.y * sin(theta_z);
+	result->y = tmp.x * sin(theta_z) + tmp.y * cos(theta_z);
 }
 
 // void init_rototion_angels(t_scene *scene)
