@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder_tracing.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 11:37:30 by ayassin           #+#    #+#             */
-/*   Updated: 2023/01/12 20:14:02 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/13 19:54:18 by ayassin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ float	hit_cylinder(t_cylinder *cylinder, t_vec *origin, t_vec *dir, float t_min)
 
 void	init_ct_kit(t_cylinder_tracing_kit *c, t_vec *dir, t_vec *origin, t_cylinder *cylinder)
 {
-	c->dir = dir;
 	c->dir = dir;
 	c->origin_to_cylinder = vec_sub(origin, &(cylinder->pos));
 	normalize(&cylinder->vec_height);
