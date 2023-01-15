@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   math_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/25 14:20:46 by ahsalem           #+#    #+#             */
-/*   Updated: 2023/01/14 16:50:44 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/15 19:03:04 by ayassin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,12 @@ t_pln_equ	fill_plane_equation(t_plane plane)
 
 void	init_rototion_angels(t_scene *scene)
 {
-	if (scene->camera.orientation.z == 1)
-		scene->camera.orientation.z = 0;
-	if (scene->camera.orientation.z == -1)
-		scene->camera.orientation.y = 3.15;
-	scene->camera.xyz_angles.x = scene->camera.orientation.y * -1;
-	scene->camera.xyz_angles.y = scene->camera.orientation.x;
-	scene->camera.xyz_angles.z = 0.0;
+	// if (scene->camera.orientation.z == 1)
+	// 	scene->camera.orientation.z = 0;
+	// if (scene->camera.orientation.z == -1)
+	// 	scene->camera.orientation.y = 3.15;
+	scene->camera.xyz_angles.x = acosf(scene->camera.orientation.y) - M_PI_2;
+	scene->camera.xyz_angles.y = atan2f(scene->camera.orientation.x,
+			scene->camera.orientation.z);
+	scene->camera.xyz_angles.z = 0;
 }
