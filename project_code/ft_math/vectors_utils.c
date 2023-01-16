@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 17:16:26 by ahsalem           #+#    #+#             */
-/*   Updated: 2023/01/07 22:35:14 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/16 04:22:30 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,18 @@ void	normalize(t_vec *v)
 	v->x *= inv;
 	v->y *= inv;
 	v->z *= inv;
+}
+
+float	find_rotation_angle(t_vec a, t_vec b)
+{
+	float	dot;
+	float	norm_a;
+	float	norm_b;
+	float	theta;
+
+	dot = vec_dot(&a, &b);
+	norm_a = sqrt(a.x * a.x + a.y * a.y + a.z * a.z);
+	norm_b = sqrt(b.x * b.x + b.y * b.y + b.z * b.z);
+	theta = acos(dot / (norm_a * norm_b));
+	return (theta);
 }

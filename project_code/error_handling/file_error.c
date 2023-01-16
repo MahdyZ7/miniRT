@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 15:28:03 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/24 08:11:54 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/16 04:23:34 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@ int	not_valid_file(int argc, char **argv)
 	if (!argv[1])
 		return (parse_error_message());
 	if (bad_file(argv))
+		return (parse_error_message());
+	if (WIN_WIDTH < 50 || WIN_HIGHT < 50
+		|| WIN_WIDTH > 4200 || WIN_HIGHT > 4200)
 		return (parse_error_message());
 	return (0);
 }

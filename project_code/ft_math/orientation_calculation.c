@@ -3,27 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   orientation_calculation.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
+/*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 21:20:49 by ahsalem           #+#    #+#             */
-/*   Updated: 2023/01/14 18:03:12 by ayassin          ###   ########.fr       */
+/*   Updated: 2023/01/16 04:22:50 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../miniRT.h"
 
-float	find_rotation_angle(t_vec a, t_vec b)
+void	init_rototion_angels(t_scene *scene)
 {
-	float	dot;
-	float	norm_a;
-	float	norm_b;
-	float	theta;
-
-	dot = vec_dot(&a, &b);
-	norm_a = sqrt(a.x * a.x + a.y * a.y + a.z * a.z);
-	norm_b = sqrt(b.x * b.x + b.y * b.y + b.z * b.z);
-	theta = acos(dot / (norm_a * norm_b));
-	return (theta);
+	scene->camera.xyz_angles.x = acosf(scene->camera.orientation.y) - M_PI_2;
+	scene->camera.xyz_angles.y = atan2f(scene->camera.orientation.x,
+			scene->camera.orientation.z);
+	scene->camera.xyz_angles.z = 0;
+	fill_single_vector(&scene->camera.sin_theta,
+		sin(scene->camera.xyz_angles.x),
+		sin(scene->camera.xyz_angles.y),
+		sin(scene->camera.xyz_angles.z));
+	fill_single_vector(&scene->camera.cos_theta,
+		cos(scene->camera.xyz_angles.x),
+		cos(scene->camera.xyz_angles.y),
+		cos(scene->camera.xyz_angles.z));
 }
 
 t_vec	dir_with_camera_orientation(t_vec *dir, t_scene *scene)
@@ -31,39 +33,45 @@ t_vec	dir_with_camera_orientation(t_vec *dir, t_scene *scene)
 	t_vec	result;
 
 	normalize(dir);
-	rotate_around_z(dir, dir, scene->camera.xyz_angles.z);
-	rotate_around_x(dir, dir, scene->camera.xyz_angles.x);
-	rotate_around_y(dir, dir, scene->camera.xyz_angles.y);
+	rotate_around_z(dir, dir, scene);
+	rotate_around_x(dir, dir, scene);
+	rotate_around_y(dir, dir, scene);
 	normalize(dir);
 	result = *dir;
 	return (result);
 }
 
-void	rotate_around_x(t_vec *result, t_vec *dir, float theta_x)
+void	rotate_around_x(t_vec *result, t_vec *dir, t_scene *scene)
 {
-	t_vec 	tmp;
-	
+	t_vec	tmp;
+
 	vec_init(&tmp, dir->x, dir->y, dir->z);
-	result->y = tmp.y * cos(theta_x) - tmp.z * sin(theta_x);
-	result->z = tmp.y * sin(theta_x) + tmp.z * cos(theta_x);
+	result->y = tmp.y * scene->camera.cos_theta.x
+		- tmp.z * scene->camera.sin_theta.x;
+	result->z = tmp.y * scene->camera.sin_theta.x
+		+ tmp.z * scene->camera.cos_theta.x;
 }
 
-void	rotate_around_y(t_vec *result, t_vec *dir, float theta_y)
+void	rotate_around_y(t_vec *result, t_vec *dir, t_scene *scene)
 {
-	t_vec 	tmp;
-	
+	t_vec	tmp;
+
 	vec_init(&tmp, dir->x, dir->y, dir->z);
-	result->x = tmp.x * cos(theta_y) + tmp.z * sin(theta_y);
-	result->z = -1 * tmp.x * sin(theta_y) + tmp.z * cos(theta_y);
+	result->x = tmp.x * scene->camera.cos_theta.y
+		+ tmp.z * scene->camera.sin_theta.y;
+	result->z = -1 * tmp.x * scene->camera.sin_theta.y
+		+ tmp.z * scene->camera.cos_theta.y;
 }
 
-void	rotate_around_z(t_vec *result, t_vec *dir, float theta_z)
+void	rotate_around_z(t_vec *result, t_vec *dir, t_scene *scene)
 {
-	t_vec 	tmp;
-	
+	t_vec	tmp;
+
 	vec_init(&tmp, dir->x, dir->y, dir->z);
-	result->x = tmp.x * cos(theta_z) - tmp.y * sin(theta_z);
-	result->y = tmp.x * sin(theta_z) + tmp.y * cos(theta_z);
+	result->x = tmp.x * scene->camera.cos_theta.z
+		- tmp.y * scene->camera.sin_theta.z;
+	result->y = tmp.x * scene->camera.sin_theta.z
+		+ tmp.y * scene->camera.cos_theta.z;
 }
 
 // void init_rototion_angels(t_scene *scene)
