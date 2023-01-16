@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 01:23:30 by ahsalem           #+#    #+#             */
-/*   Updated: 2023/01/14 18:43:52 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/16 03:27:23 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,8 @@ typedef struct s_camera
 	t_vec	orientation;
 	t_vec	xyz_angles;
 	float	view_field;
+	t_vec	sin_theta;
+	t_vec	cos_theta;
 }	t_camera;
 typedef struct s_amb_light
 {

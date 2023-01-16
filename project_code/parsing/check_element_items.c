@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 23:54:06 by ahsalem           #+#    #+#             */
-/*   Updated: 2023/01/07 18:20:57 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/16 04:21:07 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,13 @@ int	is_cordinate(char *coordinate)
 
 int	ft_is_float_and_update_i(char *check_me, int *i)
 {
+	int	start;
+	int	end;
+
+	end = 0;
 	if (check_me[*i] == '+' || check_me[*i] == '-')
 		*i = *i + 1;
+	start = *i;
 	if (!ft_isdigit(check_me[*i]))
 		return (0);
 	while (ft_isdigit(check_me[*i]))
@@ -68,7 +73,26 @@ int	ft_is_float_and_update_i(char *check_me, int *i)
 		while (ft_isdigit(check_me[*i]))
 			*i = *i +1;
 	}
+	end = *i - start + 1;
+	if (check_float_overflow(&check_me[start], end))
+		return (0);
 	return (1);
+}
+
+int	check_float_overflow(char *check_me, int end)
+{
+	char	*inspect_float;
+
+	inspect_float = ft_substr(check_me, 0, end);
+	if (!inspect_float)
+		return (1);
+	if (atof(inspect_float) < 0
+		|| atof(inspect_float) > 214748364.0)
+	{
+		free(inspect_float);
+		return (1);
+	}
+	return (0);
 }
 
 t_list	*get_next_occurance(t_list *tmp, char *element)

@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 18:55:05 by ayassin           #+#    #+#             */
-/*   Updated: 2023/01/14 18:49:07 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/16 03:41:55 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	basic_raytracing(t_img *img)
 {
 	t_ray_trace_kit	r;
 
-	init_rototion_angels(img->scene);
+	init_rototion_angels_with_hooks(img->scene);
 	printf("\nOrientation = ");
 	vis_vector(img->scene->camera.orientation);
 	printf("\n\n");

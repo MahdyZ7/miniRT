@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 21:09:01 by ayassin           #+#    #+#             */
-/*   Updated: 2023/01/14 18:52:41 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/16 04:19:52 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,10 +151,11 @@ float		sign(float x);
 t_pln_equ	fill_plane_equation(t_plane plane);
 void		normalize(t_vec *v);
 t_vec		find_rotation_matrix(t_vec *dir, t_scene *scene);
-void		rotate_around_x(t_vec *result, t_vec *dir, float theta_x);
-void		rotate_around_y(t_vec *result, t_vec *dir, float theta_y);
-void		rotate_around_z(t_vec *result, t_vec *dir, float theta_z);
+void		rotate_around_x(t_vec *result, t_vec *dir, t_scene *scene);
+void		rotate_around_y(t_vec *result, t_vec *dir, t_scene *scene);
+void		rotate_around_z(t_vec *result, t_vec *dir, t_scene *scene);
 float		find_rotation_angle(t_vec a, t_vec b);
+int			check_float_overflow(char *check_me, int end);
 /*------------------RENDERING_PREPARATION--------------*/
 float		color_by_intesity_to_float(t_vec *color, float intensity);
 t_vec		fit_coordinate_to_screen(float x, float y, t_scene *scene);
@@ -197,6 +198,7 @@ void		init_ct_kit(
 t_vec		solve_cylinder_quadratic(
 				t_cylinder *cylinder, t_cylinder_tracing_kit *c);
 void		init_rototion_angels(t_scene *scene);
+void		init_rototion_angels_with_hooks(t_scene *scene);
 void		init_trace_cylinder_kit(t_trace_cylinder_kit *t);
 int			is_plane_shadow(t_vec hit_point, t_vec light_vec, t_scene *scene);
 int			is_sphere_shadow(t_vec hit_point, t_vec light_vec, t_scene *scene);
