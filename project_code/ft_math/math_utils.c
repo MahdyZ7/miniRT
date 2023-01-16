@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   math_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
+/*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/25 14:20:46 by ahsalem           #+#    #+#             */
-/*   Updated: 2023/01/15 19:03:04 by ayassin          ###   ########.fr       */
+/*   Updated: 2023/01/16 03:43:12 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,14 +62,14 @@ t_pln_equ	fill_plane_equation(t_plane plane)
 	return (equation);
 }
 
-void	init_rototion_angels(t_scene *scene)
+void	init_rototion_angels_with_hooks(t_scene *scene)
 {
-	// if (scene->camera.orientation.z == 1)
-	// 	scene->camera.orientation.z = 0;
-	// if (scene->camera.orientation.z == -1)
-	// 	scene->camera.orientation.y = 3.15;
-	scene->camera.xyz_angles.x = acosf(scene->camera.orientation.y) - M_PI_2;
-	scene->camera.xyz_angles.y = atan2f(scene->camera.orientation.x,
-			scene->camera.orientation.z);
-	scene->camera.xyz_angles.z = 0;
+	fill_single_vector(&scene->camera.sin_theta,
+		sin(scene->camera.xyz_angles.x),
+		sin(scene->camera.xyz_angles.y),
+		sin(scene->camera.xyz_angles.z));
+	fill_single_vector(&scene->camera.cos_theta,
+		cos(scene->camera.xyz_angles.x),
+		cos(scene->camera.xyz_angles.y),
+		cos(scene->camera.xyz_angles.z));
 }
