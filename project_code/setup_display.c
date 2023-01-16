@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup_display.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 10:38:06 by ayassin           #+#    #+#             */
-/*   Updated: 2023/01/14 18:57:51 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/16 22:53:18 by ayassin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,30 +27,30 @@ void	pixel_put(t_img *data, int x, int y, int color)
 void	orint_planes(t_scene *scene)
 {
 	int		i;
-	t_plane	*plane;
+	// t_plane	*plane;
 
 	i = 0;
-	plane = scene->plane;
+	// plane = scene->plane;
 	while (i < scene->n_planes)
 	{
-		if (plane[i].pos.x > scene->camera.view_point.x)
-			if (plane[i].orientation.x < 0)
-				plane[i].orientation.x *= -1;
-		if (plane[i].pos.x < scene->camera.view_point.x)
-			if (plane[i].orientation.x > 0)
-				plane[i].orientation.x *= -1;
-		if (plane[i].pos.y > scene->camera.view_point.y)
-			if (plane[i].orientation.y < 0)
-				plane[i].orientation.y *= -1;
-		if (plane[i].pos.y < scene->camera.view_point.y)
-			if (plane[i].orientation.y > 0)
-				plane[i].orientation.y *= -1;
-		if (plane[i].pos.z > scene->camera.view_point.z)
-			if (plane[i].orientation.z < 0)
-				plane[i].orientation.z *= -1;
-		if (plane[i].pos.z < scene->camera.view_point.z)
-			if (plane[i].orientation.z > 0)
-				plane[i].orientation.z *= -1;
+		// if (plane[i].pos.x > scene->camera.view_point.x)
+		// 	if (plane[i].orientation.x < 0)
+		// 		plane[i].orientation.x *= -1;
+		// if (plane[i].pos.x < scene->camera.view_point.x)
+		// 	if (plane[i].orientation.x > 0)
+		// 		plane[i].orientation.x *= -1;
+		// if (plane[i].pos.y > scene->camera.view_point.y)
+		// 	if (plane[i].orientation.y < 0)
+		// 		plane[i].orientation.y *= -1;
+		// if (plane[i].pos.y < scene->camera.view_point.y)
+		// 	if (plane[i].orientation.y > 0)
+		// 		plane[i].orientation.y *= -1;
+		// if (plane[i].pos.z > scene->camera.view_point.z)
+		// 	if (plane[i].orientation.z < 0)
+		// 		plane[i].orientation.z *= -1;
+		// if (plane[i].pos.z < scene->camera.view_point.z)
+		// 	if (plane[i].orientation.z > 0)
+		// 		plane[i].orientation.z *= -1;
 		++i;
 	}
 }
