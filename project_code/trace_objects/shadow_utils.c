@@ -6,7 +6,7 @@
 /*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 17:17:04 by ahsalem           #+#    #+#             */
-/*   Updated: 2023/01/17 13:40:29 by ayassin          ###   ########.fr       */
+/*   Updated: 2023/01/17 16:55:46 by ayassin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	is_plane_shadow(t_vec hit_point, t_vec light_vec, t_scene *scene)
 	while (i < scene->n_planes)
 	{
 		temp_t = hit_plane(&(scene->plane[i]), &hit_point, &light_vec);
-		if (temp_t && temp_t > 0.00001 && temp_t < 1)
+		if (temp_t && temp_t > 0.1 && temp_t < 1)
 			return (1);
 		i++;
 	}
@@ -49,8 +49,8 @@ int	is_sphere_shadow(t_vec hit_point, t_vec light_vec, t_scene *scene)
 	while (i < scene->n_spheres)
 	{
 		temp_t = hit_sphere
-			(&(scene->spheres[i]), &hit_point, &light_vec, 0.00001);
-		if (temp_t && temp_t > 0.00001 && temp_t < 1.0)
+			(&(scene->spheres[i]), &hit_point, &light_vec, 0.1);
+		if (temp_t && temp_t > 0.1 && temp_t < 1.0)
 			return (1);
 		++i;
 	}
@@ -66,8 +66,8 @@ int	is_cylinder_shadow(t_vec hit_point, t_vec light_vec, t_scene *scene)
 	while (i < scene->n_cylinders)
 	{
 		temp_t = hit_cylinder
-			(&(scene->cylinder[i]), &hit_point, &light_vec, 0.00001);
-		if (temp_t && temp_t > 0.00001 && temp_t < 1.0)
+			(&(scene->cylinder[i]), &hit_point, &light_vec, 0.1);
+		if (temp_t && temp_t > 0.1 && temp_t < 1.0)
 			return (1);
 		++i;
 	}
