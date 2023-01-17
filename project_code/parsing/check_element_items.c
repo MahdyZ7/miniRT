@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 23:54:06 by ahsalem           #+#    #+#             */
-/*   Updated: 2023/01/16 04:38:29 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/17 08:43:35 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,8 @@ int	check_float_overflow(char *check_me, int end)
 		return (1);
 	am_i_float = (double)atof(inspect_float);
 	if (am_i_float < 0
-		|| am_i_float > 214748364.0
-		|| am_i_float < -214748364.0)
+		|| am_i_float > 2147483647.0
+		|| am_i_float < -2147483648.0)
 	{
 		free(inspect_float);
 		return (1);
