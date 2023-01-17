@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 21:09:01 by ayassin           #+#    #+#             */
-/*   Updated: 2023/01/16 04:19:52 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/16 14:36:58 by ayassin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@
 #  define DOWN_KEY 65364
 #  define LEFT_KEY 65361
 #  define RIGHT_KEY 65363
-// #  define M_KEY 109
-// #  define H_KEY 104
+#  define M_KEY 109
+#  define H_KEY 104
 #  define Q_KEY 81
 #  define E_KEY 69
 // #  define I_KEY 34

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_hooks.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 10:49:02 by ayassin           #+#    #+#             */
-/*   Updated: 2023/01/16 03:47:29 by ahsalem          ###   ########.fr       */
+/*   Updated: 2023/01/16 15:13:45 by ayassin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,16 @@ int	exit_code(t_win *win)
 int	key_hook(int key, t_win *win)
 {
 	if (key == RIGHT_KEY)
-		win->img->scene->camera.xyz_angles.y += 0.05;
+		win->img->scene->camera.xyz_angles.y += 0.17;
 	if (key == LEFT_KEY)
-		win->img->scene->camera.xyz_angles.y -= 0.05;
+		win->img->scene->camera.xyz_angles.y -= 0.17;
 	if (key == DOWN_KEY)
-		win->img->scene->camera.xyz_angles.x += 0.05;
+		win->img->scene->camera.xyz_angles.x += 0.17;
 	if (key == UP_KEY)
-		win->img->scene->camera.xyz_angles.x -= 0.05;
+		win->img->scene->camera.xyz_angles.x -= 0.17;
 	move_camera_hooks(key, win);
 	if (key == ESC_KEY)
 		exit_code(win);
-	printf("Key = %d\n", key);
 	vis_scene(win->img->scene);
 	redraw(win, win->img, basic_raytracing);
 	return (0);
@@ -53,9 +52,9 @@ int	key_hook(int key, t_win *win)
 void	move_camera_hooks(int key, t_win *win)
 {
 	if (key == M_KEY)
-		win->img->scene->camera.xyz_angles.z += 0.05;
+		win->img->scene->camera.xyz_angles.z += 0.17;
 	if (key == H_KEY)
-		win->img->scene->camera.xyz_angles.z -= 0.05;
+		win->img->scene->camera.xyz_angles.z -= 0.17;
 	if (key == Q_KEY)
 		win->img->scene->camera.view_point.z += 5;
 	if (key == E_KEY)

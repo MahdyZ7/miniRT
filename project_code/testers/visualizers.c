@@ -6,7 +6,7 @@
 /*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 15:22:02 by ahsalem           #+#    #+#             */
-/*   Updated: 2023/01/10 23:11:56 by ayassin          ###   ########.fr       */
+/*   Updated: 2023/01/16 14:33:00 by ayassin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	vis_list(t_list **head)
 	tmp = *head;
 	while (tmp)
 	{
-		printf("%s~", tmp->content);
+		printf("%s~", (char *)(tmp->content));
 		tmp = tmp->next;
 	}
 }
