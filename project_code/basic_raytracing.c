@@ -6,7 +6,7 @@
 /*   By: ayassin <ayassin@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 18:55:05 by ayassin           #+#    #+#             */
-/*   Updated: 2023/01/17 16:26:03 by ayassin          ###   ########.fr       */
+/*   Updated: 2023/01/21 14:43:13 by ayassin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ void	trace_all_shapes(t_ray_trace_kit *r, t_img *img)
 			r->dir = dir_with_camera_orientation(&r->dir, img->scene);
 			r->plane_result = trace_plane(&r->dir, img->scene);
 			r->sphere_result = trace_sphere(
-					&r->dir, img->scene->camera.view_point.z + 1, img->scene);
+					&r->dir, 0, img->scene);
 			r->cylinder_result = trace_cylinder(
-					&r->dir, img->scene->camera.view_point.z + 1, img->scene);
+					&r->dir, 0, img->scene);
 			r->color = pick_shape_color(r);
 			pixel_put(img->scene->win->img, r->x, r->y, r->color);
 			++r->y;
